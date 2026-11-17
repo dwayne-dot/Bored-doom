@@ -1707,8 +1707,8 @@ function pawWalk(rev){
  var n=8,x0=W*.18,y0=H*.12,x1=W*.80,y1=H*.82,o='';if(rev){x0=W*.80;y0=H*.80;x1=W*.18;y1=H*.12}
  for(var i=0;i<n;i++){var t=i/(n-1),cx=x0+(x1-x0)*t+Math.sin(t*Math.PI*1.6)*W*.10,cy=y0+(y1-y0)*t;
   var t2=Math.min(1,t+.02),dx=(x1-x0)+Math.cos(t2*Math.PI*1.6)*Math.PI*1.6*W*.10,dy=(y1-y0),ang=Math.atan2(dy,dx)*180/Math.PI+90,side=i%2?1:-1;
-  var nx=-dy,ny=dx,len=Math.hypot(nx,ny);cx+=side*nx/len*24;cy+=side*ny/len*24;
-  o+='<svg class="pw-print" viewBox="0 0 24 24" style="left:'+(cx-28).toFixed(1)+'px;top:'+(cy-28).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*230)+'ms">'+pawP(12,12,2)+'</svg>'}
+  var nx=-dy,ny=dx,len=Math.hypot(nx,ny);var gap=rev?(24+12*t):(14+22*t);cx+=side*nx/len*gap;cy+=side*ny/len*gap;
+  var sz=rev?72+28*t:34+44*t,hf=sz/2;o+='<svg class="pw-print" viewBox="0 0 24 24" style="width:'+sz.toFixed(0)+'px;height:'+sz.toFixed(0)+'px;left:'+(cx-hf).toFixed(1)+'px;top:'+(cy-hf).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*230)+'ms">'+pawP(12,12,2)+'</svg>'}
  host.innerHTML=o;app.appendChild(host);
  setTimeout(function(){host.remove()},n*230+2000);
 }
