@@ -1663,7 +1663,7 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .streak-chip{background:var(--bg2)!important;border:none!important;padding:9px 14px 11px!important;font-weight:800!important;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)!important;transition:transform .12s ease,box-shadow .12s ease!important}
 .streak-chip:active{transform:translateY(2px);box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)!important}
 
-.tk-key{position:absolute;left:50%;top:36px;margin-left:-19px;color:var(--cream);opacity:0;transform:translateY(-6px) rotate(-30deg) scale(.7);transform-origin:50% 0;transition:opacity .3s ease,transform .45s cubic-bezier(.3,1.5,.5,1);pointer-events:none}
+.tk-key{position:absolute;left:50%;top:64px;margin-left:-19px;color:var(--cream);opacity:0;transform:translateY(-6px) rotate(-30deg) scale(.7);transform-origin:50% 0;transition:opacity .3s ease,transform .45s cubic-bezier(.3,1.5,.5,1);pointer-events:none}
 #tk-ov.keyhold .tk-key{opacity:.32;transform:translateY(0) rotate(12deg) scale(1);animation:keySway 1.6s ease-in-out .45s infinite}
 @keyframes keySway{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-8deg)}}
 
@@ -1692,6 +1692,7 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .jf2 .jf-row .chip{flex-shrink:0;background:rgba(0,0,0,.18)!important;color:var(--cream)!important;border:none!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)!important}
 .jf2 .jf-row .chip.on{background:#9FD0BD!important;color:var(--ink)!important}
 .jb-f.open{background:var(--cream)!important;color:var(--ink)!important}
+.jb-sp{width:44px;height:44px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -2575,8 +2576,7 @@ function openJournal(src){
  var app=$('#app'),rm=S.rm||app.classList.contains('rm'),D=jbData(),P=1+D.days.length,FIL=null;
  var TAGS=[];S.notes.forEach(function(n){if(TAGS.indexOf(n.tag)<0)TAGS.push(n.tag)});
  var ov=document.createElement('div');ov.id='jb-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Your journal');
- ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><button class="icon-btn jb-f" aria-label="Filter entries"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg><i class="jb-fdot"></i></button></div>'+
-  '<div class="jb-fp jf2" hidden></div><div class="jb-fon" hidden></div>'+
+ ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><span class="jb-sp" aria-hidden="true"></span></div>'+
   '<div class="jb-stage"><div class="jb-fly"><div class="jb-book">'+
    '<i class="jb-back"></i><i class="jb-pg l"></i><i class="jb-pg r"></i>'+
    '<div class="jb-cv"><div class="jb-cf"><span class="jb-cspine"></span><svg viewBox="0 0 24 24" class="jb-cpaw">'+pawP(12,12,2)+'</svg><b class="jb-ctitle">'+esc(S.name||'My')+'’s journal</b></div><div class="jb-cb"><div class="jp-plate"><small>This journal belongs to</small><b>'+esc(S.name||'You')+'</b>'+face('happy',54)+'<span>& Milo</span></div></div></div>'+
@@ -2650,45 +2650,6 @@ function openJournal(src){
  $('.jb-x',ov).addEventListener('click',close);
  $$('.jb-nav',ov).forEach(function(b){b.addEventListener('click',function(){turn(+b.dataset.d)})});
  $$('.jb-seg button',ov).forEach(function(b){b.addEventListener('click',function(){setSpread(b.dataset.m==='2','btn')})});
- var fp=$('.jb-fp',ov),fon=$('.jb-fon',ov);
- var FW={when:null,what:null};
- var X=[['Everything',null],['With Milo',{where:'milo'}],['During SOS',{where:'sos'}]].concat(TAGS.map(function(t){return [t,{tag:t}]}));
- var WS=[['Today','today'],['7 days','last7'],['Week','week'],['Month','month'],['All',null]];
- var wi=4,tab='when';
- function label(){var p=[];if(FW.when)WS.forEach(function(o){if(o[1]===FW.when)p.push(o[0]==='7 days'?'Last 7 days':o[0]==='Week'?'This week':o[0]==='Month'?'This month':o[0])});
-  if(FW.what)X.forEach(function(o){if(JSON.stringify(o[1])===JSON.stringify(FW.what))p.push(o[0])});return p.join(' · ')}
- function nOf(w){return jbData({when:w,where:FW.what&&FW.what.where,tag:FW.what&&FW.what.tag}).days.length}
- function chips(){
-  fp.innerHTML='<div class="jf-tabs"><button data-t="when">When<i></i></button><button data-t="what">What<i></i></button></div>'+
-   '<div class="jf-pane" data-p="when"><div class="jf-sl"><div class="jf-tr"><i class="jf-fill"></i></div>'+WS.map(function(o,i){return '<b class="jf-stop" style="left:'+(i/(WS.length-1)*100)+'%"></b>'}).join('')+
-   '<span class="jf-knob"><svg viewBox="0 0 24 24" width="17" height="17">'+pawP(12,11.6,2.15,true)+'</svg></span></div>'+
-   '<div class="jf-lbls">'+WS.map(function(o,i){return '<button data-w="'+i+'" style="left:'+(i/(WS.length-1)*100)+'%">'+o[0]+'<small></small></button>'}).join('')+'</div></div>'+
-   '<div class="jf-pane" data-p="what"><div class="jf-row">'+X.map(function(o,i){return '<button class="chip" data-x="'+i+'">'+esc(o[0])+'</button>'}).join('')+'</div></div>';
-  var sl=$('.jf-sl',fp),kn=$('.jf-knob',fp),drag=false;
-  function paint(){var f=wi/(WS.length-1)*100;kn.style.left=f+'%';$('.jf-fill',fp).style.width='calc(14px + (100% - 28px) * '+(f/100)+')';
-   $$('[data-w]',fp).forEach(function(b){var i=+b.dataset.w;b.classList.toggle('on',i===wi);$('small',b).textContent=nOf(WS[i][1])});
-   $$('.jf-stop',fp).forEach(function(d,i){d.classList.toggle('in',i<=wi)});
-   $$('[data-x]',fp).forEach(function(c){c.classList.toggle('on',JSON.stringify(X[+c.dataset.x][1])===JSON.stringify(FW.what))});
-   $$('[data-t]',fp).forEach(function(b){b.classList.toggle('on',b.dataset.t===tab);b.classList.toggle('act',b.dataset.t==='when'?!!FW.when:!!FW.what)});
-   $$('.jf-pane',fp).forEach(function(p){p.hidden=p.dataset.p!==tab})}
-  function setW(i,apply){i=Math.max(0,Math.min(WS.length-1,i));if(i!==wi){wi=i;haptic(4);kn.classList.remove('bump');void kn.offsetWidth;kn.classList.add('bump')}paint();if(apply&&FW.when!==WS[wi][1]){FW.when=WS[wi][1];applyF()}}
-  function at(ev){var r=sl.getBoundingClientRect();return Math.round((ev.clientX-r.left)/r.width*(WS.length-1))}
-  sl.addEventListener('pointerdown',function(ev){drag=true;try{sl.setPointerCapture(ev.pointerId)}catch(_){}kn.classList.add('on');setW(at(ev))});
-  sl.addEventListener('pointermove',function(ev){if(drag)setW(at(ev))});
-  function up(){if(!drag)return;drag=false;kn.classList.remove('on');setW(wi,true)}
-  sl.addEventListener('pointerup',up);sl.addEventListener('pointercancel',up);
-  $$('[data-w]',fp).forEach(function(b){b.addEventListener('click',function(){setW(+b.dataset.w,true)})});
-  $$('[data-x]',fp).forEach(function(c){c.addEventListener('click',function(){FW.what=X[+c.dataset.x][1];haptic(5);applyF();paint()})});
-  $$('[data-t]',fp).forEach(function(b){b.addEventListener('click',function(){tab=b.dataset.t;haptic(5);paint()})});
-  paint()}
- function openF(){chips();fp.hidden=false;fon.hidden=true;$('.jb-f',ov).classList.add('open');layout(true);haptic(5)}
- function closeF(){if(fp.hidden)return;fp.hidden=true;$('.jb-f',ov).classList.remove('open');fon.hidden=!(FW.when||FW.what);layout(true)}
- function applyF(f){if(f===null){FW.when=null;FW.what=null;wi=4}var on=!!(FW.when||FW.what);
-  FIL=on?{when:FW.when,where:FW.what&&FW.what.where,tag:FW.what&&FW.what.tag}:null;D=jbData(FIL);P=1+D.days.length;st.idx=0;show();haptic(6);
-  $('.jb-f',ov).classList.toggle('act',on);var lb=on?label():'';fon.innerHTML=on?'Showing: <b>'+esc(lb)+'</b><button aria-label="Clear filter">'+ic('x',{s:14,w:3})+'</button>':'';
-  fon.hidden=!on||!fp.hidden;if(on)$('button',fon).addEventListener('click',function(){applyF(null);layout(true)})}
- chips.label=label;
- $('.jb-f',ov).addEventListener('click',function(e){e.stopPropagation();fp.hidden?openF():closeF()});
  var eg=null;ov.addEventListener('pointerdown',function(e){var r=ov.getBoundingClientRect();eg=(e.clientX-r.left<28)?{x:e.clientX,y:e.clientY}:null;if(eg)st.edge=true},true);
  ov.addEventListener('pointerup',function(e){if(eg){var dx=e.clientX-eg.x,dy=Math.abs(e.clientY-eg.y);eg=null;if(dx>60&&dy<80){close()}setTimeout(function(){st.edge=false},0)}},true);
  var p0=null;stage.addEventListener('pointerdown',function(e){p0={x:e.clientX,y:e.clientY}});
@@ -3396,10 +3357,10 @@ function openToolkit(){
   later(function(){w.classList.remove('on')},720);
   later(function(){w.remove()},1080)}
  var pull=$('.tk-pull',w),kh=null;
- pull.addEventListener('pointerdown',function(){if(!w.classList.contains('open'))return;kh=setTimeout(function(){w.classList.add('keyhold');haptic(6)},140)});
- function keyUp(){clearTimeout(kh);w.classList.remove('keyhold')}
- pull.addEventListener('pointerup',keyUp);pull.addEventListener('pointerleave',keyUp);pull.addEventListener('pointercancel',keyUp);
- pull.addEventListener('click',function(e){e.stopPropagation();keyUp();close(false)});
+ pull.addEventListener('pointerdown',function(){if(!w.classList.contains('open')||w.classList.contains('closing'))return;kh=setTimeout(function(){w.classList.remove('blend');w.classList.add('keyhold');haptic(6)},140)});
+ function keyUp(cancel){clearTimeout(kh);if(w.classList.contains('keyhold')){w.classList.remove('keyhold');if(cancel&&!w.classList.contains('closing'))w.classList.add('blend')}}
+ pull.addEventListener('pointerleave',function(){keyUp(true)});pull.addEventListener('pointercancel',function(){keyUp(true)});
+ pull.addEventListener('click',function(e){e.stopPropagation();keyUp(false);close(false)});
  w.addEventListener('click',function(e){if(e.target===w)close(false);if(e.target.closest('.tk-p'))setTimeout(function(){close(true)},60)});
 }
 
