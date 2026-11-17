@@ -1638,6 +1638,30 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .jb-days{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px 2px}.jb-days::-webkit-scrollbar{display:none}
 .jb-dc{flex-direction:column!important;flex-shrink:0;line-height:1.1!important;padding:6px 12px!important;min-height:48px!important;display:flex!important;align-items:center;justify-content:center}
 .jb-dc small{font:800 10px 'Nunito',sans-serif;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+
+/* journal filter dial (inspired by onboarding danger hours) */
+.jf-scrim{position:absolute;inset:0;z-index:19;background:rgba(6,14,12,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:jfFade .3s ease both}
+.jf-scrim[hidden]{display:none}.jf-scrim.out{animation:jfFadeO .26s ease both}
+.jb-fp.jf{top:auto!important;left:0!important;right:0!important;bottom:0;max-height:none!important;overflow:visible!important;padding:8px 20px 26px!important;border-radius:34px 34px 0 0!important;background:radial-gradient(120% 70% at 50% 0%,#1E3F38 0%,var(--bg) 62%)!important;color:var(--cream)!important;box-shadow:0 -10px 40px rgba(0,0,0,.45)!important;display:flex;flex-direction:column;gap:10px;animation:jfUp .5s cubic-bezier(.22,1.2,.36,1) both!important}
+.jb-fp.jf[hidden]{display:none}.jb-fp.jf.out{animation:jfDown .26s cubic-bezier(.55,0,1,.45) both!important}
+@keyframes jfUp{from{transform:translateY(100%)}}@keyframes jfDown{to{transform:translateY(100%)}}
+@keyframes jfFade{from{opacity:0}}@keyframes jfFadeO{to{opacity:0}}
+.jf-grab{width:38px;height:5px;border-radius:3px;background:rgba(249,246,240,.25);margin:0 auto 2px}
+.jf-h{display:flex;align-items:center;justify-content:space-between}.jf-h b{font:900 22px 'Nunito',sans-serif}
+.jf-reset{border:none;background:var(--bg2);color:var(--amber);font:800 14px 'Nunito',sans-serif;padding:8px 14px;border-radius:999px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.jf-sub{margin:-6px 0 0;font:500 14px 'Nunito',sans-serif;color:var(--muted)}
+.jf-dial{width:270px!important;height:270px!important;margin:0 auto!important}
+.jf-dial .dial-sky{left:56px;top:56px;width:158px;height:158px}
+.jf-dial .dial-milo{transform:translate(-50%,-50%)}
+.jf-dial text{font-size:12px}
+.jf-end{fill:#F2CC6B!important;font-size:11px!important}.jf-dial svg{overflow:visible}.jfd{fill:rgba(249,246,240,.75);pointer-events:none;transition:fill .2s}.jfd.in{fill:#16302B}
+.jf-row{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:2px 20px 4px}.jf-row::-webkit-scrollbar{display:none}
+.jf-row .chip{flex-shrink:0;background:var(--bg2)!important;color:var(--cream)!important;border:none!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)!important}
+.jf-row .chip.on{background:var(--cream)!important;color:var(--ink)!important}
+.jf-what .chip.on{background:#9FD0BD!important;color:var(--ink)!important}
+.jf-go{margin-top:4px}.jf-go:disabled{opacity:.45}
+.streak-chip{background:var(--bg2)!important;border:none!important;padding:9px 14px 11px!important;font-weight:800!important;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)!important;transition:transform .12s ease,box-shadow .12s ease!important}
+.streak-chip:active{transform:translateY(2px);box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)!important}
 </style>
 </head>
 <body>
@@ -1741,7 +1765,7 @@ function pawP(cx,cy,k,fill){var sc=(0.46*k).toFixed(3),f=true;var g='<path d="M1
 P.doghouse='<path d="M2.5 11.5 12 4l9.5 7.5"/><path d="M5 10v10h14V10"/><path d="M9.5 20v-4a2.5 2.5 0 0 1 5 0v4"/>';
 P.tracks=pawP(6.8,17.2,1.15)+pawP(17.2,7.4,1.15);
 P.tag='<path d="M12 2.2v3"/><rect x="5.3" y="5.2" width="13.4" height="16.6" rx="6.7"/><circle cx="12" cy="9.7" r="1.2"/><path d="M9.2 14.4h5.6"/><path d="M10.2 17.4h3.6"/>';
-P.bone='<path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/>';
+P.bone='<path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/>';P.frisbee='<ellipse cx="12" cy="12.6" rx="9.6" ry="5.6" transform="rotate(-16 12 12.6)"/><ellipse cx="12" cy="11.9" rx="5.4" ry="2.7" transform="rotate(-16 12 11.9)" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.6"/><path d="M3.4 15.6c2.6 2.6 10.6 1.4 16.2-3.1" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.4"/>';
 P.paper='<rect x="2.5" y="7" width="19" height="10" rx="5"/><path d="M7.5 7v10"/><path d="M11 10.5h7"/><path d="M11 13.5h4.5"/>';
 P.pawpair=pawP(6.3,16.8,1.05)+pawP(17.7,16.8,1.05)+'<path d="M12 6.4c-1.2-2.1-4.3-1.5-4.3.6 0 1.7 2.1 3 4.3 4.4 2.2-1.4 4.3-2.7 4.3-4.4 0-2.1-3.1-2.7-4.3-.6z" fill="currentColor" stroke="none"/>';
 P.findpaw='<circle cx="10.5" cy="10.5" r="7.2"/><path d="m21 21-5.3-5.3"/>'+pawP(10.5,10.9,.64);
@@ -1752,7 +1776,7 @@ P.bowl='<path d="M3 13h18a8 8 0 0 1-8 7h-2a8 8 0 0 1-8-7Z"/><path d="M8 13c0-2 1
 P.nose='<path d="M2.6 11c0-1.8 1.7-3 4-3s4 1.2 4 3-1.9 4-4 4-4-2.2-4-4z"/><path d="M13.5 7.5c1.4 0 1.4 1.8 2.8 1.8s1.4-1.8 2.8-1.8"/><path d="M13.5 12c1.4 0 1.4 1.8 2.8 1.8s1.4-1.8 2.8-1.8"/><path d="M13.5 16.5c1.4 0 1.4 1.8 2.8 1.8s1.4-1.8 2.8-1.8"/>';
 P.pawFill='<g fill="currentColor" stroke="none"><ellipse cx="12" cy="15.6" rx="5.2" ry="4.4"/><ellipse cx="5.4" cy="9.4" rx="2.2" ry="2.7"/><ellipse cx="9.6" cy="5.2" rx="2.2" ry="2.8"/><ellipse cx="14.4" cy="5.2" rx="2.2" ry="2.8"/><ellipse cx="18.6" cy="9.4" rx="2.2" ry="2.7"/></g>';
 P.mic='<rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M8.5 21h7"/>';P.wifiOff='<path d="M2 8.5a15 15 0 0 1 5-3"/><path d="M10.5 4.6A15 15 0 0 1 22 8.5"/><path d="M5 12a10 10 0 0 1 4-2.3"/><path d="M15.5 10.2A10 10 0 0 1 19 12"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/><path d="M3 3l18 18"/>';P.chevD='<path d="m6 9 6 6 6-6"/>';P.flag='<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>';P.logout='<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>';P.arrowUp='<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>';
-function ic(n,o){o=o||{};var s=o.s||22;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="'+(o.fill||'none')+'" stroke="'+(o.c||'currentColor')+'" stroke-width="'+(o.w||2.1)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+P[n]+'</svg>'}
+function ic(n,o){o=o||{};var s=o.s||22;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="'+(o.fill||(n==='bone'||n==='frisbee'?(o.c||'currentColor'):'none'))+'" stroke="'+(o.c||'currentColor')+'" stroke-width="'+(o.w||2.1)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+P[n]+'</svg>'}
 
 /* ---------- Milo ---------- */
 function accSVG(a){
@@ -1969,7 +1993,7 @@ function paywall(o){o=o||{};
  var PL={w:{n:'Weekly',p:'$2.99',d:'1 week',fine:'Plan auto-renews for $2.99/week until canceled.',cta:'Subscribe'},m:{n:'Monthly',p:'$7.99',d:'1 month',tag:'7 days free',fine:'Free for 7 days, then $7.99/month until canceled.',cta:'Start free trial'},y:{n:'Yearly',p:'$39.99',d:'1 year',tag2:'Save 58%',fine:'Plan auto-renews for $39.99/year until canceled.',cta:'Subscribe'}};
  var w=document.createElement('div');w.id='pw';w.setAttribute('role','dialog');w.setAttribute('aria-modal','true');
  w.innerHTML='<button class="pw-x" aria-label="Close">'+ic('x',{s:20,w:2.6})+'</button>'+
- '<div class="pw-body"><div class="pw-title"><h2>Bored Doom</h2><span class="pw-badge">Pro</span></div>'+
+ '<div class="pw-body"><div class="pw-title"><h2>Bored Doom</h2><span class="pw-badge">Bonus</span></div>'+
  '<img class="pw-icon" src="assets/icon.png" alt="Bored Doom app icon with Milo">'+
  '<ul class="pw-feats">'+[['star','All of Milo’s Picks and the Finite Feed'],['shieldpaw','Milo shield for your social apps'],['gift','Milo Wrapped, insights and Pack mode'],['heart','Every outfit and room item']].map(function(f,i){return '<li style="animation-delay:'+(0.15+i*0.07)+'s"><span>'+ic(f[0],{s:20,w:2.2})+'</span>'+f[1]+'</li>'}).join('')+'</ul>'+
  '<div class="spacer"></div>'+
@@ -1985,7 +2009,7 @@ function paywall(o){o=o||{};
  $('.pw-x',w).addEventListener('click',function(){haptic(5);close()});
  $$('.pw-plan',w).forEach(function(b){b.addEventListener('click',function(){$$('.pw-plan',w).forEach(function(x){x.classList.remove('on')});b.classList.add('on');k=b.dataset.k;fine.textContent=PL[k].fine;ref(w,'rem').hidden=k!=='m';go.textContent=PL[k].cta;haptic(6)})});
  ref(w,'rs')&&ref(w,'rs').addEventListener('click',function(){toast('Checking with the App Store…');setTimeout(function(){toast('No previous purchases found.')},1100)});
- go.addEventListener('click',function(){if(window.__offline){storeError(w);return}S.pro=true;save();close();toast(k==='m'?'Trial started. Everything is unlocked!':'Pro unlocked. Thank you!');haptic([20,40,20]);SFX.win();var t=stack[stack.length-1];if(t&&(t.name==='milo'||t.name==='you'||t.name==='sub'||t.name==='account')){if(stack.length===1)refreshRoot();else{var d=SCREENS[t.name];t.el.innerHTML=d.render(t.params||{});d.mount&&d.mount(t.el,t.params||{},t)}}});
+ go.addEventListener('click',function(){if(window.__offline){storeError(w);return}S.pro=true;save();close();toast(k==='m'?'Trial started. Everything is unlocked!':'Bonus unlocked. Thank you!');haptic([20,40,20]);SFX.win();var t=stack[stack.length-1];if(t&&(t.name==='milo'||t.name==='you'||t.name==='sub'||t.name==='account')){if(stack.length===1)refreshRoot();else{var d=SCREENS[t.name];t.el.innerHTML=d.render(t.params||{});d.mount&&d.mount(t.el,t.params||{},t)}}});
 }
 function supportSheet(){openSheet('<div style="display:flex;justify-content:center">'+mimg('calm',124,'','Milo meditating')+'</div><div class="center"><div style="font-size:23px;font-weight:900;line-height:28px">I\'m really glad you told me.</div><p class="muted center" style="margin-top:6px">I\'m a dog with a phone. For this, you deserve a real person, right now.</p></div>'+
  '<div class="sup"><b>In the US</b><span>Call or text <b>988</b>, the Suicide &amp; Crisis Lifeline. Free and open 24/7.</span></div>'+
@@ -2177,12 +2201,12 @@ function nope(b,msg){b.classList.remove('shake');void b.offsetWidth;b.classList.
 SCREENS.milo={render:function(){
  return '<div class="scroll"><div class="topbar"><h1 class="large" style="margin:0">Milo</h1><span class="pill">'+ic('bone',{s:18,c:'#F2CC6B'})+'<span data-ref="tr">'+S.treats+'</span></span></div>'+
  '<div class="seg s3" data-ref="seg"><i></i><button data-v="talk">Talk</button><button data-v="outfits">Outfits</button><button data-v="room">Room</button></div><div data-ref="view" class="col" style="gap:14px"></div>'+
- (S.pro?'':'<button class="rowcard cream" data-ref="pro"><img src="assets/gift.png" alt="" class="illo" style="width:52px;height:52px;border-radius:14px"><span class="grow"><b>Unlock everything with Pro</b><small style="color:var(--ink2)">7-day free trial</small></span>'+ic('chevR',{c:'#16302B'})+'</button>')+'</div>';
+ (S.pro?'':'<button class="rowcard cream" data-ref="pro"><img src="assets/gift.png" alt="" class="illo" style="width:52px;height:52px;border-radius:14px"><span class="grow"><b>Unlock everything with Bonus</b><small style="color:var(--ink2)">7-day free trial</small></span>'+ic('chevR',{c:'#16302B'})+'</button>')+'</div>';
 },mount:function(el){
  var view=ref(el,'view'),seg=ref(el,'seg');
  function setTr(){ref(el,'tr').textContent=S.treats}
  function outfits(){view.innerHTML='<div class="stage rub" data-ref="stage"><div style="position:relative" data-ref="m">'+milo({size:210})+'</div></div><p class="muted center" style="font-size:13px;margin-top:-4px">Rub Milo · earn treats by beating urges and finishing challenges</p><div class="items stagger" data-ref="items"></div>';rubbable(ref(view,'stage'));drawItems()}
- function drawItems(){ref(view,'items').innerHTML=ITEMS.map(function(it){var own=S.owned.indexOf(it.id)>=0||(it.pro&&S.pro),on=S.acc===it.id;var sub=own?it.n:it.pro?'<span class="isub">'+ic('lock',{s:13,w:2.4})+'Pro</span>':it.cost?'<span class="isub">'+ic('bone',{s:13,c:'#F2CC6B'})+it.cost+'</span>':'<span class="isub">'+ic('lock',{s:13,w:2.4})+it.streak+'-day streak</span>';
+ function drawItems(){ref(view,'items').innerHTML=ITEMS.map(function(it){var own=S.owned.indexOf(it.id)>=0||(it.pro&&S.pro),on=S.acc===it.id;var sub=own?it.n:it.pro?'<span class="isub">'+ic('lock',{s:13,w:2.4})+'Bonus</span>':it.cost?'<span class="isub">'+ic('bone',{s:13,c:'#F2CC6B'})+it.cost+'</span>':'<span class="isub">'+ic('lock',{s:13,w:2.4})+it.streak+'-day streak</span>';
   return '<button class="item'+(on?' on':'')+(own?'':' locked')+'" data-id="'+it.id+'">'+(on?'<span class="tag">WEARING</span>':it.limited?'<span class="tag lim">LIMITED</span>':'')+it.art+'<span>'+sub+'</span></button>'}).join('');stagger(view)}
  function wear(id){S.acc=id;save();var m=ref(view,'m');m.innerHTML=milo({size:210});m.classList.remove('bounce');void m.offsetWidth;m.classList.add('bounce');var st=ref(view,'stage'),sr=st.getBoundingClientRect();for(var i=0;i<6;i++)setTimeout(function(){heart(st,sr.width/2+(Math.random()*120-60),sr.height/2-20)},i*60);haptic([10,30,10]);SFX.bark();drawItems()}
  function room(fresh){view.innerHTML=roomScene(fresh)+'<p class="muted center" style="font-size:13px;margin-top:-4px">Decorate Milo\'s room with treats. It grows as you do.</p><div class="items stagger">'+ROOM.map(function(r){var own=S.room.indexOf(r.id)>=0;return '<button class="item'+(own?' on':' locked')+'" data-room="'+r.id+'">'+(own?'<span class="tag">IN ROOM</span>':'')+'<span style="color:'+(own?'#2E6B5E':'#A9BDB7')+'">'+ic(r.i,{s:34,w:1.8})+'</span><span>'+(own?r.n:'<span class="isub">'+ic('bone',{s:13,c:'#F2CC6B'})+r.cost+'</span>')+'</span></button>'}).join('')+'</div>';stagger(view);rubbable(ref(view,'rmilo'))}
@@ -2207,7 +2231,7 @@ SCREENS.insights={render:function(){
  var hb=mk.map(function(k){var v=S.moods[k]||0;return '<span>'+k[0].toUpperCase()+k.slice(1)+'</span><div class="hb"><i data-w="'+Math.round(v/mx*100)+'" style="background:'+(v===mx?'#9FD0BD':'#5E7A73')+'"></i></div><span style="text-align:right">'+v+'</span>'}).join('');
  var tod=[['Morning',2],['Afternoon',6],['Evening',9],['Late night',12]];
  return '<div class="scroll stagger"><h1 class="large" style="margin:0">Insights</h1>'+
- '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('shield',{s:13})+'Mercy: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+
+ '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('frisbee',{s:14,w:1.4})+'Freebie: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+
  '<button class="rowcard cream" data-go="wrapped" data-mode="modal"><img src="assets/gift.png" alt="" class="illo" style="width:56px;height:56px;border-radius:14px"><span class="grow"><b>Your Milo Wrapped is ready</b><small style="color:var(--ink2)">Your week in 6 tiny stories</small></span><span class="playc">'+ic('play',{s:16,fill:'#F9F6F0',c:'#F9F6F0'})+'</span></button>'+
  '<div class="card col"><div class="over">LAST 4 WEEKS</div><div class="cal">'+cal+'</div><div style="display:flex;gap:14px;font-size:12px;font-weight:800;color:var(--muted)"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#7FA89C;margin-right:5px"></i>Habit-free</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--line);margin-right:5px"></i>Slip</span></div></div>'+
  '<div class="card cream row"><img src="assets/garden.png" alt="Milo watering sprouts" class="illo" style="width:96px;height:96px;border-radius:18px;flex-shrink:0"><div class="col" style="gap:4px"><span class="over" style="color:var(--ink2)">MILO NOTICED</span><b style="font-size:17px;line-height:22px">Most urges hit when you\'re <span style="color:#A8541E">Bored after 8 PM</span>.</b><button class="chip" data-ref="boost" style="align-self:flex-start;border-color:#E4DDCF;color:var(--ink);padding:6px 12px;font-size:13px">Add a 7:45 PM booster</button></div>'+fbHTML('insight-bored-8pm','Is this insight useful?')+'</div>'+
@@ -2222,7 +2246,7 @@ SCREENS.insights={render:function(){
  return function(){clearTimeout(t)};
 }};
 
-var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Mercy'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
+var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
 var APPS=[{n:'Clips',c:'#E5604D',i:'play',so:1},{n:'Chirp',c:'#4F7FD6',i:'msg',so:1},{n:'Snaps',c:'#E3B23C',i:'camera',so:1},{n:'Scroll',c:'#8B6FD6',i:'layers',so:1},{n:'Mail',c:'#3E88D4',i:'mail'},{n:'Maps',c:'#5FA864',i:'map'},{n:'Notes',c:'#E3B23C',i:'pen'},{n:'Music',c:'#E2557A',i:'music'},{n:'Weather',c:'#4A9BD9',i:'sun'},{n:'Photos',c:'#F9F6F0',i:'image',dk:1},{n:'Calendar',c:'#F9F6F0',i:'calendar',dk:1},{n:'Bored Doom',c:'#16302B',milo:1}];
 function appIcon(a,idx){return '<button class="app" data-app="'+idx+'"><span class="ai" style="background:'+a.c+';color:'+(a.dk?'#16302B':'#fff')+'">'+(a.milo?face('happy',58):ic(a.i,{s:30,w:2}))+'</span>'+a.n+'</button>'}
 function nowStr(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return ((h%12)||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
@@ -2496,7 +2520,7 @@ var JB=null;
 function jbData(f){
  var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime(),wk=t0-((now.getDay()+6)%7)*864e5,mo=new Date(now.getFullYear(),now.getMonth(),1).getTime(),pm=new Date(now.getFullYear(),now.getMonth()-1,1).getTime();
  var RANGE={today:[t0,1e15],week:[wk,1e15],last7:[t0-6*864e5,1e15],month:[mo,1e15],lastmonth:[pm,mo]};
- var list=S.notes.filter(function(n){if(!f)return true;if(f.when){var r=f.when.day?[f.when.day,f.when.day+864e5]:RANGE[f.when];if(n.ts<r[0]||n.ts>=r[1])return false}if(f.where&&(f.where==='sos')!==(n.where==='sos'))return false;if(f.tag&&n.tag!==f.tag)return false;return true}).slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
+ var list=S.notes.filter(function(n){if(!f)return true;if(f.when){var r=f.when.from!=null?[f.when.from,f.when.to+864e5]:f.when.day?[f.when.day,f.when.day+864e5]:RANGE[f.when];if(n.ts<r[0]||n.ts>=r[1])return false}if(f.where&&(f.where==='sos')!==(n.where==='sos'))return false;if(f.tag&&n.tag!==f.tag)return false;return true}).slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
  list.forEach(function(n){var k=new Date(n.ts).toDateString();if(!by[k]){by[k]=[];days.push(k)}by[k].push(n)});
  return {list:list,days:days,by:by}}
 function jbPage(i,D){
@@ -2522,7 +2546,7 @@ function openJournal(src){
  var TAGS=[];S.notes.forEach(function(n){if(TAGS.indexOf(n.tag)<0)TAGS.push(n.tag)});
  var ov=document.createElement('div');ov.id='jb-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Your journal');
  ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><button class="icon-btn jb-f" aria-label="Filter entries"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg><i class="jb-fdot"></i></button></div>'+
-  '<div class="jb-fp" hidden><div class="jb-fh"><b>Filter pages</b><button class="jb-fdone">Done</button></div><div class="jb-fc"></div></div><div class="jb-fon" hidden></div>'+
+  '<div class="jb-fp jf" hidden></div><div class="jb-fon" hidden></div>'+
   '<div class="jb-stage"><div class="jb-fly"><div class="jb-book">'+
    '<i class="jb-back"></i><i class="jb-pg l"></i><i class="jb-pg r"></i>'+
    '<div class="jb-cv"><div class="jb-cf"><span class="jb-cspine"></span><svg viewBox="0 0 24 24" class="jb-cpaw">'+pawP(12,12,2)+'</svg><b class="jb-ctitle">'+esc(S.name||'My')+'’s journal</b></div><div class="jb-cb"><div class="jp-plate"><small>This journal belongs to</small><b>'+esc(S.name||'You')+'</b>'+face('happy',54)+'<span>& Milo</span></div></div></div>'+
@@ -2606,27 +2630,74 @@ function openJournal(src){
  $$('.jb-nav',ov).forEach(function(b){b.addEventListener('click',function(){turn(+b.dataset.d)})});
  $$('.jb-seg button',ov).forEach(function(b){b.addEventListener('click',function(){setSpread(b.dataset.m==='2','btn')})});
  var fp=$('.jb-fp',ov),fon=$('.jb-fon',ov);
- var FW={when:null,what:null};
- function chips(){var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],seen={},daysL=[];
-  S.notes.slice().sort(function(a,b){return b.ts-a.ts}).forEach(function(n){var d=new Date(n.ts),k=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();if(!seen[k]){seen[k]=1;daysL.push(k)}});
-  var W=[['Any time',null],['Today','today'],['This week','week'],['Last 7 days','last7'],['This month','month'],['Last month','lastmonth']];
-  var Ws=W.map(function(o,i){return '<button class="chip'+(FW.when===o[1]?' on':'')+'" data-w="'+i+'">'+o[0]+'</button>'}).join('');
-  var Ds=daysL.slice(0,10).map(function(k){var d=new Date(k),on=FW.when&&FW.when.day===k;return '<button class="chip jb-dc'+(on?' on':'')+'" data-day="'+k+'"><small>'+['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]+'</small>'+MO[d.getMonth()]+' '+d.getDate()+'</button>'}).join('');
-  var X=[['Everything',null],['With Milo',{where:'milo'}],['During SOS',{where:'sos'}]].concat(TAGS.map(function(t){return [t,{tag:t}]}));
-  var Xs=X.map(function(o,i){return '<button class="chip'+(JSON.stringify(FW.what)===JSON.stringify(o[1])?' on':'')+'" data-x="'+i+'">'+esc(o[0])+'</button>'}).join('');
-  $('.jb-fc',ov).innerHTML='<div class="jb-fs">When</div><div class="jb-fr">'+Ws+'</div><div class="jb-fs">Pick a day</div><div class="jb-fr jb-days">'+Ds+'</div><div class="jb-fs">What</div><div class="jb-fr">'+Xs+'</div>';
-  $$('[data-w]',ov).forEach(function(c){c.addEventListener('click',function(){FW.when=W[+c.dataset.w][1];applyF()})});
-  $$('[data-day]',ov).forEach(function(c){c.addEventListener('click',function(){FW.when={day:+c.dataset.day};applyF()})});
-  $$('[data-x]',ov).forEach(function(c){c.addEventListener('click',function(){FW.what=X[+c.dataset.x][1];applyF()})});
-  function label(){var p=[];if(FW.when){if(FW.when.day){var d=new Date(FW.when.day);p.push(MO[d.getMonth()]+' '+d.getDate())}else W.forEach(function(o){if(o[1]===FW.when)p.push(o[0])})}
-   if(FW.what)X.forEach(function(o){if(JSON.stringify(o[1])===JSON.stringify(FW.what))p.push(o[0])});return p.join(' · ')}
-  chips.label=label}
+ var FW={when:null,what:null},DRAFT=null;
+ var MO3=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ function dkey(ts){var d=new Date(ts);return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()}
+ function dstr(k){var d=new Date(k);return MO3[d.getMonth()]+' '+d.getDate()}
+ var T0=dkey(Date.now()),firstK=S.notes.length?Math.min.apply(null,S.notes.map(function(n){return dkey(n.ts)})):T0;
+ var ND=Math.min(56,Math.max(35,Math.round((T0-firstK)/864e5)+3));
+ var X=[['Everything',null],['With Milo',{where:'milo'}],['During SOS',{where:'sos'}]].concat(TAGS.map(function(t){return [t,{tag:t}]}));
+ function dayTs(i){return T0-(ND-1-i)*864e5}
+ function idxOf(ts){return Math.max(0,Math.min(ND-1,ND-1-Math.round((T0-dkey(ts))/864e5)))}
+ function angOf(i){return 15+i/(ND-1)*330}
+ function pt(i,r){var a=(angOf(i)-90)*Math.PI/180;return [150+Math.cos(a)*r,150+Math.sin(a)*r]}
+ function cnt(s,e,what){return S.notes.filter(function(n){var k=dkey(n.ts);if(k<dayTs(s)||k>dayTs(e))return false;if(what&&what.where&&(what.where==='sos')!==(n.where==='sos'))return false;if(what&&what.tag&&n.tag!==what.tag)return false;return true})}
+ function label(){var p=[];if(FW.when)p.push(FW.when.from===FW.when.to?dstr(FW.when.from):dstr(FW.when.from)+' – '+dstr(FW.when.to));
+  if(FW.what)X.forEach(function(o){if(JSON.stringify(o[1])===JSON.stringify(FW.what))p.push(o[0])});return p.join(' · ')}
+ function chips(){
+  DRAFT={s:FW.when?idxOf(FW.when.from):0,e:FW.when?idxOf(FW.when.to):ND-1,what:FW.what};
+  var has={};S.notes.forEach(function(n){has[idxOf(n.ts)]=1});
+  var ticks='';for(var i=0;i<ND;i++){var mon=new Date(dayTs(i)).getDay()===1,a=pt(i,mon?93:97),b=pt(i,102);ticks+='<line x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'" stroke="rgba(249,246,240,'+(mon?.42:.16)+')" stroke-width="2" stroke-linecap="round"/>'}
+  var dots='';Object.keys(has).forEach(function(i){var p=pt(+i,118);dots+='<circle class="jfd" data-i="'+i+'" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.4"/>'});
+  var labs=[.2,.5,.8].map(function(f){var i=Math.round(f*(ND-1)),p=pt(i,80);return '<text x="'+p[0].toFixed(0)+'" y="'+(p[1]+4).toFixed(0)+'" text-anchor="middle">'+dstr(dayTs(i))+'</text>'}).join('')+(function(){var p=pt(ND-1,148),q=pt(0,148);return '<text class="jf-end" x="'+(p[0]-4).toFixed(0)+'" y="'+(p[1]+2).toFixed(0)+'" text-anchor="end">Today</text><text class="jf-end" x="'+(q[0]+4).toFixed(0)+'" y="'+(q[1]+2).toFixed(0)+'" text-anchor="start">'+dstr(dayTs(0))+'</text>'})();
+  var knob=function(k){return '<g class="dknob" data-k="'+k+'"><circle r="19"/><g class="dk-paw" transform="translate(-8.2 -8.2) scale(.68)">'+pawP(12,11.6,2.15,true)+'</g></g>'};
+  var PR=[['Today',ND-1,ND-1],['Last 7 days',ND-7,ND-1],['This week',idxOf(T0-((new Date().getDay()+6)%7)*864e5),ND-1],['This month',idxOf(new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime()),ND-1],['All',0,ND-1]];
+  fp.innerHTML='<div class="jf-grab"></div><div class="jf-h"><b>Which days?</b><button class="jf-reset">Reset</button></div>'+
+   '<p class="jf-sub">Drag the paws around the ring. Dots are days you wrote.</p>'+
+   '<div class="dial-wrap jf-dial"><div class="dial-sky jf-sky"></div><svg class="dial" viewBox="0 0 300 300"><circle cx="150" cy="150" r="118" fill="none" stroke="rgba(249,246,240,.1)" stroke-width="30" stroke-dasharray="'+(330/360*2*Math.PI*118).toFixed(1)+' 999" transform="rotate('+(-90+15)+' 150 150)" stroke-linecap="round"/>'+ticks+labs+
+   '<path class="dwin jf-arc" fill="none" stroke-width="30" stroke-linecap="round"/>'+dots+knob('s')+knob('e')+'</svg><div class="dial-milo jf-milo"></div></div>'+
+   '<div class="dial-legend"><b class="jf-l1"></b><small class="jf-l2"></small></div>'+
+   '<div class="jf-row">'+PR.map(function(p,i){return '<button class="chip" data-pr="'+i+'">'+p[0]+'</button>'}).join('')+'</div>'+
+   '<div class="jf-row jf-what">'+X.map(function(o,i){return '<button class="chip" data-x="'+i+'">'+esc(o[0])+'</button>'}).join('')+'</div>'+
+   '<button class="btn primary jf-go"></button>';
+  var svg=$('.dial',fp),arc=$('.jf-arc',fp),ks=$('[data-k="s"]',fp),ke=$('[data-k="e"]',fp),drag=null,lastPose='';
+  function draw(){var s=DRAFT.s,e=DRAFT.e,a=pt(s,118),b=pt(e,118),large=(angOf(e)-angOf(s))>180?1:0;
+   arc.setAttribute('d',s===e?'M'+a[0].toFixed(1)+' '+a[1].toFixed(1)+' L'+(a[0]+.01).toFixed(2)+' '+a[1].toFixed(1):'M'+a[0].toFixed(1)+' '+a[1].toFixed(1)+' A118 118 0 '+large+' 1 '+b[0].toFixed(1)+' '+b[1].toFixed(1));
+   ks.setAttribute('transform','translate('+a[0].toFixed(1)+' '+a[1].toFixed(1)+')');ke.setAttribute('transform','translate('+b[0].toFixed(1)+' '+b[1].toFixed(1)+')');
+   $$('.jfd',fp).forEach(function(d){var i=+d.dataset.i;d.classList.toggle('in',i>=s&&i<=e)});
+   var L=cnt(s,e,DRAFT.what),days={};L.forEach(function(n){days[dkey(n.ts)]=1});var nd=Object.keys(days).length,span=e-s+1;
+   $('.jf-l1',fp).textContent=s===e?(e===ND-1?'Today':dstr(dayTs(s))):dstr(dayTs(s))+' – '+(e===ND-1?'Today':dstr(dayTs(e)));
+   $('.jf-l2',fp).textContent=span+(span===1?' day':' days')+' · '+L.length+(L.length===1?' entry':' entries');
+   var go=$('.jf-go',fp);go.textContent=nd?'Show '+nd+(nd===1?' page':' pages'):'No pages here yet';go.disabled=!nd;
+   var pose=!L.length?'sleep':L.length>4?'cheering':'happy';if(pose!==lastPose){lastPose=pose;$('.jf-milo',fp).innerHTML=mimg(pose,96,'pop','Milo')}
+   $('.jf-sky',fp).style.background=!L.length?'radial-gradient(circle at 50% 30%,#22344F,#0F1C2E)':'radial-gradient(circle at 50% 30%,#2E5E53,#183A33)';
+   $$('[data-pr]',fp).forEach(function(c){var p=PR[+c.dataset.pr];c.classList.toggle('on',p[1]===s&&p[2]===e)});
+   $$('[data-x]',fp).forEach(function(c){c.classList.toggle('on',JSON.stringify(X[+c.dataset.x][1])===JSON.stringify(DRAFT.what))})}
+  function idxAt(ev){var r=svg.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*300-150,y=(ev.clientY-r.top)/r.height*300-150;var d=Math.atan2(y,x)*180/Math.PI+90;if(d<0)d+=360;if(d>345)d=345;else if(d<15)d=15;
+   return Math.round((Math.min(345,Math.max(15,d))-15)/330*(ND-1))}
+  function down(k){return function(ev){ev.preventDefault();ev.stopPropagation();drag=k;try{svg.setPointerCapture(ev.pointerId)}catch(_){}(k==='s'?ks:ke).classList.add('on');svg.appendChild(k==='s'?ks:ke);haptic(6)}}
+  ks.addEventListener('pointerdown',down('s'));ke.addEventListener('pointerdown',down('e'));
+  svg.addEventListener('pointerdown',function(ev){if(drag)return;var i=idxAt(ev);var k=Math.abs(i-DRAFT.s)<Math.abs(i-DRAFT.e)?'s':'e';down(k)(ev);move(ev)});
+  function move(ev){if(!drag)return;var i=idxAt(ev);if(drag==='s'){i=Math.min(i,DRAFT.e);if(i===DRAFT.s)return;DRAFT.s=i}else{i=Math.max(i,DRAFT.s);if(i===DRAFT.e)return;DRAFT.e=i}haptic(3);draw()}
+  svg.addEventListener('pointermove',move);
+  function up(){if(!drag)return;$$('.dknob',fp).forEach(function(k){k.classList.remove('on')});drag=null}
+  svg.addEventListener('pointerup',up);svg.addEventListener('pointercancel',up);
+  $$('[data-pr]',fp).forEach(function(c){c.addEventListener('click',function(){var p=PR[+c.dataset.pr];anim(Math.max(0,p[1]),p[2]);haptic(5)})});
+  $$('[data-x]',fp).forEach(function(c){c.addEventListener('click',function(){DRAFT.what=X[+c.dataset.x][1];draw();haptic(5)})});
+  function anim(s1,e1){var s0=DRAFT.s,e0=DRAFT.e,t0=performance.now();(function f(t){var p=Math.min(1,(t-t0)/380),q=1-Math.pow(1-p,3);DRAFT.s=Math.round(s0+(s1-s0)*q);DRAFT.e=Math.round(e0+(e1-e0)*q);draw();if(p<1)requestAnimationFrame(f)})(t0)}
+  $('.jf-reset',fp).addEventListener('click',function(){DRAFT.what=null;anim(0,ND-1);haptic(5)});
+  $('.jf-go',fp).addEventListener('click',function(){var all=DRAFT.s===0&&DRAFT.e===ND-1;FW.when=all?null:{from:dayTs(DRAFT.s),to:dayTs(DRAFT.e)};FW.what=DRAFT.what;applyF();closeF()});
+  draw()}
+ function openF(){chips();fp.hidden=false;scr.hidden=false;fp.classList.remove('out');scr.classList.remove('out');haptic(5)}
+ function closeF(){if(fp.hidden)return;fp.classList.add('out');scr.classList.add('out');setTimeout(function(){fp.hidden=true;scr.hidden=true},260)}
  function applyF(f){if(f===null){FW.when=null;FW.what=null}var on=!!(FW.when||FW.what);
   FIL=on?{when:FW.when,where:FW.what&&FW.what.where,tag:FW.what&&FW.what.tag}:null;D=jbData(FIL);P=1+D.days.length;st.idx=0;show();haptic(6);
-  $('.jb-f',ov).classList.toggle('act',on);var lb=on&&chips.label?chips.label():'';fon.hidden=!on;fon.innerHTML=on?'Showing: <b>'+esc(lb)+'</b><button aria-label="Clear filter">'+ic('x',{s:14,w:3})+'</button>':'';
-  if(on)$('button',fon).addEventListener('click',function(){applyF(null);chips()});chips()}
- $('.jb-f',ov).addEventListener('click',function(e){e.stopPropagation();chips();fp.hidden=!fp.hidden;haptic(5)});
- ov.addEventListener('click',function(e){if(!fp.hidden&&(!e.target.closest('.jb-fp,.jb-f')||e.target.closest('.jb-fdone')))fp.hidden=true});
+  $('.jb-f',ov).classList.toggle('act',on);var lb=on?label():'';fon.hidden=!on;fon.innerHTML=on?'Showing: <b>'+esc(lb)+'</b><button aria-label="Clear filter">'+ic('x',{s:14,w:3})+'</button>':'';
+  if(on)$('button',fon).addEventListener('click',function(){applyF(null)})}
+ chips.label=label;
+ var scr=document.createElement('div');scr.className='jf-scrim';scr.hidden=true;fp.parentNode.insertBefore(scr,fp);
+ $('.jb-f',ov).addEventListener('click',function(e){e.stopPropagation();openF()});
+ scr.addEventListener('click',closeF);
  var eg=null;ov.addEventListener('pointerdown',function(e){var r=ov.getBoundingClientRect();eg=(e.clientX-r.left<28)?{x:e.clientX,y:e.clientY}:null;if(eg)st.edge=true},true);
  ov.addEventListener('pointerup',function(e){if(eg){var dx=e.clientX-eg.x,dy=Math.abs(e.clientY-eg.y);eg=null;if(dx>60&&dy<80){close()}setTimeout(function(){st.edge=false},0)}},true);
  var p0=null;stage.addEventListener('pointerdown',function(e){p0={x:e.clientX,y:e.clientY}});
@@ -2691,7 +2762,7 @@ function startOnb(){
    return '<div class="glass"><div class="gf-wrap"><div class="gf-feed">'+cards+cards+'</div></div><div class="gf-tint"></div><div class="gf-badges"></div><div class="gf-paws"></div><div class="gf-nose">'+face('neutral',300)+'</div><div class="gf-fog"></div><div class="gf-wiper">'+'<svg viewBox="0 0 24 24"><g fill="#F9F6F0"><path d="M12 11.6c-2.7 0-5.6 3.2-5.6 5.8 0 1.7 1.2 2.6 2.7 2.6 1.1 0 1.9-.7 2.9-.7s1.8.7 2.9.7c1.5 0 2.7-.9 2.7-2.6 0-2.6-2.9-5.8-5.6-5.8z"/><ellipse cx="4.5" cy="9.7" rx="1.8" ry="2.3"/><ellipse cx="8.9" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="15.1" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="19.5" cy="9.7" rx="1.8" ry="2.3"/></g></svg></div>'+
    '<div class="gw"><div class="gw-garden"><img src="assets/garden.png" alt=""></div><div class="gw-in"><div class="gw-milo">'+mimg('wave',230,'','Milo waving')+'</div><h1 class="onb-h">Hi. I’ve been<br>waiting for you.</h1><p class="onb-p">I’m Milo. I live on the other side of your screen, and I’d really like to go outside.</p><button class="btn primary" data-next>Hi, Milo</button><button class="onb-link gw-login">I already have an account</button></div></div><button class="gf-skip">Skip intro</button></div>'},
   wake:function(){return '<div class="onb-fill center-col"><div class="onb-hero rub wake-zone" data-ref="pet"><span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>Z</i></span>'+mimg('sleep',260,'','Milo sleeping','happy')+'</div><h1 class="onb-h" data-ref="h">Shh, he’s napping.</h1><p class="onb-p" data-ref="p">Every time you put your phone down, Milo gets a little rest. Give him a rub to wake him up.</p><span class="hint-dark" data-ref="hint" style="align-self:center">'+ic('hand',{s:14})+'Rub Milo</span></div><button class="btn primary onb-hide" data-next data-ref="go">Nice to meet you</button>'},
-  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" placeholder="Your first name" value="'+O.name.replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
+  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" placeholder="Your first name" value="'+(O.name||'Friend').replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
   bandana:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Pick Milo’s bandana</h2><p class="onb-p" style="margin-top:-6px">Every good dog needs one. You can change it anytime in his closet.</p><div data-ref="m">'+miloB('happy',230)+'</div><div class="band-row">'+BANDANAS.map(function(b){return '<button class="band'+(b.id===O.band?' on':'')+'" data-b="'+b.id+'" aria-label="'+b.l+' bandana"><span style="background:'+b.c+'"></span>'+b.l+'</button>'}).join('')+'</div></div><button class="btn primary" data-next>Looks sharp</button>'},
   idcard:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Make Milo official</h2><p class="onb-p" style="margin-top:-6px">Every good boy needs an ID. Pick his card. You\u2019ll renew it together each month.</p><div class="oid-prev" data-ref="pv"></div><div class="oid-row" data-ref="row"></div></div><button class="btn primary" data-ref="go">Issue his ID</button>'},
   habit:function(){var H=ONB_HABITS.filter(function(h){return h.id!=='other'});
@@ -2727,12 +2798,12 @@ function startOnb(){
   wake:function(el){var n=0,woke=false,z=ref(el,'pet');
    function wake(){if(woke)return;woke=true;var im=$('.mimg',z);im&&im.setAttribute('src','assets/m/wave.png');im&&im.removeAttribute('data-pet');z.classList.add('awake');ref(el,'h').textContent='He’s up! And he likes you.';ref(el,'p').textContent='Milo’s been waiting a long time to meet you.';ref(el,'hint').style.visibility='hidden';ref(el,'go').classList.remove('onb-hide');haptic([10,50,10,50,20]);SFX.bark&&SFX.bark()}
    rubbable(z,{pet:function(){if(++n>=6)wake()},end:function(){}});z.addEventListener('click',function(){if(++n>=6)wake()})},
-  name:function(el){var i=ref(el,'name');T(function(){i.focus()},500);i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
+  name:function(el){var i=ref(el,'name');T(function(){i.focus();i.select()},500);i.addEventListener('focus',function(){if(i.value==='Friend')i.select()});i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
   bandana:function(el){$$('.band',el).forEach(function(b){b.addEventListener('click',function(){O.band=b.dataset.b;$$('.band',el).forEach(function(x){x.classList.toggle('on',x===b)});var c=bc(),m=ref(el,'m');m.innerHTML=miloB('happy',230);$('.milo-b',m).classList.add('pop');haptic(8);SFX.pop&&SFX.pop()})})},
   idcard:function(el){if(!O.idStyle)O.idStyle='classic';var busy=false;
    function draw(pop){ref(el,'pv').innerHTML='<div class="mid oid">'+idFront({nm:O.name||'You',band:O.band,style:O.idStyle,photo:'head-happy',since:Date.now(),exp:Date.now()+30*864e5,preview:true})+'</div>';if(pop)$('.mid-f',ref(el,'pv')).classList.add('pop');
-    ref(el,'row').innerHTML=ID_STYLES.map(function(t){return '<button class="oid-c'+(t.id===O.idStyle?' on':'')+'" data-s="'+t.id+'"><span class="oid-sw oid-sw-'+t.id+'"></span>'+t.l+(t.pro?'<em>Pro</em>':'')+'</button>'}).join('');
-    $$('.oid-c',el).forEach(function(c){c.addEventListener('click',function(){if(busy)return;var t=ID_STYLES.filter(function(x){return x.id===c.dataset.s})[0];if(t.pro){c.classList.add('nope');setTimeout(function(){c.classList.remove('nope')},450);haptic([6,30,6]);toast('Cosmic & Gold come with Pro');return}O.idStyle=t.id;draw(true);haptic(8);SFX.pop&&SFX.pop()})})}
+    ref(el,'row').innerHTML=ID_STYLES.map(function(t){return '<button class="oid-c'+(t.id===O.idStyle?' on':'')+'" data-s="'+t.id+'"><span class="oid-sw oid-sw-'+t.id+'"></span>'+t.l+(t.pro?'<em>Bonus</em>':'')+'</button>'}).join('');
+    $$('.oid-c',el).forEach(function(c){c.addEventListener('click',function(){if(busy)return;var t=ID_STYLES.filter(function(x){return x.id===c.dataset.s})[0];if(t.pro){c.classList.add('nope');setTimeout(function(){c.classList.remove('nope')},450);haptic([6,30,6]);toast('Cosmic & Gold come with Bonus');return}O.idStyle=t.id;draw(true);haptic(8);SFX.pop&&SFX.pop()})})}
    draw(false);$('.mid-f',ref(el,'pv')).classList.add('dev');
    ref(el,'go').addEventListener('click',function(){if(busy)return;busy=true;var stp=document.createElement('span');stp.className='oid-stamp';stp.textContent='Issued';$('.mid',ref(el,'pv')).appendChild(stp);haptic([20,50,30]);SFX.chime&&SFX.chime();T(next,1000)})},
   habit:function(el){var st=ref(el,'stack'),go=ref(el,'go');
@@ -2781,7 +2852,7 @@ function startOnb(){
   shield:function(el){ref(el,'allow').addEventListener('click',function(){iosAlert({t:'“Bored Doom” Would Like to Access Screen Time',m:'Providing “Bored Doom” access to Screen Time may allow it to see your activity data, restrict content, and limit the usage of apps and websites.',yes:'Continue'},function(v){O.shield=v;S.shield=v;save();next()})});ref(el,'later').addEventListener('click',function(){O.shield=false;S.shield=false;save();next()})},
   done:function(el){try{confetti(ref(el,'conf'),40)}catch(e){}SFX.win&&SFX.win();ref(el,'go').addEventListener('click',finish)}
  };
- function collect(){var n=STEPS[O.step];if(!cur)return;if(n==='name'){O.name=(ref(cur,'name').value||'').trim().split(' ')[0];O.name=O.name?O.name[0].toUpperCase()+O.name.slice(1):''}}
+ function collect(){var n=STEPS[O.step];if(!cur)return;if(n==='name'){O.name=(ref(cur,'name').value||'').trim().split(' ')[0];O.name=O.name?O.name[0].toUpperCase()+O.name.slice(1):'Friend'}}
  function show(dir){
   var n=STEPS[O.step],el=document.createElement('div');el.className='onb-step step-'+n;el.innerHTML=R[n]();stage.appendChild(el);
   if(cur){var o=cur;o.classList.add(dir<0?'tab-out-r':'tab-out-l');setTimeout(function(){o.remove()},700);el.classList.add(dir<0?'tab-in-l':'tab-in-r');setTimeout(function(){el.classList.remove('tab-in-l','tab-in-r')},980)}else el.classList.add('fade-in');
@@ -2820,8 +2891,8 @@ SCREENS.slip={cls:'dark',render:function(){
   function(){return '<div class="onb-fill">'+bubble('No judgment. What was going on right before?','thinking')+'<div class="onb-moods">'+SLIP_TRIG.map(function(m){return '<button class="onb-mood" data-t="'+m.id+'"><span class="fc" style="background:'+m.bg+'">'+face(m.f,50)+'</span>'+m.l+'</button>'}).join('')+'</div><div class="over" style="margin-top:4px">Anything else?</div><div class="t-chips onb-chips">'+SLIP_CTX.map(function(c){return '<button class="t-chip" data-c>'+c+'</button>'}).join('')+'</div><p class="onb-note">'+ic('lock',{s:13,w:2.4})+'This helps me show up earlier next time.</p></div><button class="btn primary" data-n>Continue</button><button class="onb-link" data-n>Skip</button>'},
   function(){
    var keep='<div class="slip-keep"><div class="over">These stay no matter what</div><div class="slip-stats"><div><b>'+S.total+'</b><small>habit-free days in total</small></div><div><b>'+(29+S.beaten)+'</b><small>urges beaten</small></div><div><b>'+S.treats+'</b><small>treats earned</small></div></div></div>';
-   if(S.mercy>0)return '<div class="onb-fill">'+bubble('About your '+startStreak+'-day streak. You have a Mercy left this week. Want to use it?','happy')+
-    '<div class="onb-list"><button class="onb-opt slip-choice" data-m="1"><span class="onb-oi">'+ic('shield',{s:20,w:2.2})+'</span><span class="grow"><b>Use Mercy, keep my '+startStreak+' days</b><small>1 Mercy per week. Resets Monday.</small></span><span class="onb-ck">'+ic('check',{s:14,w:3.4})+'</span></button>'+
+   if(S.mercy>0)return '<div class="onb-fill">'+bubble('About your '+startStreak+'-day streak. You have a Freebie left this week. Want to use it?','happy')+
+    '<div class="onb-list"><button class="onb-opt slip-choice" data-m="1"><span class="onb-oi">'+ic('frisbee',{s:22,w:1.4})+'</span><span class="grow"><b>Use your Freebie, keep my '+startStreak+' days</b><small>1 Freebie per week. Resets Monday.</small></span><span class="onb-ck">'+ic('check',{s:14,w:3.4})+'</span></button>'+
     '<button class="onb-opt slip-choice" data-m="0"><span class="onb-oi">'+ic('sprout',{s:20,w:2.2})+'</span><span class="grow"><b>Start a fresh streak</b><small>Day one again, with everything you learned</small></span><span class="onb-ck">'+ic('check',{s:14,w:3.4})+'</span></button></div>'+keep+'</div><button class="btn primary" data-n data-ref="go" disabled>Continue</button>';
    return '<div class="onb-fill">'+bubble('Your streak starts again today. But look what doesn’t reset.','happy')+keep+'</div><button class="btn primary" data-n>Continue</button>'},
   function(){return '<div class="onb-fill">'+bubble('Let’s make the next hour easier. Pick one small thing.','wave')+'<div class="onb-list">'+SLIP_NEXT.map(function(o){return '<button class="onb-opt" data-x="'+o.id+'"><span class="onb-oi">'+ic(o.i,{s:20,w:2.2})+'</span><span class="grow"><b>'+o.t+'</b><small>'+o.s+'</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}).join('')+'</div></div><button class="onb-link" data-n>I’m okay for now</button>'},
@@ -2854,7 +2925,7 @@ SCREENS.slip={cls:'dark',render:function(){
  function finish(){commit();var go=D.next;popToRoot(function(){if(curTab==='today')refreshRoot();else resetTo('today');
   if(go==='phonedown')setTimeout(function(){push('phonedown')},350);
   else if(go==='breathe')setTimeout(function(){push('breathe',{},'modal')},350);
-  else toast(D.mercy===true?'Mercy used. Your streak is safe.':'Fresh start. Milo’s right here.')})}
+  else toast(D.mercy===true?'Freebie used. Your streak is safe.':'Fresh start. Milo’s right here.')})}
  ref(el,'x').addEventListener('click',function(){if(step>=2)commit();popToRoot(function(){resetTo('today')})});
  show(0);
 }};
@@ -2890,13 +2961,13 @@ function freshInsights(){
 function srow(i,t,s,attrs,right){return '<button class="srow" '+(attrs||'')+'><span class="si">'+ic(i,{s:18})+'</span><span class="grow">'+t+(s?'<small>'+s+'</small>':'')+'</span>'+(right===undefined?ic('chevR',{s:18,c:'#A9BDB7'}):right)+'</button>'}
 function sw(on){return '<span class="switch'+(on?' on':'')+'"></span>'}
 function acctGroups(){var signed=!!S.signedIn;
- return '<div class="gl keep">Subscription</div><div class="group">'+yrow('plan','Your plan',S.pro?'Pro · Monthly · free trial':'Free','data-go="sub"')+yrow('restore','Restore purchases','Bought Pro on another device?','data-ref="restore"')+'</div>'+
+ return '<div class="gl keep">Subscription</div><div class="group">'+yrow('plan','Your plan',S.pro?'Bonus · Monthly · free trial':'Free','data-go="sub"')+yrow('restore','Restore purchases','Bought Bonus on another device?','data-ref="restore"')+'</div>'+
  '<div class="gl keep">Your data</div><div class="group">'+yrow('privacy','AI & privacy','How Milo uses your words','data-go="privacy"')+yrow('export','Export my data','Check-ins, journal and streaks as a file','data-ref="export"')+'</div>'+
  '<div class="gl keep">Account</div>'+(signed?'<div class="acc-note">'+ic('check',{s:13,w:3})+'Signed in with '+(S.provider||'Apple')+' \u00b7 backed up</div>':'<div class="group">'+yrow('signin','Sign in','Back up with Apple, Google or email','data-ref="login"')+'</div>')+
  (signed?'<div class="group del-g"><button class="out-btn" data-ref="out">Log out</button></div>':'')+'<div class="group del-g"><button class="del-btn" data-ref="del">Delete account</button></div>'}
 function bindAcct(el,rerender){
  var lg=ref(el,'login');lg&&lg.addEventListener('click',function(){openLogin({onDone:rerender})});
- ref(el,'restore').addEventListener('click',function(){toast('Checking with the App Store…');setTimeout(function(){toast(S.pro?'You’re already on Pro. All good!':'No previous purchases found.')},1200)});
+ ref(el,'restore').addEventListener('click',function(){toast('Checking with the App Store…');setTimeout(function(){toast(S.pro?'You’re already on Bonus. All good!':'No previous purchases found.')},1200)});
  ref(el,'export').addEventListener('click',function(){openSheet('<div class="col" style="align-items:center;text-align:center;gap:10px">'+mimg('point',120,'','Milo')+'<div style="font-size:22px;font-weight:900">Export your data</div><p class="muted" style="margin:0">A file with your check-ins, journal, slips, streaks and settings. It opens in the share sheet so you can save or send it.</p></div><button class="btn primary" data-ref="go">Create my file</button>',function(sh,close){ref(sh,'go').addEventListener('click',function(){close();toast('bored-doom-data.json is ready')})})});
  var out=ref(el,'out');out&&out.addEventListener('click',function(){iosAlert({t:'Log out?',m:'Your progress stays backed up. Log back in any time to get it on this phone.',yes:'Log Out',no:'Cancel'},function(v){if(v){S.signedIn=false;save();haptic(8);rerender()}})});
  ref(el,'del').addEventListener('click',function(){haptic([6,30,6]);openSheet('<div class="col" style="align-items:center;text-align:center;gap:10px">'+mimg('sad',130,'','Milo looking sad')+'<div style="font-size:23px;font-weight:900;line-height:28px">Delete everything?</div><p class="muted" style="margin:0">This erases your streaks, journal, check-ins and Milo’s closet from this phone and our servers. It can’t be undone.</p><div class="free-note" style="text-align:left">'+ic('star',{s:15})+'Deleting doesn’t cancel a subscription. Cancel it in the App Store first.</div></div><button class="btn primary" data-ref="keep">Keep my account</button><button class="link del-link" data-ref="go">Delete my account</button>',function(sh,close){
@@ -2920,10 +2991,10 @@ function youFlip(el,on){var ym=ref(el,'ym'),ya=ref(el,'ya');if(!ym||!ya)return;
   var m=ref(el,'mid');m&&m.animate([{boxShadow:'0 0 0 0 rgba(232,141,79,0)'},{boxShadow:'0 10px 26px -6px rgba(232,141,79,.55)'},{boxShadow:'0 0 0 0 rgba(232,141,79,0)'}],{duration:700,easing:'ease-out'})},Math.min(d,320))}
 youFlip.rebind=function(el,ya){bindAcct(ya,function(){ya.innerHTML=acctGroups();youFlip.rebind(el,ya)})};
 SCREENS.sub={render:function(){
- var head=S.pro?'<div class="sub-card"><div class="over keep" style="color:#A8541E">Bored Doom Pro</div><div style="font-size:26px;font-weight:900;line-height:30px">Monthly · $7.99</div><p style="margin:2px 0 0;font-size:14px;font-weight:600;color:var(--ink2)">Free trial · ends Nov 23. You won’t be charged before then, and I’ll remind you 2 days before.</p><div class="sub-bar"><i style="width:14%"></i></div><small>Day 1 of 7</small></div>'
-  :'<div class="sub-card"><div class="over keep" style="color:#A8541E">Your plan</div><div style="font-size:26px;font-weight:900;line-height:30px">Free</div><p style="margin:2px 0 8px;font-size:14px;font-weight:600;color:var(--ink2)">Urge SOS, breathing, check-ins and Talk to Milo are free forever.</p><button class="btn primary" data-ref="try">Try Pro free for 7 days</button></div>';
+ var head=S.pro?'<div class="sub-card"><div class="over keep" style="color:#A8541E">Bored Doom Bonus</div><div style="font-size:26px;font-weight:900;line-height:30px">Monthly · $7.99</div><p style="margin:2px 0 0;font-size:14px;font-weight:600;color:var(--ink2)">Free trial · ends Nov 23. You won’t be charged before then, and I’ll remind you 2 days before.</p><div class="sub-bar"><i style="width:14%"></i></div><small>Day 1 of 7</small></div>'
+  :'<div class="sub-card"><div class="over keep" style="color:#A8541E">Your plan</div><div style="font-size:26px;font-weight:900;line-height:30px">Free</div><p style="margin:2px 0 8px;font-size:14px;font-weight:600;color:var(--ink2)">Urge SOS, breathing, check-ins and Talk to Milo are free forever.</p><button class="btn primary" data-ref="try">Try Bonus free for 7 days</button></div>';
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Subscription</span><div style="width:44px"></div></div>'+head+
- '<div class="gl keep">Pro includes</div><div class="group">'+[['sparkles','All of Milo’s Picks and the Finite Feed'],['shieldpaw','Milo shield for your social apps'],['gift','Milo Wrapped, insights and Pack mode'],['heart','Every outfit and room item']].map(function(x){return srow(x[0],x[1],'','', '')}).join('')+'</div>'+
+ '<div class="gl keep">Bonus includes</div><div class="group">'+[['sparkles','All of Milo’s Picks and the Finite Feed'],['shieldpaw','Milo shield for your social apps'],['gift','Milo Wrapped, insights and Pack mode'],['heart','Every outfit and room item']].map(function(x){return srow(x[0],x[1],'','', '')}).join('')+'</div>'+
  (S.pro?'<div class="gl keep">Manage</div><div class="group">'+srow('refresh','Change plan','Weekly, monthly or yearly','data-ref="change"')+srow('star','Manage in the App Store','Billing, receipts, renewals','data-ref="store"')+srow('x','How to cancel','2 taps, no hoops','data-ref="cancel"')+'</div>':'<div class="group">'+srow('refresh','Restore purchases','','data-ref="restore"')+'</div>')+
  '<p class="muted center" style="font-size:13px;margin:6px 10px 30px">Urge SOS is always free. No paywall in a hard moment.</p></div>';
 },mount:function(el){
@@ -2931,7 +3002,7 @@ SCREENS.sub={render:function(){
  var r=ref(el,'restore');r&&r.addEventListener('click',function(){toast('No previous purchases found.')});
  var st=ref(el,'store');st&&st.addEventListener('click',function(){toast('Opens your Apple subscriptions page')});
  var ch=ref(el,'change');ch&&ch.addEventListener('click',function(){openSheet('<div style="font-size:23px;font-weight:900">Change plan</div>'+[['Weekly','$2.99 / week',0],['Monthly','$7.99 / month · current',1],['Yearly','$39.99 / year · save 58%',0]].map(function(x){return '<button class="pick plan-opt'+(x[2]?' on':'')+'" style="box-shadow:none;border:2px solid '+(x[2]?'var(--amber)':'#E4DDCF')+'"><span class="grow"><b>'+x[0]+'</b><small>'+x[1]+'</small></span>'+(x[2]?ic('check',{s:18,c:'#E88D4F',w:3}):'')+'</button>'}).join('')+'<p class="muted" style="font-size:13px;margin:0">Changes take effect at your next renewal. Apple handles the billing.</p>',function(sh,close){$$('.plan-opt',sh).forEach(function(b){b.addEventListener('click',function(){close();if(!b.classList.contains('on'))toast('Plan change sent to the App Store')})})})});
- var c=ref(el,'cancel');c&&c.addEventListener('click',function(){openSheet('<div class="col" style="align-items:center;text-align:center;gap:10px">'+mimg('calm',120,'','Milo')+'<div style="font-size:23px;font-weight:900">How to cancel</div><p class="muted" style="margin:0">Apple handles subscriptions, so cancelling happens in the App Store. You keep Pro until the end of the period you paid for.</p></div><ol class="cancel-steps"><li>Tap <b>Open App Store subscriptions</b> below</li><li>Choose <b>Bored Doom</b></li><li>Tap <b>Cancel Subscription</b></li></ol><div class="free-note">'+ic('lifebuoy',{s:15})+'Urge SOS, breathing and Talk to Milo stay free, always.</div><button class="btn primary" data-ref="go">Open App Store subscriptions</button>',function(sh,close){ref(sh,'go').addEventListener('click',function(){close();toast('Opens your Apple subscriptions page')})})});
+ var c=ref(el,'cancel');c&&c.addEventListener('click',function(){openSheet('<div class="col" style="align-items:center;text-align:center;gap:10px">'+mimg('calm',120,'','Milo')+'<div style="font-size:23px;font-weight:900">How to cancel</div><p class="muted" style="margin:0">Apple handles subscriptions, so cancelling happens in the App Store. You keep Bonus until the end of the period you paid for.</p></div><ol class="cancel-steps"><li>Tap <b>Open App Store subscriptions</b> below</li><li>Choose <b>Bored Doom</b></li><li>Tap <b>Cancel Subscription</b></li></ol><div class="free-note">'+ic('lifebuoy',{s:15})+'Urge SOS, breathing and Talk to Milo stay free, always.</div><button class="btn primary" data-ref="go">Open App Store subscriptions</button>',function(sh,close){ref(sh,'go').addEventListener('click',function(){close();toast('Opens your Apple subscriptions page')})})});
 }};
 SCREENS.privacy={render:function(){
  if(S.aiJournal===undefined){S.aiJournal=false;S.aiTiming=true}
@@ -2999,7 +3070,7 @@ function idFront(o){
  var b=BANDANAS.filter(function(x){return x.id===o.band})[0]||BANDANAS[0],st=o.style||'classic';
  var left=Math.ceil((o.exp-Date.now())/864e5),due=!o.preview&&left<=5;
  var no=idNo(o.nm),mrz=esc('ID'+no.replace('-','')+'<<MILO<<GOODBOY<<BESTFRIEND<<'+o.nm.toUpperCase().replace(/[^A-Z]/g,'')+'<<<<<<<<<<<<<<<<');
- var plan=o.preview?'':(S.pro?'<span class="yh-pro">'+ic('star',{s:12,w:2.6})+'Pro trial</span>':'<span class="yh-try" data-ref="pro">Try Pro</span>');
+ var plan=o.preview?'':(S.pro?'<span class="yh-pro">'+ic('star',{s:12,w:2.6})+'Bonus trial</span>':'<span class="yh-try" data-ref="pro">Try Bonus</span>');
  var lbl={classic:'Companion ID',cosmic:'Cosmic Pass',gold:'Gold Member'}[st];
  var pawI='<svg viewBox="0 0 24 24" width="12" height="12" class="mid-pi">'+pawP(12,12,2)+'</svg>';
  var top=st==='official'?'<div class="mid-top mid-ban"><span><b>★</b>Official Good Boy<b>★</b></span>'+plan+'</div>':'<div class="mid-top"><span>'+pawI+lbl+'</span>'+plan+'</div>';
@@ -3012,7 +3083,7 @@ function idFront(o){
 function miloID(){
  idInit();var nm=S.name||'You',st=S.idStyle||'classic';
  var days=Math.max(1,Math.floor((Date.now()-S.since)/864e5));
- var plan=S.pro?'<span class="yh-pro">'+ic('star',{s:12,w:2.6})+'Pro trial</span>':'<span class="yh-try" data-ref="pro2">Try Pro</span>';
+ var plan=S.pro?'<span class="yh-pro">'+ic('star',{s:12,w:2.6})+'Bonus trial</span>':'<span class="yh-try" data-ref="pro2">Try Bonus</span>';
  return '<div class="mid" data-ref="mid" role="button" tabindex="0" aria-label="Milo’s companion ID. Tap to flip"><div class="mid-in">'+
  idFront({nm:nm,band:S.bandana,style:st,photo:S.idPhoto,since:S.since,exp:idExp()})+
  '<div class="mid-b mid-s-'+st+'"><svg class="mid-wm" viewBox="0 0 24 24" aria-hidden="true">'+pawP(12,12,2)+'</svg><div class="mid-top"><span>Milo’s human</span><span class="mid-hint">'+ic('refresh',{s:12,w:2.6})+'Flip</span></div>'+
@@ -3059,8 +3130,8 @@ SCREENS.renew={render:function(){idInit();var l=idLeft();
  '<div class="rn-card" data-ref="card"></div><div class="oid-row" data-ref="sty"></div><div class="grow"></div><button class="btn primary" data-ref="ok">Renew for 30 days</button></div></div>';
 },mount:function(el){var pick=S.idPhoto,sty=S.idStyle||'classic',done=false,nm=S.name||'You';
  function card(exp){ref(el,'card').innerHTML='<div class="mid oid">'+idFront({nm:nm,band:S.bandana,style:sty,photo:pick,since:S.since,exp:exp||idExp(),preview:true})+'</div>'}
- function chips(){ref(el,'sty').innerHTML=ID_STYLES.map(function(t){return '<button class="oid-c'+(t.id===sty?' on':'')+'" data-s="'+t.id+'"><span class="oid-sw oid-sw-'+t.id+'"></span>'+t.l+(t.pro&&!S.pro?'<em>Pro</em>':'')+'</button>'}).join('');
-  $$('.oid-c',ref(el,'sty')).forEach(function(c){c.addEventListener('click',function(){if(done)return;var t=ID_STYLES.filter(function(x){return x.id===c.dataset.s})[0];if(t.pro&&!S.pro){c.classList.add('nope');setTimeout(function(){c.classList.remove('nope')},450);haptic([6,30,6]);toast('That design comes with Pro');return}sty=t.id;chips();card();$('.mid-f',ref(el,'card')).classList.add('pop');haptic(8);SFX.pop&&SFX.pop()})})}
+ function chips(){ref(el,'sty').innerHTML=ID_STYLES.map(function(t){return '<button class="oid-c'+(t.id===sty?' on':'')+'" data-s="'+t.id+'"><span class="oid-sw oid-sw-'+t.id+'"></span>'+t.l+(t.pro&&!S.pro?'<em>Bonus</em>':'')+'</button>'}).join('');
+  $$('.oid-c',ref(el,'sty')).forEach(function(c){c.addEventListener('click',function(){if(done)return;var t=ID_STYLES.filter(function(x){return x.id===c.dataset.s})[0];if(t.pro&&!S.pro){c.classList.add('nope');setTimeout(function(){c.classList.remove('nope')},450);haptic([6,30,6]);toast('That design comes with Bonus');return}sty=t.id;chips();card();$('.mid-f',ref(el,'card')).classList.add('pop');haptic(8);SFX.pop&&SFX.pop()})})}
  $$('.rn-pose',el).forEach(function(b){b.addEventListener('click',function(){pick=b.dataset.p;$$('.rn-pose',el).forEach(function(x){x.classList.toggle('on',x===b)});var im=ref(el,'ph');im.src='assets/m/'+pick+'.png';im.classList.remove('bob');void im.offsetWidth;im.classList.add('bob');haptic(6)})});
  ref(el,'snap').addEventListener('click',function(){var cam=ref(el,'cam');cam.classList.add('flash');haptic([18,30,10]);SFX.pop&&SFX.pop();
   setTimeout(function(){ref(el,'s1').hidden=true;ref(el,'s2').hidden=false;card();chips();var c=$('.mid-f',ref(el,'card'));c.classList.add('dev')},650)});
@@ -3361,7 +3432,7 @@ function openLogin(o){o=o||{};var old=$('#login');old&&old.remove();
 }
 
 /* ---------- help & support ---------- */
-var FAQ=[['Is Bored Doom free?','Urge SOS, breathing, check-ins and Talk to Milo are free forever. Pro adds the full toolkit, Milo shield, insights and the closet.'],['Can Milo see what I do in other apps?','No. Screen Time only tells Milo when you open an app you chose to guard. He never sees what’s inside.'],['How do I turn off Locked In early?','There’s no off switch inside the app. That’s the point. It ends on its own when the timer is up. In a real emergency you can always remove Bored Doom’s Screen Time access in iPhone Settings → Screen Time.'],['How do I cancel my subscription?','You → Account & subscription → Your plan → Manage in the App Store. Or iPhone Settings → your name → Subscriptions. Apple handles it.'],['How do I delete my account?','You → Account & subscription → Delete account. It erases your data from this phone and our servers.'],['Is my journal private?','Yes. It’s stored on your phone. Only if you turn on AI replies: the message you send goes to our AI provider to write Milo’s reply. It’s never used for training, and you can turn it off in AI & privacy.']];
+var FAQ=[['Is Bored Doom free?','Urge SOS, breathing, check-ins and Talk to Milo are free forever. Bonus adds the full toolkit, Milo shield, insights and the closet.'],['Can Milo see what I do in other apps?','No. Screen Time only tells Milo when you open an app you chose to guard. He never sees what’s inside.'],['How do I turn off Locked In early?','There’s no off switch inside the app. That’s the point. It ends on its own when the timer is up. In a real emergency you can always remove Bored Doom’s Screen Time access in iPhone Settings → Screen Time.'],['How do I cancel my subscription?','You → Account & subscription → Your plan → Manage in the App Store. Or iPhone Settings → your name → Subscriptions. Apple handles it.'],['How do I delete my account?','You → Account & subscription → Delete account. It erases your data from this phone and our servers.'],['Is my journal private?','Yes. It’s stored on your phone. Only if you turn on AI replies: the message you send goes to our AI provider to write Milo’s reply. It’s never used for training, and you can turn it off in AI & privacy.']];
 SCREENS.faq={render:function(){
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">FAQ</span><div style="width:44px"></div></div>'+
  '<div class="group faq">'+FAQ.map(function(q,i){return '<button class="faq-q" data-i="'+i+'" aria-expanded="false"><span class="grow">'+q[0]+'</span><span class="faq-ch">'+ic('chevD',{s:18,w:2.4})+'</span></button><div class="faq-a"><p>'+q[1]+'</p></div>'}).join('')+'</div>'+
@@ -3370,7 +3441,7 @@ SCREENS.faq={render:function(){
 SCREENS.help={render:function(){
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Help & support</span><div style="width:44px"></div></div>'+
  '<button class="help-crisis" data-ref="crisis">'+ic('lifebuoy',{s:22,w:2.2})+'<span class="grow"><b>Need support right now?</b><small>Talk to a real person, any time</small></span>'+ic('chevR',{s:18})+'</button>'+
- '<div class="gl keep">Questions</div><div class="group">'+srow('layers','FAQ','Pro, privacy, Locked In, cancelling','data-go="faq"')+'</div>'+
+ '<div class="gl keep">Questions</div><div class="group">'+srow('layers','FAQ','Bonus, privacy, Locked In, cancelling','data-go="faq"')+'</div>'+
  '<div class="gl keep">Contact</div><div class="group">'+srow('msg','Message the team','We reply within 2 days','data-ref="contact"')+srow('flag','Report a problem','Something broken or confusing','data-ref="bug"')+srow('star','Rate Bored Doom','It helps more people find Milo','data-ref="rate"')+'</div>'+
  '<div class="gl keep">Legal</div><div class="group">'+srow('book','Terms of Service','','data-ref="tos"')+srow('lock','Privacy Policy','','data-ref="pp"')+'</div><p class="muted" style="font-size:12.5px;line-height:18px;margin:8px 6px 0">Bored Doom helps you build healthier phone habits. It isn’t medical care, therapy or a crisis service. If you’re in danger, call your local emergency number.</p><button class="native-only ds-link" data-native-go="/design">'+ic('sparkles',{s:16})+'Native design system</button><p class="muted center" style="font-size:12px;margin:6px 0 30px">Bored Doom 1.0 (build 42)</p></div>';
 },mount:function(el){
