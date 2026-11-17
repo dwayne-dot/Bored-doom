@@ -1527,8 +1527,7 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 .jp{position:absolute;top:0;width:50%;height:100%;background:#FBF7EF;overflow:hidden;color:#22332F;transition:opacity .25s}
 .jp.l{left:0;border-radius:6px 1px 1px 6px;z-index:2}.jp.r{left:50%;border-radius:1px 6px 6px 1px;z-index:2}
 .jp.hide{opacity:0;pointer-events:none}.jp.fade{opacity:0}.jp.under{visibility:hidden}
-.jp-in{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:1.25em 1.1em 2.2em 2.6em;
- background:linear-gradient(90deg,transparent 2em,#F2A79A 2em,#F2A79A calc(2em + 1.5px),transparent calc(2em + 1.5px)),repeating-linear-gradient(transparent 0 1.7em,#DCE5EC 1.7em calc(1.7em + 1px));background-attachment:local;scrollbar-width:none}
+.jp-in{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:1.4em 1.3em 2.4em 1.5em;background:radial-gradient(120% 90% at 50% 40%,#FDFAF4,#F8F2E7);scrollbar-width:none}
 .jp-in::-webkit-scrollbar{display:none}
 .jp.r .jp-in{box-shadow:inset 14px 0 18px -14px rgba(0,0,0,.22)}.jp.l .jp-in{box-shadow:inset -14px 0 18px -14px rgba(0,0,0,.22)}
 .jp-pn{position:absolute;bottom:.6em;right:1em;font:800 .78em 'Nunito',sans-serif;color:#B9B0A0}.jp.l .jp-pn,.jp.lb .jp-pn{right:auto;left:1em}
@@ -1582,6 +1581,18 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 .jp-tape{position:absolute;top:-.5em;left:50%;width:3.2em;height:1em;margin-left:-1.6em;background:rgba(232,141,79,.35);transform:rotate(3deg)}
 .jp-note p{margin:0;font:600 .88em/1.4 'Nunito',sans-serif;color:#3D3A25}.jp-note small{display:block;text-align:right;font:800 .75em 'Nunito',sans-serif;color:#9C7A1E;margin-top:.2em}
 .jp-blank{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;color:#A99F8E;text-align:center;font:700 .9em 'Nunito',sans-serif}
+
+/* rounder book, blank paper, soft ribbon */
+.jb-back{border-radius:1.9em!important}
+.jp.l{border-radius:1.3em .2em .2em 1.3em!important}.jp.r,.jp.r .jp-in{border-radius:.2em 1.3em 1.3em .2em!important}
+.jp.l .jp-in{border-radius:1.3em .2em .2em 1.3em}
+.jb-leaf.fw .jp{border-radius:.2em 1.3em 1.3em .2em}.jb-leaf.fw .lb{border-radius:1.3em .2em .2em 1.3em}
+.jb-leaf.bw .jp{border-radius:1.3em .2em .2em 1.3em}.jb-leaf.bw .lb{border-radius:.2em 1.3em 1.3em .2em}
+.jb-cf{border-radius:.3em 1.6em 1.6em .3em!important}.jb-cb{border-radius:1.6em .3em .3em 1.6em!important}
+.jb-cspine{border-radius:.3em 0 0 .3em}
+.jb-stk.r{border-radius:0 1.2em 1.2em 0!important;top:.5em;bottom:-.1em}.jb-stk.l{border-radius:1.2em 0 0 1.2em!important;top:.5em;bottom:-.1em}
+.jb-rib{clip-path:none!important;border-radius:.15em .15em .45em .45em;width:1.05em!important;height:2.3em!important;bottom:-1.8em!important;
+ -webkit-mask:radial-gradient(.42em .5em at 50% 100%,transparent 96%,#000 100%);mask:radial-gradient(.42em .5em at 50% 100%,transparent 96%,#000 100%)}
 </style>
 </head>
 <body>
@@ -3150,7 +3161,7 @@ function findIconOld(sz){var u=sz/24,cx=10.2*u,cy=10.2*u,H=15.6*u;
 P.more='<circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/>';
 P.pawbuzz=pawP(12,12.4,1.62)+'<path d="M4 8.6c-1.3 2.1-1.3 5.3 0 7.4M20 8.6c1.3 2.1 1.3 5.3 0 7.4"/><path d="M1.6 7c-2 3.2-2 7.6 0 10.8M22.4 7c2 3.2 2 7.6 0 10.8" opacity=".55"/>';
 P.pawsteps='<g transform="rotate(-18 12 12)">'+pawP(8,16,1.25)+pawP(16,6.6,1.25)+'</g>';
-var JOURNAL_SVG='<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><g transform="rotate(-4 12 12)"><rect x="7.2" y="3.8" width="12.4" height="16.6" rx="1.9" fill="#D61F0A"/><rect x="7.4" y="4.6" width="11.4" height="15.2" rx="1.4" fill="#F4EEE4"/><path d="M14.4 18.6h2.4v4.2l-1.2-1-1.2 1z" fill="#F5B335"/><rect x="5" y="3" width="12.8" height="16.8" rx="2" fill="#EC2A0E"/><path d="M5 5a2 2 0 0 1 2-2h.6v16.8H7a2 2 0 0 1-2-2z" fill="#D61F0A"/>'+pawP(12.8,11.4,.6).replace('currentColor','#FFD9CF')+'</g></svg>';
+var JOURNAL_SVG='<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><g transform="rotate(-4 12 12)"><rect x="7.2" y="3.8" width="12.4" height="16.6" rx="2.8" fill="#D61F0A"/><rect x="7.4" y="4.6" width="11.4" height="15.2" rx="2.2" fill="#F4EEE4"/><path d="M14.6 18.8h2v3.4l-1-.8-1 .8z" fill="#F5B335" stroke="#F5B335" stroke-width=".9" stroke-linejoin="round"/><rect x="5" y="3" width="12.8" height="16.8" rx="2.9" fill="#EC2A0E"/><path d="M5 5.9a2.9 2.9 0 0 1 2.9-2.9h-.3v16.8h.3A2.9 2.9 0 0 1 5 16.9z" fill="#D61F0A"/>'+pawP(12.8,11.4,.6).replace('currentColor','#FFD9CF')+'</g></svg>';
 var KIT={
  ball:{bg:'#E3F4D8',svg:'<ellipse cx="14.6" cy="21" rx="4.8" ry="1.1" fill="#1E3A35" opacity=".18"/><path d="M2.6 8.8h3.4M3.6 12.8h2.8M2.6 16.8h4.2" stroke="#9CC96B" stroke-width="2" stroke-linecap="round"/><circle cx="14.6" cy="11.2" r="7" fill="#D4E157"/><path d="M14.6 4.2a7 7 0 0 1 0 14" fill="#C0CF45"/><path d="M9.8 6.3c2.4 1.9 2.4 7.9 0 9.8M19.4 6.3c-2.4 1.9-2.4 7.9 0 9.8" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.8" r="1.3" fill="#fff" opacity=".7"/>'},
  feed:{bg:'#EEE9FF',svg:'<rect x="2.2" y="3.4" width="14.2" height="10.4" rx="2.8" fill="#C7BBF5"/><rect x="4.6" y="6.4" width="14.4" height="10.8" rx="2.8" fill="#8F7BE6"/><path d="M10.2 9.2v5.2l4.2-2.6z" fill="#fff"/><g transform="translate(18.2 17.4)"><circle r="5.6" fill="#fff"/><path d="M-2.9-3.6h5.8M-2.9 3.6h5.8" stroke="#7A5232" stroke-width="1.5" stroke-linecap="round"/><path d="M-2.2-3.4c0 1.9 1.8 2.6 1.8 3.4s-1.8 1.5-1.8 3.4h4.4c0-1.9-1.8-2.6-1.8-3.4s1.8-1.5 1.8-3.4z" fill="#FFF6E2" stroke="#7A5232" stroke-width="1" stroke-linejoin="round"/><path d="M-1.5-2.7h3c-.3.9-1 1.4-1.5 1.8-.5-.4-1.2-.9-1.5-1.8z" fill="#F2B23A"/><path d="M-1.7 3.1c.3-1 1-1.6 1.7-1.6s1.4.6 1.7 1.6z" fill="#F2B23A"/><path d="M0-.6v1.4" stroke="#F2B23A" stroke-width=".7" stroke-linecap="round"/></g>'},
