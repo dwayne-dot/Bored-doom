@@ -1,25 +1,34 @@
 {
   "expo": {
-    "name": "bored-doom",
+    "name": "Bored Doom",
     "slug": "bored-doom",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "scheme": "boreddoom",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#16302B",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-milo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#16302B"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.dwayne.boreddoom",
+      "infoPlist": { "UIBackgroundModes": ["remote-notification"] }
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
+      "package": "com.dwayne.boreddoom",
+      "adaptiveIcon": { "foregroundImage": "./assets/icon.png", "backgroundColor": "#16302B" },
+      "edgeToEdgeEnabled": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      "expo-router",
+      ["expo-notifications", { "color": "#E88D4F" }],
+      ["expo-splash-screen", { "backgroundColor": "#16302B", "image": "./assets/splash-milo.png", "imageWidth": 200 }]
+    ],
+    "experiments": { "typedRoutes": true }
   }
 }
