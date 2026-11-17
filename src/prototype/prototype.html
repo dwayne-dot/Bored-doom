@@ -1484,6 +1484,49 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 @keyframes pwStep{0%{opacity:0;transform:rotate(var(--a)) scale(.6)}12%{opacity:.26;transform:rotate(var(--a)) scale(1.05)}22%{opacity:.22;transform:rotate(var(--a)) scale(1)}70%{opacity:.16}100%{opacity:0;transform:rotate(var(--a)) scale(1)}}
 
 .tic.tic-j{background:#FCE4DE!important;color:inherit}.tic.tic-j svg{width:32px;height:32px}
+
+/* --- journal screen --- */
+.jr{gap:14px}
+.jr-cover{position:relative;border-radius:22px 26px 26px 22px;background:linear-gradient(90deg,#C81E0B 0 26px,#E8381C 26px);padding:20px 20px 20px 46px;color:#FFF3EE;box-shadow:inset 0 -5px 0 rgba(0,0,0,.18),6px 6px 0 -2px #F4EEE4,6px 6px 0 0 #C81E0B;margin-right:8px;overflow:visible}
+.jr-band{position:absolute;left:26px;top:0;bottom:0;width:2px;background:rgba(0,0,0,.12)}
+.jr-ct small{display:block;font:800 12px 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.jr-ct b{display:block;font:900 30px/34px 'Nunito',sans-serif;margin:2px 0 6px}
+.jr-ct span{font:700 13px/18px 'Nunito',sans-serif;opacity:.9}
+.jr-rib{position:absolute;right:30px;bottom:-16px;width:16px;height:30px;background:#F5B335;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.jr-lock{display:flex;align-items:center;gap:6px;justify-content:center;margin:10px 0 0;font:700 12.5px 'Nunito',sans-serif;color:var(--muted)}
+.jr-page{position:relative;background:#FBF7EF;color:#2A3B37;border-radius:6px 24px 24px 6px;padding:18px 18px 34px 48px;
+ background-image:linear-gradient(90deg,transparent 36px,#F2A79A 36px,#F2A79A 37.5px,transparent 37.5px),repeating-linear-gradient(transparent 0 25px,#DDE6EE 25px 26px);background-position:0 0,0 50px;
+ box-shadow:inset 0 -4px 0 rgba(22,48,43,.08),4px 4px 0 -1px #EDE6D8}
+.jr-page::before{content:'';position:absolute;left:12px;top:22px;bottom:22px;width:10px;background:radial-gradient(circle,#16302B 3px,transparent 3.5px) 0 0/10px 26px repeat-y;opacity:.55}
+.jr-date{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.jr-date b{font:900 22px/26px 'Nunito',sans-serif;color:#16302B}
+.jr-date span{font:800 12px 'Nunito',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C26E36}
+.jr-e{padding:4px 0 12px}.jr-e+.jr-e{border-top:1.5px dashed #E4DACB;padding-top:12px}
+.jr-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.jr-t{font:800 12px 'Nunito',sans-serif;color:#7A8C88}
+.jr-mood{display:inline-flex;align-items:center;gap:5px;padding:2px 9px 2px 3px;border-radius:999px;background:#F6E3D3;font:800 12px 'Nunito',sans-serif;color:#9A4E22}
+.jr-mood .mface,.jr-mood img{width:20px!important;height:20px!important}
+.jr-w{font:700 11.5px 'Nunito',sans-serif;color:#7A8C88;margin-left:auto}
+.jr-txt{margin:6px 0 0;font:600 16px/26px 'Nunito',sans-serif;color:#22332F}
+.jr-note{position:relative;margin:10px 0 0 6px;padding:12px 12px 10px 48px;background:#FFF3B8;border-radius:4px 4px 14px 4px;transform:rotate(-1.2deg);box-shadow:0 3px 0 rgba(0,0,0,.08)}
+.jr-tape{position:absolute;top:-8px;left:50%;width:54px;height:16px;margin-left:-27px;background:rgba(232,141,79,.35);transform:rotate(3deg)}
+.jr-nf{position:absolute;left:8px;top:10px}
+.jr-note p{margin:0;font:600 14px/20px 'Nunito',sans-serif;color:#3D3A25}
+.jr-note small{display:block;text-align:right;font:800 12px 'Nunito',sans-serif;color:#9C7A1E;margin-top:4px}
+.jr-pn{position:absolute;bottom:10px;right:18px;font:800 12px 'Nunito',sans-serif;color:#B9B0A0}
+.jr-end{display:flex;align-items:center;gap:8px;justify-content:center;color:var(--muted);font:700 13px 'Nunito',sans-serif;margin:6px 0 40px}
+/* book-open transition */
+#jb-ov{position:absolute;inset:0;z-index:60;pointer-events:none}
+.jb-book{position:absolute;width:170px;height:226px;transform-origin:50% 50%}
+.jb-pages{position:absolute;inset:4px 0 4px 8px;background:#FBF7EF;border-radius:4px 14px 14px 4px;background-image:repeating-linear-gradient(transparent 0 15px,#DDE6EE 15px 16px);box-shadow:3px 3px 0 #EDE6D8,6px 6px 0 #C81E0B}
+.jb-cover{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d}
+.jb-front,.jb-back{position:absolute;inset:0;border-radius:8px 16px 16px 8px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.jb-front{background:#EC2A0E;display:grid;place-items:center;box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)}
+.jb-spine{position:absolute;left:0;top:0;bottom:0;width:22px;background:#D61F0A;border-radius:8px 0 0 8px}
+.jb-back{background:#F4EEE4;transform:rotateY(180deg)}
+.jb-rib{position:absolute;right:34px;bottom:-22px;width:16px;height:30px;background:#F5B335;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.jr-nf img.mface{width:32px!important;height:32px!important;max-width:none;border-radius:50%;background:#FCE3D1}
+.jr-mood img.mface{width:20px!important;height:20px!important;border-radius:50%;background:#FCE3D1}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -2337,11 +2380,43 @@ function wordsCard(){
  '<div class="quote-pair"><div><small>'+agoStr(fl[0].ts).toUpperCase()+'</small>“'+esc(fl[0].text)+'”</div><div class="now"><small>'+agoStr(fl[1].ts).toUpperCase()+'</small>“'+esc(fl[1].text)+'”</div></div>'+
  '<button class="chip" data-go="journal" style="align-self:flex-start">Open your journal · '+S.notes.length+'</button></div>';
 }
+function openJournalBook(src){
+ var app=$('#app'),rm=S.rm||app.classList.contains('rm'),ic0=src&&src.querySelector('.tic-j svg');
+ if(rm||!ic0||!Element.prototype.animate){push('journal');return}
+ var ar=app.getBoundingClientRect(),r=ic0.getBoundingClientRect(),W=170,H=226;
+ var ov=document.createElement('div');ov.id='jb-ov';
+ ov.innerHTML='<div class="jb-book"><div class="jb-pages"><i></i><i></i><i></i><i></i><i></i></div><div class="jb-cover"><div class="jb-front"><span class="jb-spine"></span>'+'<svg viewBox="0 0 24 24" width="54" height="54" style="color:#FFD9CF">'+pawP(12,12,1.2)+'</svg></div><div class="jb-back"></div></div><i class="jb-rib"></i></div>';
+ app.appendChild(ov);var bk=$('.jb-book',ov),cv=$('.jb-cover',ov);
+ var cx=ar.width/2-W/2,cy=ar.height*.42-H/2,sx=(r.width)/W,x0=r.left-ar.left+r.width/2-W/2,y0=r.top-ar.top+r.height/2-H/2;
+ bk.style.left=cx+'px';bk.style.top=cy+'px';
+ haptic(8);
+ ov.animate([{background:'rgba(10,22,19,0)'},{background:'rgba(10,22,19,.72)'}],{duration:380,fill:'forwards'});
+ bk.animate([{transform:'translate('+(x0-cx)+'px,'+(y0-cy)+'px) scale('+sx+') rotate(-4deg)'},{transform:'translate(0,-10px) scale(1.06) rotate(1deg)',offset:.75},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.8,.3,1)',fill:'forwards'}).onfinish=function(){
+  haptic([10,30,14]);SFX.pop&&SFX.pop();
+  cv.animate([{transform:'perspective(900px) rotateY(0)'},{transform:'perspective(900px) rotateY(-168deg)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+  bk.animate([{transform:'none'},{transform:'translateX('+(W*.42)+'px) scale(1.08)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+  setTimeout(function(){push('journal');bk.animate([{transform:'translateX('+(W*.42)+'px) scale(1.08)',opacity:1},{transform:'translateX('+(W*.42)+'px) scale(2.6)',opacity:0}],{duration:420,easing:'ease-in',fill:'forwards'});
+   ov.animate([{opacity:1},{opacity:0}],{duration:420,delay:120,fill:'forwards'}).onfinish=function(){ov.remove()}},560)};
+}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.rowcard[data-go="journal"]');if(!b)return;e.preventDefault();e.stopPropagation();openJournalBook(b)},true);
 SCREENS.journal={render:function(){
- var list=S.notes.slice().sort(function(a,b){return b.ts-a.ts});
- return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">YOUR JOURNAL</span><div style="width:44px"></div></div>'+
- '<h1 class="title">In your words</h1><p class="muted">Everything you\'ve told Milo, and how he answered. Only you can see this.</p>'+
- '<div class="col stagger" style="gap:12px">'+list.map(function(n){return '<div class="j-card"><div class="j-top"><span class="j-tag">'+n.tag+'</span><span>'+(n.where==='sos'?'During SOS':'With Milo')+' · '+agoStr(n.ts)+'</span></div><p class="j-text">“'+esc(n.text)+'”</p><div class="j-reply"><span>'+face('calm',26)+'</span><p>'+esc(n.reply||'')+'</p></div></div>'}).join('')+'</div></div>';
+ var list=S.notes.slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
+ list.forEach(function(n){var d=new Date(n.ts),k=d.toDateString();if(!by[k]){by[k]=[];days.push(k)}by[k].push(n)});
+ var MOODF={Bored:'thinking',Craving:'anxious',Lonely:'sad',Low:'sad',Frustrated:'anxious',Anxious:'anxious',Stressed:'anxious',Tired:'sleep',Great:'happy',Restless:'anxious',Overwhelmed:'anxious'};
+ function dayName(k){var d=new Date(k),t=new Date();t.setHours(0,0,0,0);var diff=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+  return diff<=0?'Today':diff===1?'Yesterday':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()]}
+ function dateStr(k){var d=new Date(k);return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getDate()}
+ function tm(ts){var d=new Date(ts),h=d.getHours(),m=d.getMinutes();return (h%12||12)+':'+(m<10?'0':'')+m+(h<12?' AM':' PM')}
+ var sos=list.filter(function(n){return n.where==='sos'}).length,since=list.length?dateStr(new Date(list[list.length-1].ts).toDateString()):'';
+ var nm=esc(S.name||'My');
+ return '<div class="scroll jr"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><div style="width:44px"></div></div>'+
+ '<div class="jr-cover"><div class="jr-band"></div><div class="jr-ct"><small>The journal of</small><b>'+nm+(S.name?'':'')+'</b><span>'+list.length+' entries · '+sos+' urges talked through · since '+since+'</span></div><i class="jr-rib"></i></div>'+
+ '<p class="jr-lock">'+ic('lock',{s:14,w:2.6})+'Only you can see this. Milo keeps it safe.</p>'+
+ days.map(function(k,di){return '<section class="jr-page stagger"><header class="jr-date"><b>'+dayName(k)+'</b><span>'+dateStr(k)+'</span></header>'+
+  by[k].map(function(n){var f=MOODF[n.tag]||'calm';return '<article class="jr-e"><div class="jr-meta"><span class="jr-t">'+tm(n.ts)+'</span><span class="jr-mood">'+face(f,22)+n.tag+'</span><span class="jr-w">'+(n.where==='sos'?'During SOS':'With Milo')+'</span></div>'+
+   '<p class="jr-txt">'+esc(n.text)+'</p>'+(n.reply?'<div class="jr-note"><span class="jr-tape"></span><div class="jr-nf">'+face('calm',30)+'</div><p>'+esc(n.reply)+'</p><small>— Milo</small></div>':'')+'</article>'}).join('')+
+  '<footer class="jr-pn">'+(di+1)+'</footer></section>'}).join('')+
+ '<div class="jr-end">'+ic('book',{s:16})+'That\'s every page so far. Talk to Milo to add more.</div></div>';
 }};
 
 /* ---------- onboarding & permission priming ---------- */
@@ -2942,7 +3017,7 @@ function findIconOld(sz){var u=sz/24,cx=10.2*u,cy=10.2*u,H=15.6*u;
 P.more='<circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/>';
 P.pawbuzz=pawP(12,12.4,1.62)+'<path d="M4 8.6c-1.3 2.1-1.3 5.3 0 7.4M20 8.6c1.3 2.1 1.3 5.3 0 7.4"/><path d="M1.6 7c-2 3.2-2 7.6 0 10.8M22.4 7c2 3.2 2 7.6 0 10.8" opacity=".55"/>';
 P.pawsteps='<g transform="rotate(-18 12 12)">'+pawP(8,16,1.25)+pawP(16,6.6,1.25)+'</g>';
-var JOURNAL_SVG='<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><g transform="rotate(-4 12 12)"><rect x="7.2" y="3.8" width="12.4" height="16.6" rx="1.9" fill="#D61F0A"/><rect x="7.4" y="4.6" width="11.4" height="15.2" rx="1.4" fill="#F4EEE4"/><path d="M14.4 18.6h2.4v4.2l-1.2-1-1.2 1z" fill="#F5B335"/><rect x="5" y="3" width="12.8" height="16.8" rx="2" fill="#EC2A0E"/><path d="M5 5a2 2 0 0 1 2-2h.6v16.8H7a2 2 0 0 1-2-2z" fill="#D61F0A"/>'+pawP(12.6,11.2,.92).replace('currentColor','#FFFFFF')+'</g></svg>';
+var JOURNAL_SVG='<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><g transform="rotate(-4 12 12)"><rect x="7.2" y="3.8" width="12.4" height="16.6" rx="1.9" fill="#D61F0A"/><rect x="7.4" y="4.6" width="11.4" height="15.2" rx="1.4" fill="#F4EEE4"/><path d="M14.4 18.6h2.4v4.2l-1.2-1-1.2 1z" fill="#F5B335"/><rect x="5" y="3" width="12.8" height="16.8" rx="2" fill="#EC2A0E"/><path d="M5 5a2 2 0 0 1 2-2h.6v16.8H7a2 2 0 0 1-2-2z" fill="#D61F0A"/>'+pawP(12.8,11.4,.6).replace('currentColor','#FFD9CF')+'</g></svg>';
 var KIT={
  ball:{bg:'#E3F4D8',svg:'<ellipse cx="14.6" cy="21" rx="4.8" ry="1.1" fill="#1E3A35" opacity=".18"/><path d="M2.6 8.8h3.4M3.6 12.8h2.8M2.6 16.8h4.2" stroke="#9CC96B" stroke-width="2" stroke-linecap="round"/><circle cx="14.6" cy="11.2" r="7" fill="#D4E157"/><path d="M14.6 4.2a7 7 0 0 1 0 14" fill="#C0CF45"/><path d="M9.8 6.3c2.4 1.9 2.4 7.9 0 9.8M19.4 6.3c-2.4 1.9-2.4 7.9 0 9.8" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.8" r="1.3" fill="#fff" opacity=".7"/>'},
  feed:{bg:'#EEE9FF',svg:'<rect x="2.2" y="3.4" width="14.2" height="10.4" rx="2.8" fill="#C7BBF5"/><rect x="4.6" y="6.4" width="14.4" height="10.8" rx="2.8" fill="#8F7BE6"/><path d="M10.2 9.2v5.2l4.2-2.6z" fill="#fff"/><g transform="translate(18.2 17.4)"><circle r="5.6" fill="#fff"/><path d="M-2.9-3.6h5.8M-2.9 3.6h5.8" stroke="#7A5232" stroke-width="1.5" stroke-linecap="round"/><path d="M-2.2-3.4c0 1.9 1.8 2.6 1.8 3.4s-1.8 1.5-1.8 3.4h4.4c0-1.9-1.8-2.6-1.8-3.4s1.8-1.5 1.8-3.4z" fill="#FFF6E2" stroke="#7A5232" stroke-width="1" stroke-linejoin="round"/><path d="M-1.5-2.7h3c-.3.9-1 1.4-1.5 1.8-.5-.4-1.2-.9-1.5-1.8z" fill="#F2B23A"/><path d="M-1.7 3.1c.3-1 1-1.6 1.7-1.6s1.4.6 1.7 1.6z" fill="#F2B23A"/><path d="M0-.6v1.4" stroke="#F2B23A" stroke-width=".7" stroke-linecap="round"/></g>'},
