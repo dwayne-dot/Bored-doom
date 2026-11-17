@@ -1718,6 +1718,7 @@ function pawWalk(rev){
   var nx=-dy,ny=dx,len=Math.hypot(nx,ny);var gap=rev?(24+12*t):(14+22*t);cx+=side*nx/len*gap;cy+=side*ny/len*gap;
   var sz=rev?72+28*t:34+44*t,hf=sz/2;o+='<svg class="pw-print" viewBox="0 0 24 24" style="width:'+sz.toFixed(0)+'px;height:'+sz.toFixed(0)+'px;left:'+(cx-hf).toFixed(1)+'px;top:'+(cy-hf).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*230)+'ms">'+pawP(12,12,2)+'</svg>'}
  host.innerHTML=o;app.appendChild(host);
+ if(S.pawHap!==false){for(var j=0;j<n;j++)(function(j){setTimeout(function(){if(document.getElementById('paw-walk')===host)haptic(rev?(j<2?7:5+Math.round(j*.5)):(4+Math.round(j*.6)))},j*230+40)})(j)}
  setTimeout(function(){host.remove()},n*230+2000);
 }
 function switchTab(tab){
@@ -2799,10 +2800,10 @@ SCREENS.you.bindID=function(el){ var p=ref(el,'pro');p&&p.addEventListener('clic
 SCREENS.display={render:function(){
  function row(i,t,sub,k,on){return '<button class="srow" data-k="'+k+'"><span class="si">'+ic(i,{s:18})+'</span><span class="grow">'+t+'<small>'+sub+'</small></span><span class="switch'+(on?' on':'')+'"></span></button>'}
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Sound, motion & text</span><div style="width:44px"></div></div>'+
- '<div class="gl keep">Feel</div><div class="group">'+row('pawpair','Haptics','Gentle taps on buttons and wins','hap',S.hap)+row('volume','Sound effects','Barks, chimes and wins','sound',S.sound)+'</div>'+
+ '<div class="gl keep">Feel</div><div class="group">'+row('pawpair','Haptics','Gentle taps on buttons and wins','hap',S.hap)+row('volume','Sound effects','Barks, chimes and wins','sound',S.sound)+row('pawpair','Milo’s running steps','Feel his paws when he runs across Insights and Milo','pawHap',S.pawHap!==false)+'</div>'+
  '<div class="gl keep">Motion</div><div class="group">'+row('wind','Reduce motion','Fades instead of slides, no confetti','rm',S.rm)+'</div>'+
  '<div class="gl keep">Text</div><div class="group">'+row('eye','Larger text','Bigger words across the app','lt',S.lt)+'</div></div>';
-},mount:function(el){$$('[data-k]',el).forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.k;S[k]=!S[k];save();$('.switch',b).classList.toggle('on',S[k]);applyA11y();haptic(8)})})}};
+},mount:function(el){$$('[data-k]',el).forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.k;S[k]=k==='pawHap'?(S[k]===false):!S[k];save();$('.switch',b).classList.toggle('on',S[k]!==false&&!!S[k]);applyA11y();haptic(8)})})}};
 
 /* ---------- prototype-only menu (not part of the app) ---------- */
 function protoMenu(){openSheet('<div class="over keep" style="color:#A8541E">Prototype only</div><div style="font-size:22px;font-weight:900;line-height:27px">Jump to any feature</div><p class="muted" style="margin:0;font-size:13px">This menu isn’t part of the app. It’s here so you can test everything.</p><div class="pm-list">'+TOUR.map(function(t,i){return '<button class="pm-i" data-j="'+t[0]+'"><span>'+(i+1)+'</span>'+t[1]+'</button>'}).join('')+'</div><button class="link" data-ref="reset" style="color:#B5473A;font-weight:800">Reset prototype data</button>',function(sh,close){

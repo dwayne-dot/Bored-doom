@@ -52,6 +52,7 @@ export interface AppState {
   checkIns: boolean;
   sound: boolean;
   haptics: boolean;
+  pawStepHaptics: boolean;  // "Milo's running steps" (paw-walk taps on Insights/Milo tabs)
   reduceMotion: boolean;
   largerText: boolean;
   mic: boolean;
@@ -68,7 +69,7 @@ export const defaultState: AppState = {
   bandana: 'amber', accessory: 'none', owned: ['none'], room: ['rug'],
   id: { style: 'classic', photo: 'head-happy', issuedAt: 0, since: 0 },
   shield: true, bedtime: false, lockedIn: null,
-  checkIns: true, sound: true, haptics: true, reduceMotion: false, largerText: false, mic: false,
+  checkIns: true, sound: true, haptics: true, pawStepHaptics: true, reduceMotion: false, largerText: false, mic: false,
   ai: { replies: undefined, journal: false, timing: true },
 };
 
