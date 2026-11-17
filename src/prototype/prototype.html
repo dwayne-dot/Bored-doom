@@ -1478,6 +1478,10 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 #tk-ov.on:not(.open) .tk-bag{transform:translate(-50%,-50%) scale(.6);opacity:0}
 #tk-ov.on:not(.open) .tk-head{opacity:0;transform:translateY(-8px)}
 #tk-ov.closing .tk-head{transition-delay:0s}
+
+#paw-walk{position:absolute;inset:0;pointer-events:none;z-index:15;overflow:hidden}
+.pw-print{position:absolute;width:26px;height:26px;color:#F5B076;opacity:0;transform:rotate(var(--a)) scale(.6);animation:pwStep 1.7s ease-out forwards}
+@keyframes pwStep{0%{opacity:0;transform:rotate(var(--a)) scale(.6)}12%{opacity:.26;transform:rotate(var(--a)) scale(1.05)}22%{opacity:.22;transform:rotate(var(--a)) scale(1)}70%{opacity:.16}100%{opacity:0;transform:rotate(var(--a)) scale(1)}}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -1704,6 +1708,18 @@ function popToRoot(cb){
  pop();cb&&setTimeout(cb,380);
 }
 var TAB_ORDER=['today','insights','milo','you'];
+function pawWalk(){
+ if(S.rm||document.getElementById('app').classList.contains('rm'))return;
+ var old=document.getElementById('paw-walk');old&&old.remove();
+ var app=document.getElementById('app'),W=app.clientWidth,H=app.clientHeight,host=document.createElement('div');host.id='paw-walk';host.setAttribute('aria-hidden','true');
+ var n=11,x0=W*.14,y0=H*.80,x1=W*.84,y1=H*.16,o='';
+ for(var i=0;i<n;i++){var t=i/(n-1),cx=x0+(x1-x0)*t+Math.sin(t*Math.PI*1.6)*W*.10,cy=y0+(y1-y0)*t;
+  var t2=Math.min(1,t+.02),dx=(x1-x0)+Math.cos(t2*Math.PI*1.6)*Math.PI*1.6*W*.10,dy=(y1-y0),ang=Math.atan2(dy,dx)*180/Math.PI+90,side=i%2?1:-1;
+  var nx=-dy,ny=dx,len=Math.hypot(nx,ny);cx+=side*nx/len*13;cy+=side*ny/len*13;
+  o+='<svg class="pw-print" viewBox="0 0 24 24" style="left:'+(cx-13).toFixed(1)+'px;top:'+(cy-13).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*170)+'ms">'+pawP(12,12,2)+'</svg>'}
+ host.innerHTML=o;app.appendChild(host);
+ setTimeout(function(){host.remove()},n*170+1900);
+}
 function switchTab(tab){
  var from=TAB_ORDER.indexOf(curTab),to=TAB_ORDER.indexOf(tab),dir=(from<0||to<0)?0:(to>from?1:-1);
  curTab=tab;var old=stack[0];var e=makeEntry(tab,{},'root');stack=[e];
@@ -1712,6 +1728,7 @@ function switchTab(tab){
   setTimeout(function(){e.el.classList.remove('tab-in-r','tab-in-l')},980)}
  if(old){old.cleanup&&old.cleanup();setTimeout(function(){old.el.remove()},800)}
  updateTabbar();
+ if(tab==='insights')setTimeout(function(){if(curTab==='insights')pawWalk()},dir?760:250);
 }
 function goRoot(tab){
  if(stack.length>1)popToRoot(function(){if(tab!==curTab)switchTab(tab)});
