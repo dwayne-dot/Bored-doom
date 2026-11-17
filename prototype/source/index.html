@@ -2623,14 +2623,14 @@ function openJournal(src){
  else{
   var fx=sr?(sr.left+sr.width/2-(gr.left+gr.width/2)):0,fy=sr?(sr.top+sr.height/2-(gr.top+gr.height/2)):60,fs=sr?sr.width/st.pw:.3;
   requestAnimationFrame(function(){ov.classList.add('on')});haptic(8);
-  fly.animate([{transform:'translate('+fx+'px,'+fy+'px) scale('+fs+') rotate(-4deg)',opacity:sr?1:0},{transform:'translate(0,-8px) scale(1.04) rotate(1deg)',opacity:1,offset:.75},{transform:'none',opacity:1}],{duration:560,easing:'cubic-bezier(.3,.8,.3,1)'}).onfinish=function(){
+  fly.animate([{transform:'translate('+fx+'px,'+fy+'px) scale('+fs+') rotate(-4deg)',opacity:sr?1:0},{transform:'translate(0,-8px) scale(1.04) rotate(1deg)',opacity:1,offset:.75},{transform:'none',opacity:1}],{duration:950,easing:'cubic-bezier(.25,.8,.3,1)'}).onfinish=function(){
    haptic([10,30,14]);SFX.pop&&SFX.pop();
    var sh=-st.pw/2;
-   book.animate([{transform:'translateX('+sh+'px)'},{transform:'translateX(0)'}],{duration:640,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
-   cv.animate([{transform:'rotateY(0)'},{transform:'rotateY(-180deg)'}],{duration:640,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}).onfinish=function(){
+   book.animate([{transform:'translateX('+sh+'px)'},{transform:'translateX(0)'}],{duration:1150,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   cv.animate([{transform:'rotateY(0)'},{transform:'rotateY(-180deg)'}],{duration:1150,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}).onfinish=function(){
     cv.style.transform='rotateY(-180deg)';R.classList.remove('under');
     if(land()){book.getAnimations().forEach(function(a){a.cancel()});st.spread=true;layout(false);finishOpen();show();return}
-    setTimeout(function(){var a=book.animate([{transform:'translateX(0)'},{transform:'translateX('+sh+'px)'}],{duration:520,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});a.onfinish=function(){book.getAnimations().forEach(function(x){x.cancel()});layout(false);finishOpen();haptic(5)}},280)}}}
+    setTimeout(function(){var a=book.animate([{transform:'translateX(0)'},{transform:'translateX('+sh+'px)'}],{duration:850,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});a.onfinish=function(){book.getAnimations().forEach(function(x){x.cancel()});layout(false);finishOpen();haptic(5)}},550)}}}
  /* closing */
  function close(){if(st.closing)return;st.closing=true;st.busy=true;stopShake();
   if(rm){ov.remove();return}
