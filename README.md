@@ -13,6 +13,14 @@ npx expo start
 
 Scan the QR code with the iPhone camera (Expo Go must be installed). If the phone and computer are on different networks, run `npx expo start --tunnel`.
 
+## See the native components
+
+In the app: **You → Help & support → Native design system** (orange button at the bottom). That screen is 100% React Native.
+
+## Update the prototype
+
+Edit `prototype/source/index.html`, then run `python3 scripts/build-prototype.py`.
+
 ## What's here now (Phase 1)
 
 - Expo SDK 58, Expo Router, Reanimated, Haptics, Notifications, AsyncStorage, Lucide icons, SVG — installed and configured.
@@ -26,11 +34,17 @@ Scan the QR code with the iPhone camera (Expo Go must be installed). If the phon
 app/                 screens (Expo Router: file = route)
   _layout.tsx        root stack
   index.tsx          home (prototype for now)
+  design.tsx         native design system (Phase 2)
 src/
   components/        reusable UI (Milo, buttons, cards)
   theme/             colors, spacing, typography
   lib/               haptics, storage, notifications helpers
-  prototype/         the HTML prototype asset
+  prototype/         the bundled HTML prototype (generated)
+  model/             typed app state
+  icons/             generated icon artwork
+prototype/source/    prototype source (edit here)
+scripts/             build-prototype.py
+docs/                SCREEN_MAP.md, UI_AUDIT.md
 assets/
   icon.png, splash-milo.png, milo/*.png
 ```
@@ -38,7 +52,7 @@ assets/
 ## Phases
 
 1. Project setup & folder structure ✅
-2. Design system & Milo component
+2. Design system & Milo component ✅ (`src/components/ui`, `src/components/milo`, `src/components/icons`, `app/design.tsx`)
 3. Home screen & mood check-in
 4. SOS timer & haptics
 5. Local storage & notifications

@@ -4,6 +4,7 @@ import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import { Asset } from 'expo-asset';
 import { colors } from '@/theme/colors';
 import { haptic } from '@/lib/haptics';
+import { router } from 'expo-router';
 
 // Runs the full interactive prototype inside the app.
 // Every haptic the prototype asks for is forwarded to the phone's real
@@ -24,9 +25,10 @@ export function PrototypeView() {
 
   function onMessage(e: WebViewMessageEvent) {
     try {
-      const msg = JSON.parse(e.nativeEvent.data) as { t: string; p?: number | number[]; m?: string };
+      const msg = JSON.parse(e.nativeEvent.data) as { t: string; p?: number | number[]; m?: string; to?: string };
       if (msg.t === 'haptic') haptic(msg.p);
       if (msg.t === 'error') console.warn('[prototype]', msg.m);
+      if (msg.t === 'nav' && msg.to) router.push(msg.to as never);
     } catch { /* ignore */ }
   }
 

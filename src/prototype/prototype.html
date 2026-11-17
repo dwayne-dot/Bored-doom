@@ -1449,6 +1449,7 @@ html.native .proto-only{display:none!important}
 button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 /* consistent disabled look */
 .btn[disabled],.pick[disabled],.chip[disabled]{opacity:.45;pointer-events:none}
+.native-only{display:none!important}html.native .native-only{display:flex!important}.ds-link{align-self:center;align-items:center;gap:8px;margin:14px auto 0;padding:12px 18px;border:none;border-radius:999px;background:var(--amber);color:var(--ink);font:800 15px 'Nunito',sans-serif;box-shadow:0 4px 0 var(--amberD)}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -2998,7 +2999,7 @@ SCREENS.help={render:function(){
  '<button class="help-crisis" data-ref="crisis">'+ic('lifebuoy',{s:22,w:2.2})+'<span class="grow"><b>Need support right now?</b><small>Talk to a real person, any time</small></span>'+ic('chevR',{s:18})+'</button>'+
  '<div class="gl keep">Questions</div><div class="group faq">'+FAQ.map(function(q,i){return '<button class="faq-q" data-i="'+i+'" aria-expanded="false"><span class="grow">'+q[0]+'</span><span class="faq-ch">'+ic('chevD',{s:18,w:2.4})+'</span></button><div class="faq-a"><p>'+q[1]+'</p></div>'}).join('')+'</div>'+
  '<div class="gl keep">Contact</div><div class="group">'+srow('msg','Message the team','We reply within 2 days','data-ref="contact"')+srow('flag','Report a problem','Something broken or confusing','data-ref="bug"')+srow('star','Rate Bored Doom','It helps more people find Milo','data-ref="rate"')+'</div>'+
- '<div class="gl keep">Legal</div><div class="group">'+srow('book','Terms of Service','','data-ref="tos"')+srow('lock','Privacy Policy','','data-ref="pp"')+'</div><p class="muted" style="font-size:12.5px;line-height:18px;margin:8px 6px 0">Bored Doom helps you build healthier phone habits. It isn’t medical care, therapy or a crisis service. If you’re in danger, call your local emergency number.</p><p class="muted center" style="font-size:12px;margin:6px 0 30px">Bored Doom 1.0 (build 42)</p></div>';
+ '<div class="gl keep">Legal</div><div class="group">'+srow('book','Terms of Service','','data-ref="tos"')+srow('lock','Privacy Policy','','data-ref="pp"')+'</div><p class="muted" style="font-size:12.5px;line-height:18px;margin:8px 6px 0">Bored Doom helps you build healthier phone habits. It isn’t medical care, therapy or a crisis service. If you’re in danger, call your local emergency number.</p><button class="native-only ds-link" data-native-go="/design">'+ic('sparkles',{s:16})+'Native design system</button><p class="muted center" style="font-size:12px;margin:6px 0 30px">Bored Doom 1.0 (build 42)</p></div>';
 },mount:function(el){
  ref(el,'crisis').addEventListener('click',supportSheet);
  $$('.faq-q',el).forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',on);b.nextElementSibling.classList.toggle('open',on)})});
@@ -3081,6 +3082,8 @@ function aiSpark(btn){var host=btn.querySelector('svg,span');if(!host)return;var
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-tab="insights"]');if(b&&b.classList.contains('tab')){aiSpark(b);var sv=b.querySelector('svg');if(sv){sv.classList.remove('tab-pop');void sv.getBoundingClientRect();sv.classList.add('tab-pop')}}},true);
 document.addEventListener('pointerdown',function(e){var b=e.target.closest&&e.target.closest('.tab-sos');if(!b)return;b.classList.remove('sos-hit');void b.offsetWidth;b.classList.add('sos-hit');var tb=document.getElementById('tabbar');if(!tb)return;var br=b.getBoundingClientRect(),tr=tb.getBoundingClientRect();[0,140].forEach(function(d){setTimeout(function(){var r=document.createElement('span');r.className='sos-ring';r.style.left=(br.left-tr.left+br.width/2)+'px';r.style.top=(br.top-tr.top+br.height/2)+'px';tb.appendChild(r);setTimeout(function(){r.remove()},800)},d)});haptic&&haptic(14)},true);
 })();
+
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-native-go]');if(b&&window.ReactNativeWebView){e.preventDefault();e.stopPropagation();window.ReactNativeWebView.postMessage(JSON.stringify({t:'nav',to:b.getAttribute('data-native-go')}))}},true);
 </script>
 </body>
 </html>
