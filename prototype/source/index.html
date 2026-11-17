@@ -1508,17 +1508,80 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 .jr-pn{position:absolute;bottom:10px;right:18px;font:800 12px 'Nunito',sans-serif;color:#B9B0A0}
 .jr-end{display:flex;align-items:center;gap:8px;justify-content:center;color:var(--muted);font:700 13px 'Nunito',sans-serif;margin:6px 0 40px}
 /* book-open transition */
-#jb-ov{position:absolute;inset:0;z-index:60;pointer-events:none}
-.jb-book{position:absolute;width:170px;height:226px;transform-origin:50% 50%}
-.jb-pages{position:absolute;inset:4px 0 4px 8px;background:#FBF7EF;border-radius:4px 14px 14px 4px;background-image:repeating-linear-gradient(transparent 0 15px,#DDE6EE 15px 16px);box-shadow:3px 3px 0 #EDE6D8,6px 6px 0 #C81E0B}
-.jb-cover{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d}
-.jb-front,.jb-back{position:absolute;inset:0;border-radius:8px 16px 16px 8px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.jb-front{background:#EC2A0E;display:grid;place-items:center;box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)}
-.jb-spine{position:absolute;left:0;top:0;bottom:0;width:22px;background:#D61F0A;border-radius:8px 0 0 8px}
-.jb-back{background:#F4EEE4;transform:rotateY(180deg)}
-.jb-rib{position:absolute;right:34px;bottom:-22px;width:16px;height:30px;background:#F5B335;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+
 .jr-nf img.mface{width:32px!important;height:32px!important;max-width:none;border-radius:50%;background:#FCE3D1}
 .jr-mood img.mface{width:20px!important;height:20px!important;border-radius:50%;background:#FCE3D1}
+
+/* --- journal book --- */
+#jb-ov{position:absolute;inset:0;z-index:300;display:flex;flex-direction:column;background:rgba(10,22,19,0);transition:background .4s ease}
+#jb-ov.on{background:rgba(10,22,19,.94)}
+.jb-top,.jb-bar,.jb-hint{opacity:0;transition:opacity .35s .5s}
+#jb-ov.on .jb-top,#jb-ov.on .jb-bar,#jb-ov.on .jb-hint{opacity:1}
+.jb-top{display:flex;align-items:center;justify-content:space-between;padding:56px 18px 6px 24px}
+.jb-stage{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none}
+.jb-fly{position:absolute;inset:0}
+.jb-book{position:absolute;left:50%;top:50%;perspective:1800px}
+.jb-back{position:absolute;inset:-7px -9px -9px -9px;background:#D61F0A;border-radius:12px;box-shadow:inset 0 -5px 0 rgba(0,0,0,.18),0 18px 40px rgba(0,0,0,.35)}
+.jb-stk{position:absolute;top:2px;bottom:-4px;width:6px;background:repeating-linear-gradient(90deg,#F7F1E6 0 1px,#DCD2BF 1px 2px)}
+.jb-stk.r{right:-6px;border-radius:0 3px 3px 0}.jb-stk.l{left:-6px;border-radius:3px 0 0 3px}
+.jp{position:absolute;top:0;width:50%;height:100%;background:#FBF7EF;overflow:hidden;color:#22332F;transition:opacity .25s}
+.jp.l{left:0;border-radius:6px 1px 1px 6px;z-index:2}.jp.r{left:50%;border-radius:1px 6px 6px 1px;z-index:2}
+.jp.hide{opacity:0;pointer-events:none}.jp.fade{opacity:0}.jp.under{visibility:hidden}
+.jp-in{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:1.25em 1.1em 2.2em 2.6em;
+ background:linear-gradient(90deg,transparent 2em,#F2A79A 2em,#F2A79A calc(2em + 1.5px),transparent calc(2em + 1.5px)),repeating-linear-gradient(transparent 0 1.7em,#DCE5EC 1.7em calc(1.7em + 1px));background-attachment:local;scrollbar-width:none}
+.jp-in::-webkit-scrollbar{display:none}
+.jp.r .jp-in{box-shadow:inset 14px 0 18px -14px rgba(0,0,0,.22)}.jp.l .jp-in{box-shadow:inset -14px 0 18px -14px rgba(0,0,0,.22)}
+.jp-pn{position:absolute;bottom:.6em;right:1em;font:800 .78em 'Nunito',sans-serif;color:#B9B0A0}.jp.l .jp-pn,.jp.lb .jp-pn{right:auto;left:1em}
+.jb-spine{position:absolute;left:50%;top:0;bottom:0;width:28px;margin-left:-14px;z-index:7;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(0,0,0,.10) 40%,rgba(0,0,0,.22) 50%,rgba(0,0,0,.10) 60%,transparent)}
+.jb-rib{position:absolute;right:16%;bottom:-1.7em;width:1em;height:2.2em;background:#F5B335;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%);z-index:3}
+.jp.r{overflow:visible}.jp.r .jp-in{border-radius:1px 6px 6px 1px}
+.jb-cv{position:absolute;left:50%;top:-5px;width:calc(50% + 7px);height:calc(100% + 10px);transform-origin:0 50%;transform-style:preserve-3d;z-index:6}
+.jb-cf,.jb-cb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.jb-cf{background:#EC2A0E;border-radius:2px 12px 12px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8em;box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)}
+.jb-cspine{position:absolute;left:0;top:0;bottom:0;width:13%;background:#D61F0A}
+.jb-cpaw{width:28%;height:auto;color:#FFD9CF;margin-left:8%}
+.jb-ctitle{font:900 1.15em 'Nunito',sans-serif;color:#FFE9E2;margin-left:8%;text-align:center;padding:0 1em}
+.jb-cb{background:#F4EEE4;border-radius:12px 2px 2px 12px;transform:rotateY(180deg);display:grid;place-items:center}
+.jp-plate{width:72%;padding:1.2em 1em;border:2px solid #E2C9A8;border-radius:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.35em;color:#6B5A44}
+.jp-plate small{font:800 .72em 'Nunito',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.jp-plate b{font:900 1.5em 'Nunito',sans-serif;color:#16302B}.jp-plate span{font:800 .9em 'Nunito',sans-serif}
+.jp-plate img.mface{width:3.6em!important;height:3.6em!important}
+.jb-leaf{position:absolute;top:0;width:50%;height:100%;transform-style:preserve-3d;z-index:8}
+.jb-leaf.fw{left:50%;transform-origin:0 50%}.jb-leaf.bw{left:0;transform-origin:100% 50%}
+.jb-leaf .jp{left:0;width:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 0 30px rgba(0,0,0,.18)}
+.jb-leaf .lb{transform:rotateY(180deg)}
+.jb-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px 6px}
+.jb-nav{width:44px;height:44px;border-radius:22px;border:none;background:var(--bg2);color:var(--cream);display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.jb-nav:disabled{opacity:.3}
+.jb-lbl{min-width:120px;text-align:center;font:800 14px 'Nunito',sans-serif;color:var(--cream)}
+.jb-two{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border:none;border-radius:22px;background:var(--bg2);color:var(--cream);font:800 13px 'Nunito',sans-serif;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18);margin-left:6px}
+.jb-hint{margin:0 0 34px;text-align:center;font:700 12.5px 'Nunito',sans-serif;color:var(--muted)}
+#jb-ov.two .jb-hint{visibility:hidden}
+/* page content (em-based so it scales with the book) */
+.jp-title{display:flex;flex-direction:column;gap:.3em}
+.jp-title>small{font:800 .75em 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C26E36}
+.jp-title>b{font:900 2em/1.1 'Nunito',sans-serif;color:#16302B}
+.jp-rule{display:block;height:3px;width:3em;background:#E88D4F;border-radius:2px;margin:.3em 0 .6em}
+.jp-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6em}
+.jp-stats div{background:#F3EBDD;border-radius:.8em;padding:.6em .7em}
+.jp-stats b{display:block;font:900 1.35em 'Nunito',sans-serif;color:#16302B}.jp-stats small{font:700 .75em 'Nunito',sans-serif;color:#6E7F7A}
+.jp-stats div:last-child{grid-column:1/-1}
+.jp-milo{display:flex;gap:.6em;align-items:center;margin-top:.9em}.jp-milo img.mface{width:3.6em!important;height:3.6em!important;flex-shrink:0}
+.jp-milo p{margin:0;font:600 .9em/1.45 'Nunito',sans-serif;color:#3B4C48}
+.jp-lock{display:flex;align-items:center;gap:.4em;font:700 .8em 'Nunito',sans-serif;color:#7A8C88;margin:.9em 0 0}
+.jp-date{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.35em}
+.jp-date b{font:900 1.45em 'Nunito',sans-serif;color:#16302B}.jp-date span{font:800 .78em 'Nunito',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C26E36}
+.jp-e{padding:.2em 0 .7em}.jp-e+.jp-e{border-top:1.5px dashed #E4DACB;padding-top:.7em}
+.jp-meta{display:flex;align-items:center;gap:.45em;flex-wrap:wrap;font:800 .76em 'Nunito',sans-serif;color:#7A8C88}
+.jp-mood{display:inline-flex;align-items:center;gap:.3em;padding:.12em .55em .12em .15em;border-radius:999px;background:#F6E3D3;color:#9A4E22}
+.jp-mood img.mface{width:1.4em!important;height:1.4em!important;border-radius:50%;background:#FCE3D1}
+.jp-w{margin-left:auto}
+.jp-txt{margin:.35em 0 0;font:600 1.02em/1.7em 'Nunito',sans-serif;color:#22332F}
+.jp-note{position:relative;margin:.6em 0 .2em .2em;padding:.7em .75em .55em 2.9em;background:#FFF3B8;border-radius:4px 4px 12px 4px;transform:rotate(-1.2deg);box-shadow:0 3px 0 rgba(0,0,0,.08)}
+.jp-note img.mface{position:absolute;left:.5em;top:.6em;width:1.9em!important;height:1.9em!important;border-radius:50%;background:#FCE3D1}
+.jp-tape{position:absolute;top:-.5em;left:50%;width:3.2em;height:1em;margin-left:-1.6em;background:rgba(232,141,79,.35);transform:rotate(3deg)}
+.jp-note p{margin:0;font:600 .88em/1.4 'Nunito',sans-serif;color:#3D3A25}.jp-note small{display:block;text-align:right;font:800 .75em 'Nunito',sans-serif;color:#9C7A1E;margin-top:.2em}
+.jp-blank{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;color:#A99F8E;text-align:center;font:700 .9em 'Nunito',sans-serif}
 </style>
 </head>
 <body>
@@ -2372,44 +2435,122 @@ function wordsCard(){
  '<div class="quote-pair"><div><small>'+agoStr(fl[0].ts).toUpperCase()+'</small>“'+esc(fl[0].text)+'”</div><div class="now"><small>'+agoStr(fl[1].ts).toUpperCase()+'</small>“'+esc(fl[1].text)+'”</div></div>'+
  '<button class="chip" data-go="journal" style="align-self:flex-start">Open your journal · '+S.notes.length+'</button></div>';
 }
-function openJournalBook(src){
- var app=$('#app'),rm=S.rm||app.classList.contains('rm'),ic0=src&&src.querySelector('.tic-j svg');
- if(rm||!ic0||!Element.prototype.animate){push('journal');return}
- var ar=app.getBoundingClientRect(),r=ic0.getBoundingClientRect(),W=170,H=226;
- var ov=document.createElement('div');ov.id='jb-ov';
- ov.innerHTML='<div class="jb-book"><div class="jb-pages"><i></i><i></i><i></i><i></i><i></i></div><div class="jb-cover"><div class="jb-front"><span class="jb-spine"></span>'+'<svg viewBox="0 0 24 24" width="54" height="54" style="color:#FFD9CF">'+pawP(12,12,1.2)+'</svg></div><div class="jb-back"></div></div><i class="jb-rib"></i></div>';
- app.appendChild(ov);var bk=$('.jb-book',ov),cv=$('.jb-cover',ov);
- var cx=ar.width/2-W/2,cy=ar.height*.42-H/2,sx=(r.width)/W,x0=r.left-ar.left+r.width/2-W/2,y0=r.top-ar.top+r.height/2-H/2;
- bk.style.left=cx+'px';bk.style.top=cy+'px';
- haptic(8);
- ov.animate([{background:'rgba(10,22,19,0)'},{background:'rgba(10,22,19,.72)'}],{duration:380,fill:'forwards'});
- bk.animate([{transform:'translate('+(x0-cx)+'px,'+(y0-cy)+'px) scale('+sx+') rotate(-4deg)'},{transform:'translate(0,-10px) scale(1.06) rotate(1deg)',offset:.75},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.8,.3,1)',fill:'forwards'}).onfinish=function(){
-  haptic([10,30,14]);SFX.pop&&SFX.pop();
-  cv.animate([{transform:'perspective(900px) rotateY(0)'},{transform:'perspective(900px) rotateY(-168deg)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
-  bk.animate([{transform:'none'},{transform:'translateX('+(W*.42)+'px) scale(1.08)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
-  setTimeout(function(){push('journal');bk.animate([{transform:'translateX('+(W*.42)+'px) scale(1.08)',opacity:1},{transform:'translateX('+(W*.42)+'px) scale(2.6)',opacity:0}],{duration:420,easing:'ease-in',fill:'forwards'});
-   ov.animate([{opacity:1},{opacity:0}],{duration:420,delay:120,fill:'forwards'}).onfinish=function(){ov.remove()}},560)};
-}
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.rowcard[data-go="journal"]');if(!b)return;e.preventDefault();e.stopPropagation();openJournalBook(b)},true);
-SCREENS.journal={render:function(){
+/* ---------- Your journal: a real book ---------- */
+var JB=null;
+function jbData(){
  var list=S.notes.slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
- list.forEach(function(n){var d=new Date(n.ts),k=d.toDateString();if(!by[k]){by[k]=[];days.push(k)}by[k].push(n)});
- var MOODF={Bored:'thinking',Craving:'anxious',Lonely:'sad',Low:'sad',Frustrated:'anxious',Anxious:'anxious',Stressed:'anxious',Tired:'sleep',Great:'happy',Restless:'anxious',Overwhelmed:'anxious'};
- function dayName(k){var d=new Date(k),t=new Date();t.setHours(0,0,0,0);var diff=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
-  return diff<=0?'Today':diff===1?'Yesterday':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()]}
- function dateStr(k){var d=new Date(k);return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getDate()}
- function tm(ts){var d=new Date(ts),h=d.getHours(),m=d.getMinutes();return (h%12||12)+':'+(m<10?'0':'')+m+(h<12?' AM':' PM')}
- var sos=list.filter(function(n){return n.where==='sos'}).length,since=list.length?dateStr(new Date(list[list.length-1].ts).toDateString()):'';
- var nm=esc(S.name||'My');
- return '<div class="scroll jr"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><div style="width:44px"></div></div>'+
- '<div class="jr-cover"><div class="jr-band"></div><div class="jr-ct"><small>The journal of</small><b>'+nm+(S.name?'':'')+'</b><span>'+list.length+' entries · '+sos+' urges talked through · since '+since+'</span></div><i class="jr-rib"></i></div>'+
- '<p class="jr-lock">'+ic('lock',{s:14,w:2.6})+'Only you can see this. Milo keeps it safe.</p>'+
- days.map(function(k,di){return '<section class="jr-page stagger"><header class="jr-date"><b>'+dayName(k)+'</b><span>'+dateStr(k)+'</span></header>'+
-  by[k].map(function(n){var f=MOODF[n.tag]||'calm';return '<article class="jr-e"><div class="jr-meta"><span class="jr-t">'+tm(n.ts)+'</span><span class="jr-mood">'+face(f,22)+n.tag+'</span><span class="jr-w">'+(n.where==='sos'?'During SOS':'With Milo')+'</span></div>'+
-   '<p class="jr-txt">'+esc(n.text)+'</p>'+(n.reply?'<div class="jr-note"><span class="jr-tape"></span><div class="jr-nf">'+face('calm',30)+'</div><p>'+esc(n.reply)+'</p><small>— Milo</small></div>':'')+'</article>'}).join('')+
-  '<footer class="jr-pn">'+(di+1)+'</footer></section>'}).join('')+
- '<div class="jr-end">'+ic('book',{s:16})+'That\'s every page so far. Talk to Milo to add more.</div></div>';
-}};
+ list.forEach(function(n){var k=new Date(n.ts).toDateString();if(!by[k]){by[k]=[];days.push(k)}by[k].push(n)});
+ return {list:list,days:days,by:by}}
+function jbPage(i,D){
+ var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ function ds(k){var d=new Date(k);return MO[d.getMonth()]+' '+d.getDate()}
+ if(i<0)return '';
+ if(i===0){var sos=D.list.filter(function(n){return n.where==='sos'}).length,since=D.list.length?ds(new Date(D.list[D.list.length-1].ts).toDateString()):'today';
+  return '<div class="jp-title"><small>The journal of</small><b>'+esc(S.name||'You')+'</b><span class="jp-rule"></span>'+
+  '<div class="jp-stats"><div><b>'+D.list.length+'</b><small>entries</small></div><div><b>'+sos+'</b><small>urges talked through</small></div><div><b>'+since+'</b><small>first page</small></div></div>'+
+  '<div class="jp-milo">'+face('calm',64)+'<p>Everything you tell me lands here. Turn the page to see how far you’ve come.</p></div>'+
+  '<p class="jp-lock">'+ic('lock',{s:13,w:2.6})+'Only you can read this</p></div>'}
+ var k=D.days[i-1];if(!k)return '<div class="jp-blank">'+ic('book',{s:20})+'<p>Fresh page. Talk to Milo to fill it.</p></div>';
+ var MOODF={Bored:'thinking',Craving:'anxious',Lonely:'sad',Low:'sad',Frustrated:'anxious',Anxious:'anxious',Stressed:'anxious',Tired:'sleep',Great:'happy',Proud:'happy',Restless:'anxious',Overwhelmed:'anxious'};
+ var d=new Date(k),t=new Date();t.setHours(0,0,0,0);var diff=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+ var dn=diff<=0?'Today':diff===1?'Yesterday':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
+ function tm(ts){var x=new Date(ts),h=x.getHours(),m=x.getMinutes();return (h%12||12)+':'+(m<10?'0':'')+m+(h<12?' AM':' PM')}
+ return '<header class="jp-date"><b>'+dn+'</b><span>'+ds(k)+'</span></header>'+D.by[k].map(function(n){
+  return '<article class="jp-e"><div class="jp-meta"><span>'+tm(n.ts)+'</span><span class="jp-mood">'+face(MOODF[n.tag]||'calm',18)+esc(n.tag)+'</span><span class="jp-w">'+(n.where==='sos'?'During SOS':'With Milo')+'</span></div>'+
+  '<p class="jp-txt">'+esc(n.text)+'</p>'+(n.reply?'<div class="jp-note"><i class="jp-tape"></i>'+face('calm',26)+'<p>'+esc(n.reply)+'</p><small>— Milo</small></div>':'')+'</article>'}).join('')}
+function openJournal(src){
+ var old=document.getElementById('jb-ov');if(old)old.remove();
+ var app=$('#app'),rm=S.rm||app.classList.contains('rm'),D=jbData(),P=1+D.days.length;
+ var ov=document.createElement('div');ov.id='jb-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Your journal');
+ ov.innerHTML='<div class="jb-top"><span class="over keep">Your journal</span><button class="icon-btn jb-x" aria-label="Close journal">'+ic('x',{s:20,w:2.8})+'</button></div>'+
+  '<div class="jb-stage"><div class="jb-fly"><div class="jb-book">'+
+   '<i class="jb-back"></i><i class="jb-stk l"></i><i class="jb-stk r"></i>'+
+   '<div class="jb-cv"><div class="jb-cf"><span class="jb-cspine"></span><svg viewBox="0 0 24 24" class="jb-cpaw">'+pawP(12,12,2)+'</svg><b class="jb-ctitle">'+esc(S.name||'My')+'’s journal</b></div><div class="jb-cb"><div class="jp-plate"><small>This journal belongs to</small><b>'+esc(S.name||'You')+'</b>'+face('happy',54)+'<span>& Milo</span></div></div></div>'+
+   '<div class="jp l"><div class="jp-in"></div><span class="jp-pn"></span></div><div class="jp r"><div class="jp-in"></div><span class="jp-pn"></span><i class="jb-rib"></i></div>'+
+   '<i class="jb-spine"></i></div></div></div>'+
+  '<div class="jb-bar"><button class="jb-nav" data-d="-1" aria-label="Previous page">'+ic('chevL',{s:20,w:2.8})+'</button><span class="jb-lbl"></span><button class="jb-nav" data-d="1" aria-label="Next page">'+ic('chevR',{s:20,w:2.8})+'</button><button class="jb-two" aria-label="Show both pages">'+ic('book',{s:18,w:2.4})+'<span>Both pages</span></button></div>'+
+  '<p class="jb-hint">Shake your phone to see both pages</p>';
+ app.appendChild(ov);
+ var stage=$('.jb-stage',ov),fly=$('.jb-fly',ov),book=$('.jb-book',ov),cv=$('.jb-cv',ov),L=$('.jp.l',ov),R=$('.jp.r',ov);
+ var st={idx:0,spread:false,rot:false,pw:0,ph:0,busy:true,src:src&&src.querySelector('.tic-j svg')};
+ function land(){return app.clientWidth>app.clientHeight}
+ function dims(){var W=stage.clientWidth,H=stage.clientHeight,pw,ph;
+  if(st.spread&&st.rot){var w=H-24,h=W-28;pw=Math.min(w/2,h*.72)}
+  else if(st.spread){pw=Math.min((W-40)/2,(H-16)*.72)}
+  else{ph=Math.min(H-24,(W-64)/.72);pw=ph*.72}
+  ph=pw/.72;st.pw=Math.round(pw);st.ph=Math.round(ph)}
+ function layout(anim){dims();book.style.transition=anim?'width .6s cubic-bezier(.3,.8,.3,1),height .6s cubic-bezier(.3,.8,.3,1),margin .6s cubic-bezier(.3,.8,.3,1),transform .6s cubic-bezier(.3,.8,.3,1),font-size .6s':'none';
+  book.style.width=(st.pw*2)+'px';book.style.height=st.ph+'px';book.style.marginLeft=(-st.pw)+'px';book.style.marginTop=(-st.ph/2)+'px';book.style.fontSize=(st.pw/330*15).toFixed(2)+'px';
+  book.style.transform=(st.rot?'rotate(90deg) ':'')+'translateX('+(st.spread?0:-st.pw/2)+'px)';
+  ov.classList.toggle('two',st.spread);$('.jb-two span',ov).textContent=st.spread?'One page':'Both pages'}
+ function fill(el,i){$('.jp-in',el).innerHTML=jbPage(i,D);$('.jp-in',el).scrollTop=0;$('.jp-pn',el).textContent=i>0?String(i):'';el.classList.toggle('hide',i<0)}
+ function show(){fill(R,st.idx);fill(L,st.idx-1);cv.style.zIndex=st.idx>0?1:6;
+  $('.jb-lbl',ov).textContent=st.spread&&st.idx>0?'Pages '+st.idx+'–'+(st.idx+1)+' of '+P:'Page '+(st.idx+1)+' of '+P;
+  $$('.jb-nav',ov)[0].disabled=st.idx<=0;$$('.jb-nav',ov)[1].disabled=st.idx>=P-1}
+ function turn(d){if(st.busy)return;var step=st.spread?2:1,n=Math.max(0,Math.min(P-1,st.idx+d*step));if(n===st.idx)return;
+  st.busy=true;haptic(6);SFX.pop&&Math.random()<.5&&SFX.pop();
+  var lf=document.createElement('div');lf.className='jb-leaf '+(d>0?'fw':'bw');
+  lf.innerHTML='<div class="jp lf"><div class="jp-in"></div><span class="jp-pn"></span></div><div class="jp lb"><div class="jp-in"></div><span class="jp-pn"></span></div>';
+  book.appendChild(lf);
+  if(d>0){fill($('.lf',lf),st.idx);fill($('.lb',lf),n-1);fill(R,n)}else{fill($('.lf',lf),st.idx-1);fill($('.lb',lf),n);fill(L,n-1);cv.style.zIndex=n>0?1:6}
+  $$('.jp-in',lf).forEach(function(x){x.scrollTop=0});
+  var done=function(){st.idx=n;show();lf.remove();st.busy=false};
+  if(rm){done();return}
+  lf.animate([{transform:'rotateY(0)'},{transform:'rotateY('+(d>0?-180:180)+'deg)'}],{duration:620,easing:'cubic-bezier(.45,.05,.3,1)'}).onfinish=done}
+ function setSpread(on,why){if(st.busy||st.spread===on)return;st.spread=on;st.rot=on&&!land();
+  if(on&&st.idx>0&&st.idx%2===0)st.idx-=1;haptic(why==='shake'?[12,40,12]:8);layout(!rm);show();
+  if(on&&st.rot)toast('Turn your phone sideways to read both pages')}
+ /* opening */
+ layout(false);show();cv.style.zIndex=6;R.classList.add('under');
+ book.style.transform=(st.rot?'rotate(90deg) ':'')+'translateX('+(-st.pw/2)+'px)';
+ var sr=st.src&&st.src.getBoundingClientRect(),gr=stage.getBoundingClientRect();
+ function finishOpen(){R.classList.remove('under');st.busy=false;cv.style.zIndex=st.idx>0?1:6}
+ if(rm){cv.style.transform='rotateY(-180deg)';ov.classList.add('on');finishOpen();if(land())setSpread(true)}
+ else{
+  var fx=sr?(sr.left+sr.width/2-(gr.left+gr.width/2)):0,fy=sr?(sr.top+sr.height/2-(gr.top+gr.height/2)):60,fs=sr?sr.width/st.pw:.3;
+  requestAnimationFrame(function(){ov.classList.add('on')});haptic(8);
+  fly.animate([{transform:'translate('+fx+'px,'+fy+'px) scale('+fs+') rotate(-4deg)',opacity:sr?1:0},{transform:'translate(0,-8px) scale(1.04) rotate(1deg)',opacity:1,offset:.75},{transform:'none',opacity:1}],{duration:560,easing:'cubic-bezier(.3,.8,.3,1)'}).onfinish=function(){
+   haptic([10,30,14]);SFX.pop&&SFX.pop();
+   var sh=-st.pw/2;
+   book.animate([{transform:'translateX('+sh+'px)'},{transform:'translateX(0)'}],{duration:640,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   cv.animate([{transform:'rotateY(0)'},{transform:'rotateY(-180deg)'}],{duration:640,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}).onfinish=function(){
+    cv.style.transform='rotateY(-180deg)';R.classList.remove('under');
+    if(land()){book.getAnimations().forEach(function(a){a.cancel()});st.spread=true;layout(false);finishOpen();show();return}
+    setTimeout(function(){var a=book.animate([{transform:'translateX(0)'},{transform:'translateX('+sh+'px)'}],{duration:520,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});a.onfinish=function(){book.getAnimations().forEach(function(x){x.cancel()});layout(false);finishOpen();haptic(5)}},280)}}}
+ /* closing */
+ function close(){if(st.closing)return;st.closing=true;st.busy=true;stopShake();
+  if(rm){ov.remove();return}
+  haptic(10);L.classList.add('fade');cv.style.zIndex=6;
+  var tr=(st.rot?'rotate(90deg) ':''),sh=-st.pw/2;
+  var s1=st.spread?0:sh;
+  book.style.transition='none';
+  book.animate([{transform:tr+'translateX('+s1+'px)'},{transform:tr+'translateX(0)'}],{duration:280,easing:'ease-out',fill:'forwards'}).onfinish=function(){
+   cv.style.transform='';cv.animate([{transform:'rotateY(-180deg)'},{transform:'rotateY(0)'}],{duration:560,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   book.animate([{transform:tr+'translateX(0)'},{transform:tr+'translateX('+sh+'px)'}],{duration:560,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}).onfinish=function(){
+    haptic([14,30,8]);SFX.pop&&SFX.pop();
+    var s2=st.src&&document.body.contains(st.src)&&st.src.getBoundingClientRect(),g2=stage.getBoundingClientRect();
+    var tx=s2?(s2.left+s2.width/2-(g2.left+g2.width/2)):0,ty=s2?(s2.top+s2.height/2-(g2.top+g2.height/2)):80,ts=s2?s2.width/st.pw:.25;
+    fly.animate([{transform:'none',opacity:1},{transform:'translate('+tx+'px,'+ty+'px) scale('+ts+') rotate(-4deg)',opacity:s2?1:0}],{duration:460,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'});
+    ov.classList.remove('on');setTimeout(function(){ov.remove()},470)}}}
+ /* input */
+ $('.jb-x',ov).addEventListener('click',close);
+ $$('.jb-nav',ov).forEach(function(b){b.addEventListener('click',function(){turn(+b.dataset.d)})});
+ $('.jb-two',ov).addEventListener('click',function(){setSpread(!st.spread,'btn')});
+ var p0=null;stage.addEventListener('pointerdown',function(e){p0={x:e.clientX,y:e.clientY}});
+ stage.addEventListener('pointerup',function(e){if(!p0)return;var dx=e.clientX-p0.x,dy=e.clientY-p0.y;p0=null;
+  var a=st.rot?-dy:dx;if(Math.abs(a)>40&&Math.abs(a)>Math.abs(st.rot?dx:dy))turn(a<0?1:-1)});
+ var last=0,hits=0,lastHit=0;
+ function onMotion(e){var g=e.accelerationIncludingGravity||e.acceleration;if(!g)return;var m=Math.abs(g.x||0)+Math.abs(g.y||0)+Math.abs(g.z||0),now=Date.now();
+  if(m-last>22&&now-lastHit>120){hits=now-lastHit<700?hits+1:1;lastHit=now;if(hits>=3){hits=0;setSpread(!st.spread,'shake')}}last=m}
+ window.addEventListener('devicemotion',onMotion);
+ function stopShake(){window.removeEventListener('devicemotion',onMotion);window.removeEventListener('resize',onRes)}
+ function onRes(){if(st.busy)return;var l=land();if(l&&!st.spread)setSpread(true);else if(st.spread){st.rot=!l;layout(false);show()}}
+ window.addEventListener('resize',onRes);
+ window.__jbShake=function(){setSpread(!st.spread,'shake')};
+}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-go="journal"]');if(!b)return;e.preventDefault();e.stopPropagation();openJournal(b)},true);
+SCREENS.journal={render:function(){return '<div class="scroll"></div>'},mount:function(){setTimeout(function(){pop();openJournal(null)},30)}};
+
 
 /* ---------- onboarding & permission priming ---------- */
 function iosAlert(o,cb){
@@ -3194,7 +3335,7 @@ var JUMP={
  room:function(){window.__miloView='room';resetTo('milo',function(){var b=$('[data-v="room"]',stack[0].el);b&&b.click()})},
  welcome:function(){resetTo('today',welcomeBack)},
  talk:function(){window.__miloView='talk';resetTo('milo',function(){var b=$('[data-v="talk"]',stack[0].el);b&&b.click()})},
- journal:function(){resetTo('insights',function(){push('journal')})},
+ journal:function(){resetTo('milo',function(){setTimeout(function(){openJournal(null)},400)})},
  support:function(){resetTo('today',supportSheet)},
  native:function(){resetTo('you',function(){push('native')})}
 };
