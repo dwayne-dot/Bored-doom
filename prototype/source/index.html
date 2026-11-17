@@ -1442,6 +1442,34 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 /* consistent disabled look */
 .btn[disabled],.pick[disabled],.chip[disabled]{opacity:.45;pointer-events:none}
 .native-only{display:none!important}html.native .native-only{display:flex!important}.ds-link{align-self:center;align-items:center;gap:8px;margin:14px auto 0;padding:12px 18px;border:none;border-radius:999px;background:var(--amber);color:var(--ink);font:800 15px 'Nunito',sans-serif;box-shadow:0 4px 0 var(--amberD)}
+
+/* --- toolkit zipper open/close --- */
+.tk-zip{position:absolute;top:56px;left:22px;right:18px;height:40px;z-index:3;pointer-events:none}
+.tk-tape{position:absolute;left:0;top:13px;height:14px;width:20px;border-radius:7px;opacity:0;
+ background:repeating-linear-gradient(90deg,transparent 0 3px,rgba(22,48,43,.16) 3px 5px) center/100% 4px no-repeat,#D8C8B3;
+ transition:width .62s cubic-bezier(.55,0,.25,1),opacity .2s}
+#tk-ov.on .tk-tape{opacity:1}
+#tk-ov.zip .tk-tape{width:calc(var(--zw) + 20px)}
+#tk-ov.blend .tk-tape{opacity:0;transition:width .62s cubic-bezier(.55,0,.25,1),opacity .28s}
+.tk-pull{position:absolute!important;top:0!important;left:0!important;right:auto!important;pointer-events:auto;overflow:visible;
+ background:#F2AE2E!important;color:#16302B!important;opacity:0!important;transform:translateX(0) scale(.6);
+ transition:transform .62s cubic-bezier(.55,0,.25,1),background-color .3s,color .3s,opacity .2s!important}
+#tk-ov.on .tk-pull{opacity:1!important;transform:translateX(0) scale(1)}
+#tk-ov.zip .tk-pull{transform:translateX(var(--zw)) scale(1)}
+#tk-ov.blend .tk-pull{background:rgba(249,246,240,.12)!important;color:var(--cream)!important}
+.tk-pc{position:relative;z-index:1;display:flex}
+.tk-tail{position:absolute;left:50%;top:22px;width:15px;height:50px;margin-left:-7.5px;border-radius:0 0 8px 8px;background:#F2AE2E;transform-origin:50% 0;
+ transform:rotate(0deg) scaleY(1);transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s}
+#tk-ov.zip:not(.blend) .tk-tail{animation:tailSwing .62s ease-in-out}
+@keyframes tailSwing{0%{transform:rotate(0)}30%{transform:rotate(22deg)}70%{transform:rotate(14deg)}100%{transform:rotate(0)}}
+#tk-ov.closing:not(.zip) .tk-tail{animation:tailSwingL .62s ease-in-out}
+@keyframes tailSwingL{0%{transform:rotate(0)}30%{transform:rotate(-22deg)}70%{transform:rotate(-14deg)}100%{transform:rotate(0)}}
+#tk-ov.blend .tk-tail{transform:scaleY(0);opacity:0}
+/* tools + bag wait for the zip */
+#tk-ov.on:not(.open) .tk-p{transform:translate(-50%,-50%) scale(.2)!important;opacity:0!important}
+#tk-ov.on:not(.open) .tk-bag{transform:translate(-50%,-50%) scale(.6);opacity:0}
+#tk-ov.on:not(.open) .tk-head{opacity:0;transform:translateY(-8px)}
+#tk-ov.closing .tk-head{transition-delay:0s}
 </style>
 </head>
 <body>
@@ -2953,12 +2981,28 @@ function bagCardHTML(){return '<button class="bag-card" data-ref="bag" aria-labe
 function openToolkit(){
  var old=$('#tk-ov');old&&old.remove();
  var w=document.createElement('div');w.id='tk-ov';w.setAttribute('role','dialog');w.setAttribute('aria-label','Milo’s toolkit');
- w.innerHTML='<button class="tk-x" aria-label="Close">'+ic('x',{s:20,w:2.6})+'</button><div class="tk-head"><b>Milo’s toolkit</b><small>Pick a tool. Milo packed them for you.</small></div><div class="tk-ring"><div class="tk-bag">'+bagSvg(118,true)+'</div>'+toolRing()+'</div>';
- $('#app').appendChild(w);haptic([8,40,12]);SFX.pop&&SFX.pop();
- requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('on')})});
- function close(){w.classList.remove('on');w.classList.add('closing');setTimeout(function(){w.remove()},450)}
- $('.tk-x',w).addEventListener('click',close);
- w.addEventListener('click',function(e){if(e.target===w)close();if(e.target.closest('.tk-p'))setTimeout(close,60)});
+ w.innerHTML='<div class="tk-zip" aria-hidden="false"><i class="tk-tape"></i><button class="tk-x tk-pull" aria-label="Close toolkit"><i class="tk-tail"></i><span class="tk-pc">'+ic('x',{s:20,w:3})+'</span></button></div><div class="tk-head"><b>Milo’s toolkit</b><small>Pick a tool. Milo packed them for you.</small></div><div class="tk-ring"><div class="tk-bag">'+bagSvg(118,true)+'</div>'+toolRing()+'</div>';
+ $('#app').appendChild(w);
+ var zip=$('.tk-zip',w),T=[],busy=true,rm=S.rm||document.getElementById('app').classList.contains('rm');
+ function later(f,t){T.push(setTimeout(f,t))}
+ function ticks(n,gap,first){for(var i=0;i<n;i++)later(function(){haptic(4)},first+i*gap)}
+ w.style.setProperty('--zw',(zip.clientWidth-40)+'px');
+ haptic([8,40,12]);SFX.pop&&SFX.pop();
+ if(rm){w.classList.add('on','zip','blend','open');busy=false}
+ else{
+  requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('on')})});
+  later(function(){w.classList.add('zip')},140);ticks(11,58,170);
+  later(function(){w.classList.add('blend');haptic(12)},840);
+  later(function(){w.classList.add('open');busy=false},960);
+ }
+ function close(fast){if(w.classList.contains('closing'))return;T.forEach(clearTimeout);T=[];w.classList.add('closing');
+  if(fast||rm){w.classList.remove('open');w.classList.remove('on');setTimeout(function(){w.remove()},380);return}
+  w.classList.remove('open');w.classList.remove('blend');haptic(10);
+  later(function(){w.classList.remove('zip')},150);ticks(9,55,180);
+  later(function(){w.classList.remove('on')},720);
+  later(function(){w.remove()},1080)}
+ $('.tk-pull',w).addEventListener('click',function(e){e.stopPropagation();close(false)});
+ w.addEventListener('click',function(e){if(e.target===w)close(false);if(e.target.closest('.tk-p'))setTimeout(function(){close(true)},60)});
 }
 
 /* ---------- login / logout ---------- */
