@@ -1601,6 +1601,32 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 .jb-stk.r{border-radius:0 1.2em 1.2em 0!important;top:.5em;bottom:-.1em}.jb-stk.l{border-radius:1.2em 0 0 1.2em!important;top:.5em;bottom:-.1em}
 .jb-rib{clip-path:none!important;border-radius:.15em .15em .45em .45em;width:1.05em!important;height:2.3em!important;bottom:-1.8em!important;
  -webkit-mask:radial-gradient(.42em .5em at 50% 100%,transparent 96%,#000 100%);mask:radial-gradient(.42em .5em at 50% 100%,transparent 96%,#000 100%)}
+
+/* journal: rounder, back + filter, view toggle */
+.jb-back{border-radius:2.6em!important}
+.jp.l,.jp.l .jp-in{border-radius:2em .25em .25em 2em!important}.jp.r,.jp.r .jp-in{border-radius:.25em 2em 2em .25em!important}
+.jb-leaf.fw .jp{border-radius:.25em 2em 2em .25em}.jb-leaf.fw .lb{border-radius:2em .25em .25em 2em}
+.jb-leaf.bw .jp{border-radius:2em .25em .25em 2em}.jb-leaf.bw .lb{border-radius:.25em 2em 2em .25em}
+.jb-cf{border-radius:.35em 2.3em 2.3em .35em!important}.jb-cb{border-radius:2.3em .35em .35em 2.3em!important}
+.jb-cspine{border-radius:.35em 0 0 .35em}
+.jb-stk.r{border-radius:0 1.8em 1.8em 0!important;top:.9em;bottom:.2em}.jb-stk.l{border-radius:1.8em 0 0 1.8em!important;top:.9em;bottom:.2em}
+.jb-top{padding:56px 18px 6px!important}
+.jb-f{position:relative}.jb-fdot{position:absolute;top:9px;right:9px;width:9px;height:9px;border-radius:5px;background:var(--amber);box-shadow:0 0 0 2px var(--bg2);display:none}.jb-f.act .jb-fdot{display:block}
+.jb-fp{position:absolute;top:108px;right:16px;left:16px;z-index:20;background:var(--cream);color:var(--ink);border-radius:24px;padding:14px;box-shadow:0 14px 34px rgba(0,0,0,.4);animation:fpIn .25s cubic-bezier(.3,1.4,.5,1)}
+.jb-fp[hidden]{display:none}.jb-fp>b{display:block;font:900 15px 'Nunito',sans-serif;margin:0 0 10px 4px}
+@keyframes fpIn{from{opacity:0;transform:translateY(-8px) scale(.97)}}
+.jb-fc{display:flex;flex-wrap:wrap;gap:8px}.jb-fc .chip{background:#EFE7D8!important;color:var(--ink)!important;box-shadow:inset 0 -3px 0 rgba(22,48,43,.1)!important}
+.jb-fc .chip.on{background:var(--amber)!important;color:var(--ink)!important}
+.jb-fon{align-self:center;display:inline-flex;align-items:center;gap:6px;margin:2px 0 0;padding:5px 6px 5px 12px;border-radius:999px;background:var(--bg2);font:700 13px 'Nunito',sans-serif;color:var(--muted)}
+.jb-fon b{color:var(--cream)}.jb-fon button{width:24px;height:24px;border-radius:12px;border:none;background:rgba(249,246,240,.1);color:var(--cream);display:grid;place-items:center}
+.jb-fon[hidden]{display:none}
+.jb-bar{justify-content:space-between!important;padding:10px 18px 6px!important}
+.jb-seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--bg2);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.jb-seg button{width:44px;height:38px;border:none;border-radius:999px;background:transparent;color:var(--muted);display:grid;place-items:center;transition:background .2s,color .2s}
+.jb-seg button.on{background:var(--cream);color:var(--ink)}
+.jb-pager{display:flex;align-items:center;gap:6px;margin-right:6%}
+.jb-lbl{min-width:58px!important;font-variant-numeric:tabular-nums}
+#jb-ov{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -2456,8 +2482,8 @@ function wordsCard(){
 }
 /* ---------- Your journal: a real book ---------- */
 var JB=null;
-function jbData(){
- var list=S.notes.slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
+function jbData(f){
+ var list=S.notes.filter(function(n){return !f||(f.where?(f.where==='sos'?n.where==='sos':n.where!=='sos'):n.tag===f.tag)}).slice().sort(function(a,b){return b.ts-a.ts}),days=[],by={};
  list.forEach(function(n){var k=new Date(n.ts).toDateString();if(!by[k]){by[k]=[];days.push(k)}by[k].push(n)});
  return {list:list,days:days,by:by}}
 function jbPage(i,D){
@@ -2479,15 +2505,17 @@ function jbPage(i,D){
   '<p class="jp-txt">'+esc(n.text)+'</p>'+(n.reply?'<div class="jp-note"><i class="jp-tape"></i>'+face('calm',26)+'<p>'+esc(n.reply)+'</p><small>— Milo</small></div>':'')+'</article>'}).join('')}
 function openJournal(src){
  var old=document.getElementById('jb-ov');if(old)old.remove();
- var app=$('#app'),rm=S.rm||app.classList.contains('rm'),D=jbData(),P=1+D.days.length;
+ var app=$('#app'),rm=S.rm||app.classList.contains('rm'),D=jbData(),P=1+D.days.length,FIL=null;
+ var TAGS=[];S.notes.forEach(function(n){if(TAGS.indexOf(n.tag)<0)TAGS.push(n.tag)});
  var ov=document.createElement('div');ov.id='jb-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Your journal');
- ov.innerHTML='<div class="jb-top"><span class="over keep">Your journal</span><button class="icon-btn jb-x" aria-label="Close journal">'+ic('x',{s:20,w:2.8})+'</button></div>'+
+ ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><button class="icon-btn jb-f" aria-label="Filter entries"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg><i class="jb-fdot"></i></button></div>'+
+  '<div class="jb-fp" hidden><b>Show entries</b><div class="jb-fc"></div></div><div class="jb-fon" hidden></div>'+
   '<div class="jb-stage"><div class="jb-fly"><div class="jb-book">'+
    '<i class="jb-back"></i><i class="jb-stk l"></i><i class="jb-stk r"></i>'+
    '<div class="jb-cv"><div class="jb-cf"><span class="jb-cspine"></span><svg viewBox="0 0 24 24" class="jb-cpaw">'+pawP(12,12,2)+'</svg><b class="jb-ctitle">'+esc(S.name||'My')+'’s journal</b></div><div class="jb-cb"><div class="jp-plate"><small>This journal belongs to</small><b>'+esc(S.name||'You')+'</b>'+face('happy',54)+'<span>& Milo</span></div></div></div>'+
    '<div class="jp l"><div class="jp-in"></div><span class="jp-pn"></span></div><div class="jp r"><div class="jp-in"></div><span class="jp-pn"></span><i class="jb-rib"></i></div>'+
    '<i class="jb-spine"></i></div></div></div>'+
-  '<div class="jb-bar"><button class="jb-nav" data-d="-1" aria-label="Previous page">'+ic('chevL',{s:20,w:2.8})+'</button><span class="jb-lbl"></span><button class="jb-nav" data-d="1" aria-label="Next page">'+ic('chevR',{s:20,w:2.8})+'</button><button class="jb-two" aria-label="Show both pages">'+ic('book',{s:18,w:2.4})+'<span>Both pages</span></button></div>'+
+  '<div class="jb-bar"><div class="jb-seg" role="group" aria-label="Page view"><button data-m="1" aria-label="One page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="6" y="3.5" width="12" height="17" rx="3"/><path d="M9 3.6v16.8"/></svg></button><button data-m="2" aria-label="Both pages"><svg viewBox="0 0 24 24" width="24" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 6.5c-2-1.6-4.8-2-8.4-1.6v13c3.6-.4 6.4 0 8.4 1.6 2-1.6 4.8-2 8.4-1.6v-13c-3.6-.4-6.4 0-8.4 1.6z"/><path d="M12 6.5v13"/></svg></button></div><div class="jb-pager"><button class="jb-nav" data-d="-1" aria-label="Previous page">'+ic('chevL',{s:20,w:2.8})+'</button><span class="jb-lbl"></span><button class="jb-nav" data-d="1" aria-label="Next page">'+ic('chevR',{s:20,w:2.8})+'</button></div></div>'+
   '<p class="jb-hint">Shake your phone to see both pages</p>';
  app.appendChild(ov);
  var stage=$('.jb-stage',ov),fly=$('.jb-fly',ov),book=$('.jb-book',ov),cv=$('.jb-cv',ov),L=$('.jp.l',ov),R=$('.jp.r',ov);
@@ -2501,10 +2529,10 @@ function openJournal(src){
  function layout(anim){dims();book.style.transition=anim?'width .6s cubic-bezier(.3,.8,.3,1),height .6s cubic-bezier(.3,.8,.3,1),margin .6s cubic-bezier(.3,.8,.3,1),transform .6s cubic-bezier(.3,.8,.3,1),font-size .6s':'none';
   book.style.width=(st.pw*2)+'px';book.style.height=st.ph+'px';book.style.marginLeft=(-st.pw)+'px';book.style.marginTop=(-st.ph/2)+'px';book.style.fontSize=(st.pw/330*15).toFixed(2)+'px';
   book.style.transform=(st.rot?'rotate(90deg) ':'')+'translateX('+(st.spread?0:-st.pw/2)+'px)';
-  ov.classList.toggle('two',st.spread);$('.jb-two span',ov).textContent=st.spread?'One page':'Both pages'}
+  ov.classList.toggle('two',st.spread);$$('.jb-seg button',ov).forEach(function(b){var on=(b.dataset.m==='2')===st.spread;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})}
  function fill(el,i){$('.jp-in',el).innerHTML=jbPage(i,D);$('.jp-in',el).scrollTop=0;$('.jp-pn',el).textContent=i>0?String(i):'';el.classList.toggle('hide',i<0)}
  function show(){fill(R,st.idx);fill(L,st.idx-1);cv.style.zIndex=st.idx>0?1:6;
-  $('.jb-lbl',ov).textContent=st.spread&&st.idx>0?'Pages '+st.idx+'–'+(st.idx+1)+' of '+P:'Page '+(st.idx+1)+' of '+P;
+  $('.jb-lbl',ov).textContent=st.spread&&st.idx>0?st.idx+'–'+(st.idx+1)+' / '+P:(st.idx+1)+' / '+P;
   $$('.jb-nav',ov)[0].disabled=st.idx<=0;$$('.jb-nav',ov)[1].disabled=st.idx>=P-1}
  function turn(d){if(st.busy)return;var step=st.spread?2:1,n=Math.max(0,Math.min(P-1,st.idx+d*step));if(n===st.idx)return;
   st.busy=true;haptic(6);SFX.pop&&Math.random()<.5&&SFX.pop();
@@ -2554,9 +2582,20 @@ function openJournal(src){
  /* input */
  $('.jb-x',ov).addEventListener('click',close);
  $$('.jb-nav',ov).forEach(function(b){b.addEventListener('click',function(){turn(+b.dataset.d)})});
- $('.jb-two',ov).addEventListener('click',function(){setSpread(!st.spread,'btn')});
+ $$('.jb-seg button',ov).forEach(function(b){b.addEventListener('click',function(){setSpread(b.dataset.m==='2','btn')})});
+ var fp=$('.jb-fp',ov),fon=$('.jb-fon',ov);
+ function chips(){var opts=[['All entries',null],['With Milo',{where:'milo'}],['During SOS',{where:'sos'}]].concat(TAGS.map(function(t){return [t,{tag:t}]}));
+  $('.jb-fc',ov).innerHTML=opts.map(function(o,i){var on=JSON.stringify(o[1])===JSON.stringify(FIL);return '<button class="chip'+(on?' on':'')+'" data-i="'+i+'">'+esc(o[0])+'</button>'}).join('');
+  $$('.jb-fc .chip',ov).forEach(function(c){c.addEventListener('click',function(){var o=opts[+c.dataset.i];applyF(o[1],o[0])})})}
+ function applyF(f,label){FIL=f;D=jbData(f);P=1+D.days.length;st.idx=0;show();fp.hidden=true;haptic(8);
+  $('.jb-f',ov).classList.toggle('act',!!f);fon.hidden=!f;fon.innerHTML=f?'Showing: <b>'+esc(label)+'</b><button aria-label="Clear filter">'+ic('x',{s:14,w:3})+'</button>':'';
+  if(f)$('button',fon).addEventListener('click',function(){applyF(null)})}
+ $('.jb-f',ov).addEventListener('click',function(e){e.stopPropagation();chips();fp.hidden=!fp.hidden;haptic(5)});
+ ov.addEventListener('click',function(e){if(!fp.hidden&&!e.target.closest('.jb-fp,.jb-f'))fp.hidden=true});
+ var eg=null;ov.addEventListener('pointerdown',function(e){var r=ov.getBoundingClientRect();eg=(e.clientX-r.left<28)?{x:e.clientX,y:e.clientY}:null;if(eg)st.edge=true},true);
+ ov.addEventListener('pointerup',function(e){if(eg){var dx=e.clientX-eg.x,dy=Math.abs(e.clientY-eg.y);eg=null;if(dx>60&&dy<80){close()}setTimeout(function(){st.edge=false},0)}},true);
  var p0=null;stage.addEventListener('pointerdown',function(e){p0={x:e.clientX,y:e.clientY}});
- stage.addEventListener('pointerup',function(e){if(!p0)return;var dx=e.clientX-p0.x,dy=e.clientY-p0.y;p0=null;
+ stage.addEventListener('pointerup',function(e){if(!p0||st.edge){p0=null;return}var dx=e.clientX-p0.x,dy=e.clientY-p0.y;p0=null;
   var a=st.rot?-dy:dx;if(Math.abs(a)>40&&Math.abs(a)>Math.abs(st.rot?dx:dy))turn(a<0?1:-1)});
  var last=0,hits=0,lastHit=0;
  function onMotion(e){var g=e.accelerationIncludingGravity||e.acceleration;if(!g)return;var m=Math.abs(g.x||0)+Math.abs(g.y||0)+Math.abs(g.z||0),now=Date.now();
