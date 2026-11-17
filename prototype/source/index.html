@@ -1472,7 +1472,7 @@ button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{outl
 #tk-ov.closing .tk-head{transition-delay:0s}
 
 #paw-walk{position:absolute;inset:0;pointer-events:none;z-index:15;overflow:hidden}
-.pw-print{position:absolute;width:26px;height:26px;color:#F5B076;opacity:0;transform:rotate(var(--a)) scale(.6);animation:pwStep 1.7s ease-out forwards}
+.pw-print{position:absolute;width:56px;height:56px;color:#F5B076;opacity:0;transform:rotate(var(--a)) scale(.6);animation:pwStep 1.7s ease-out forwards}
 @keyframes pwStep{0%{opacity:0;transform:rotate(var(--a)) scale(.6)}12%{opacity:.26;transform:rotate(var(--a)) scale(1.05)}22%{opacity:.22;transform:rotate(var(--a)) scale(1)}70%{opacity:.16}100%{opacity:0;transform:rotate(var(--a)) scale(1)}}
 </style>
 </head>
@@ -1704,13 +1704,13 @@ function pawWalk(){
  if(S.rm||document.getElementById('app').classList.contains('rm'))return;
  var old=document.getElementById('paw-walk');old&&old.remove();
  var app=document.getElementById('app'),W=app.clientWidth,H=app.clientHeight,host=document.createElement('div');host.id='paw-walk';host.setAttribute('aria-hidden','true');
- var n=11,x0=W*.14,y0=H*.80,x1=W*.84,y1=H*.16,o='';
+ var n=8,x0=W*.18,y0=H*.12,x1=W*.80,y1=H*.82,o='';
  for(var i=0;i<n;i++){var t=i/(n-1),cx=x0+(x1-x0)*t+Math.sin(t*Math.PI*1.6)*W*.10,cy=y0+(y1-y0)*t;
   var t2=Math.min(1,t+.02),dx=(x1-x0)+Math.cos(t2*Math.PI*1.6)*Math.PI*1.6*W*.10,dy=(y1-y0),ang=Math.atan2(dy,dx)*180/Math.PI+90,side=i%2?1:-1;
-  var nx=-dy,ny=dx,len=Math.hypot(nx,ny);cx+=side*nx/len*13;cy+=side*ny/len*13;
-  o+='<svg class="pw-print" viewBox="0 0 24 24" style="left:'+(cx-13).toFixed(1)+'px;top:'+(cy-13).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*170)+'ms">'+pawP(12,12,2)+'</svg>'}
+  var nx=-dy,ny=dx,len=Math.hypot(nx,ny);cx+=side*nx/len*24;cy+=side*ny/len*24;
+  o+='<svg class="pw-print" viewBox="0 0 24 24" style="left:'+(cx-28).toFixed(1)+'px;top:'+(cy-28).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*230)+'ms">'+pawP(12,12,2)+'</svg>'}
  host.innerHTML=o;app.appendChild(host);
- setTimeout(function(){host.remove()},n*170+1900);
+ setTimeout(function(){host.remove()},n*230+2000);
 }
 function switchTab(tab){
  var from=TAB_ORDER.indexOf(curTab),to=TAB_ORDER.indexOf(tab),dir=(from<0||to<0)?0:(to>from?1:-1);
