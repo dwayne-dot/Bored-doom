@@ -1918,6 +1918,19 @@ html.light .sheet.art{background:linear-gradient(180deg,var(--sh3) 0,#FFFDF9 230
 #tabbar .tab .tab-ic.solid{width:33px!important;height:33px!important}
 #tabbar .tab .tabface{width:31px!important;height:31px!important;border-radius:16px}
 #tabbar .tab{gap:3px}
+
+/* optical sizing + squircle highlight */
+#tabbar .tab[data-tab="today"] .tab-ic.solid{width:34px!important;height:34px!important}
+#tabbar .tab[data-tab="insights"] .tab-ic.solid{width:32px!important;height:32px!important;margin:1px}
+#tabbar .tab[data-tab="you"] .tab-ic.solid{width:36px!important;height:36px!important;margin:-1px}
+#tabbar .tab .tabface{width:28px!important;height:28px!important;border-radius:14px;margin:3px}
+#tabbar .tab{position:relative;isolation:isolate}
+#tabbar .tab::before{content:'';position:absolute;left:50%;top:-7px;width:68px;height:66px;margin-left:-34px;z-index:-1;
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C88 0 100 12 100 50S88 100 50 100 0 88 0 50 12 0 50 0z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C88 0 100 12 100 50S88 100 50 100 0 88 0 50 12 0 50 0z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+ background:rgba(255,255,255,.16);opacity:0;transform:scale(.6);transition:opacity .2s ease,transform .45s cubic-bezier(.3,1.6,.5,1),background .15s}
+#tabbar .tab.on::before{opacity:1;transform:scale(1)}
+#tabbar .tab:active::before{opacity:1;transform:scale(.9);background:rgba(255,255,255,.26)}
 </style>
 </head>
 <body>
