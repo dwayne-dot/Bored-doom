@@ -37,3 +37,30 @@ Reviewed every screen of the prototype as product design, graphic design, UI/UX,
 - **Performance:** the heat-map, mood bars and ID card use plain Views; the paw reveal and card flip use Reanimated 4 worklets; confetti/sparks via Reanimated, not JS timers.
 - **State:** single `AppState` (`src/model/state.ts`), persisted with AsyncStorage, migrated by version key. Server sync (accounts) comes in Phase 5+.
 - **Not yet designed:** Android back behaviour, landscape (locked portrait), iPad (not supported in v1), offline paywall error (exists in prototype).
+
+## Refinement pass — Nov 18 (senior design + engineering review)
+
+Audited ~45 screens, sheets and overlays in both light and dark mode, then fixed:
+
+**Bugs**
+- **Screens bled through each other.** Lower screens' content painted over the screen on top (e.g. the SOS swap tiles showing through the win screen). Cause: `.scroll{z-index:1}` escaped into the shared stacking context. Fix: every `.screen` is now its own stacking context (`isolation:isolate`). Native: not applicable (each screen is its own view), but keep z-index local to a screen.
+- **Overlays survived navigation.** The toolkit, journal and paw-walk layers stayed open when jumping to another screen. `resetTo()` now dismisses them (and stops a playing voice note).
+
+**Light-mode legibility**
+- Text tinted for dark backgrounds (feeling chips, journal quotes, "Getting calmer"/Freebie pills, timeline labels, FAQ answers, feedback rows) now uses deep greens/teals on light surfaces.
+- Segmented controls (Talk/Outfits/Room, Milo's picks tabs) had a white indicator on a white track; the track is now sunken cream with a white, lightly shadowed indicator.
+- The pack "Jade hit SOS" alert keeps light text on its warm red card; the plan builder's selected chip keeps cream text.
+- The journal overlay is a warm cream wash in light mode (was near-black).
+- White cards on cream get a hairline 5% outline for definition.
+
+**Consistency**
+- SOS "Try one instead" label is real sentence case (the CSS case trick failed on a flex container), and the swap tiles use one clean border style (amber for your own swaps, green when done).
+- Flat, ledge-free buttons everywhere (see BUILD_SPEC 4.59).
+
+**Accessibility**
+- Active tab announces `aria-current="page"`.
+- Reduce Motion defaults to the system setting on first launch.
+- Visible amber focus ring (`:focus-visible`) for keyboard / switch control users.
+
+**Code health**
+- Removed ~60 lines of dead CSS left from the retired journal filter experiments (dial, two-tab filter); prototype is 7 KB lighter.
