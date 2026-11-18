@@ -1939,6 +1939,10 @@ html.light .sheet.art{background:linear-gradient(180deg,var(--sh3) 0,#FFFDF9 230
  background:rgba(255,255,255,.16);opacity:0;transform:scale(.6);transition:opacity .2s ease,transform .45s cubic-bezier(.3,1.6,.5,1),background .15s}
 #tabbar .tab.on::before{opacity:1;transform:scale(1)}
 #tabbar .tab:active::before{opacity:1;transform:scale(.9);background:rgba(255,255,255,.26)}
+
+.you-top{display:flex;align-items:center;justify-content:space-between}
+.you-gear{width:44px;height:44px;border-radius:22px;background:var(--bg2)!important;color:var(--cream);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.you-gear svg{transition:transform .5s cubic-bezier(.3,1.5,.5,1)}.you-gear:active svg{transform:rotate(60deg)}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -2186,7 +2190,7 @@ function switchTab(tab){
   setTimeout(function(){e.el.classList.remove('tab-in-r','tab-in-l')},980)}
  if(old){old.cleanup&&old.cleanup();setTimeout(function(){old.el.remove()},800)}
  updateTabbar();
- if(tab==='insights'||tab==='milo')setTimeout(function(){if(curTab===tab)pawWalk(tab==='milo')},dir?760:250);
+ if(tab==='insights'||tab==='milo')setTimeout(function(){if(curTab===tab)pawWalk(tab==='milo')},dir?760:250);if(tab==='you')setTimeout(function(){if(curTab==='you')pawCircle()},dir?820:300);
 }
 function goRoot(tab){
  if(stack.length>1)popToRoot(function(){if(tab!==curTab)switchTab(tab)});
@@ -2552,7 +2556,7 @@ SCREENS.insights={render:function(){
  return function(){clearTimeout(t)};
 }};
 
-var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['trophies','Trophy case (medals, ribbons, plaques)'],['theme','Light & dark mode'],['plans','Plans (if–then)'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
+var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['trophies','Trophy case (medals, ribbons, plaques)'],['settings','Settings (gear in You)'],['theme','Light & dark mode'],['plans','Plans (if–then)'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
 var APPS=[{n:'Clips',c:'#E5604D',i:'play',so:1},{n:'Chirp',c:'#4F7FD6',i:'msg',so:1},{n:'Snaps',c:'#E3B23C',i:'camera',so:1},{n:'Scroll',c:'#8B6FD6',i:'layers',so:1},{n:'Mail',c:'#3E88D4',i:'mail'},{n:'Maps',c:'#5FA864',i:'map'},{n:'Notes',c:'#E3B23C',i:'pen'},{n:'Music',c:'#E2557A',i:'music'},{n:'Weather',c:'#4A9BD9',i:'sun'},{n:'Photos',c:'#F9F6F0',i:'image',dk:1},{n:'Calendar',c:'#F9F6F0',i:'calendar',dk:1},{n:'Bored Doom',c:'#16302B',milo:1}];
 function appIcon(a,idx){return '<button class="app" data-app="'+idx+'"><span class="ai" style="background:'+a.c+';color:'+(a.dk?'#16302B':'#fff')+'">'+(a.milo?face('happy',58):ic(a.i,{s:30,w:2}))+'</span>'+a.n+'</button>'}
 function nowStr(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return ((h%12)||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
@@ -3584,24 +3588,44 @@ SCREENS.trophies={render:function(){
 },mount:function(el){el.addEventListener('click',function(e){var b=e.target.closest('[data-aw]');if(!b)return;haptic(8);awardSheet(AWARDS.filter(function(a){return a.k===b.dataset.aw})[0])})}};
 function trophyRow(dark){var g=awardsEarned();return '<button class="rowcard tc-row'+(dark?'':' cream')+'" data-go="trophies"><span class="tc-mini">'+g.slice(-4).map(function(a){return awardArt(a,22)}).join('')+'</span><span class="grow"><b>Trophy case</b><small'+(dark?'':' style="color:var(--ink2)"')+'>'+g.length+' of '+AWARDS.length+' earned · next in '+((nextAward()||{d:0}).d-Math.max(S.best,S.streak))+' days</small></span>'+ic('chevR',{c:'#A9BDB7'})+'</button>'}
 
+SCREENS.settings={render:function(){
+ function row(i,t,sub,attrs,right){return '<button class="srow" '+attrs+'>'+yIcon(i)+'<span class="grow">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>'+(right||ic('chevR',{s:18,c:'#A9BDB7'}))+'</button>'}
+ var sw=function(on){return '<span class="switch'+(on?' on':'')+'"></span>'};
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Settings</span><div style="width:44px"></div></div>'+
+ '<div class="gl keep">Milo’s protection</div><div class="group">'+row('shield','Milo shield','Pauses social apps in danger hours','data-ref="tshield"',sw(S.shield))+row('bed','Bedtime mode','Wind down from 11:30 PM','data-ref="tbed"',sw(S.bedtime))+'</div>'+
+ '<div class="gl keep">App</div><div class="group">'+row('sound','Sound, motion & text','Appearance, haptics, sounds','data-go="display"')+row('privacy','AI & privacy','How Milo uses your words','data-go="privacy"')+'</div>'+
+ '<div class="gl keep">Support</div><div class="group">'+row('help','Help & support','FAQ, message the team','data-go="help"')+'</div>'+
+ '<p class="muted" style="text-align:center;font-size:12.5px;margin-top:6px">Account, plan and sign-out live on the back of Milo’s ID. Tap the card to flip it.</p></div>';
+},mount:function(el){function tog(btn,key){btn.addEventListener('click',function(){S[key]=!S[key];save();$('.switch',btn).classList.toggle('on',S[key]);haptic(8)})}
+ tog(ref(el,'tshield'),'shield');tog(ref(el,'tbed'),'bedtime')}};
+function pawCircle(){if(S.rm||document.getElementById('app').classList.contains('rm'))return;
+ var top=stack[0];if(!top||curTab!=='you')return;var card=$('.mid',top.el)||$('[data-ref="mid"]',top.el);if(!card)return;
+ var old=document.getElementById('paw-walk');old&&old.remove();
+ var app=document.getElementById('app'),ar=app.getBoundingClientRect(),cr=card.getBoundingClientRect(),host=document.createElement('div');host.id='paw-walk';host.setAttribute('aria-hidden','true');
+ var cx=cr.left-ar.left+cr.width/2,cy=cr.top-ar.top+cr.height/2,rx=cr.width/2+6,ry=cr.height/2+20,x0=ar.width*.08,y0=ar.height*.07,pts=[];
+ var e0=[cx+Math.cos(-Math.PI*.75)*rx,cy+Math.sin(-Math.PI*.75)*ry];
+ for(var i=1;i<=3;i++){var t=i/4;pts.push([x0+(e0[0]-x0)*t,y0+(e0[1]-y0)*t])}
+ var N=12;for(var k=0;k<=N;k++){var a=-Math.PI*.75+k/N*Math.PI*2;pts.push([cx+Math.cos(a)*rx,cy+Math.sin(a)*ry])}
+ for(var j=1;j<=3;j++){var u=j/4;pts.push([e0[0]+(x0-e0[0])*u,e0[1]+(y0-e0[1])*u])}
+ var o='',step=150;pts.forEach(function(p,i){var q=pts[Math.min(pts.length-1,i+1)],r=pts[Math.max(0,i-1)],ang=Math.atan2(q[1]-r[1],q[0]-r[0])*180/Math.PI+90,side=i%2?1:-1,nx=-(q[1]-r[1]),ny=q[0]-r[0],l=Math.hypot(nx,ny)||1,sz=36,gap=9;
+  var x=p[0]+side*nx/l*gap,y=p[1]+side*ny/l*gap;o+='<svg class="pw-print" viewBox="0 0 24 24" style="width:'+sz+'px;height:'+sz+'px;left:'+(x-sz/2).toFixed(1)+'px;top:'+(y-sz/2).toFixed(1)+'px;--a:'+ang.toFixed(1)+'deg;animation-delay:'+(i*step)+'ms">'+pawP(12,12,2)+'</svg>'});
+ host.innerHTML=o;app.appendChild(host);
+ if(S.pawHap!==false){pts.forEach(function(_,i){setTimeout(function(){if(document.getElementById('paw-walk')===host)haptic(4)},i*step+40)})}
+ setTimeout(function(){host.remove()},pts.length*step+2000)}
 SCREENS.you={onShow:function(el){if(window.__idRenewed){window.__idRenewed=false;var m=ref(el,'mid');if(m){var t=document.createElement('div');t.innerHTML=miloID();m.parentNode.replaceChild(t.firstChild,m);SCREENS.you.bindID(el)}}},render:function(){
  var YM={ifthen:'ifthen',swaps:'swaps',calendar:'hours',bell:'ci',heart:'why',pawpair:'pack',shieldpaw:'shield',moonz:'bed',wind:'sound',lifebuoy:'help',lock:'privacy'};function tile(i,t,sub,attrs){return '<button class="you-tile" '+attrs+'>'+(YM[i]?yIcon(YM[i],'yt-ic'):'<span class="yt-ic yi emo-b">'+emo(i)+'</span>')+'<span class="yt-t"><b>'+t+'</b><small>'+sub+'</small></span></button>'}
  function row(i,t,sub,attrs,right){return '<button class="srow" '+attrs+'>'+yIcon(YM[i])+'<span class="grow">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>'+(right||ic('chevR',{s:18,c:'#A9BDB7'}))+'</button>'}
  var sw=function(on){return '<span class="switch'+(on?' on':'')+'"></span>'};
- return '<div class="scroll you2"><h1 class="large" style="margin:0">You</h1>'+
+ return '<div class="scroll you2"><div class="you-top"><h1 class="large" style="margin:0">You</h1><button class="icon-btn you-gear" data-go="settings" aria-label="Settings"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2a1.8 1.8 0 0 1 3.4 0l.3.9a1.8 1.8 0 0 0 2.4 1l.9-.4a1.8 1.8 0 0 1 2.4 2.4l-.4.9a1.8 1.8 0 0 0 1 2.4l.9.3a1.8 1.8 0 0 1 0 3.4l-.9.3a1.8 1.8 0 0 0-1 2.4l.4.9a1.8 1.8 0 0 1-2.4 2.4l-.9-.4a1.8 1.8 0 0 0-2.4 1l-.3.9a1.8 1.8 0 0 1-3.4 0l-.3-.9a1.8 1.8 0 0 0-2.4-1l-.9.4a1.8 1.8 0 0 1-2.4-2.4l.4-.9a1.8 1.8 0 0 0-1-2.4l-.9-.3a1.8 1.8 0 0 1 0-3.4l.9-.3a1.8 1.8 0 0 0 1-2.4l-.4-.9a1.8 1.8 0 0 1 2.4-2.4l.9.4a1.8 1.8 0 0 0 2.4-1z"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>'+
  miloID()+
  '<div class="you-main" data-ref="ym"><div class="gl keep">Your plan with Milo</div><div class="you-grid">'+
   tile('calendar','Danger hours',hoursLabel(),'data-ref="hours"')+tile('bell','Check-ins',ciLabel(),'data-ref="ci"')+
   tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','Plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('swaps','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+trophyRow(true)+
- '<div class="gl keep">Settings</div><div class="group">'+
-  row('shieldpaw','Milo shield','Pauses social apps in danger hours','data-ref="tshield"',sw(S.shield))+
-  row('moonz','Bedtime mode','Wind down from 11:30 PM','data-ref="tbed"',sw(S.bedtime))+
-  row('wind','Sound, motion & text','','data-go="display"')+
-  row('lifebuoy','Help & support','','data-go="help"')+'</div></div><div class="you-acc" data-ref="ya" hidden></div></div>';
+ '</div><div class="you-acc" data-ref="ya" hidden></div></div>';
 },mount:function(el){
  SCREENS.you.bindID(el);
  function tog(btn,key){btn.addEventListener('click',function(){S[key]=!S[key];save();$('.switch',btn).classList.toggle('on',S[key]);haptic(8)})}
- tog(ref(el,'tshield'),'shield');tog(ref(el,'tbed'),'bedtime');
+ 
  
  ref(el,'hours').addEventListener('click',function(){openSheet('<div style="font-size:23px;font-weight:900">Your danger hours</div><p class="muted" style="margin:0">Milo checks in 15 minutes before each one and keeps the shield up.</p><div class="col" style="gap:8px">'+ONB_HOURS.map(function(h){var on=S.hours.indexOf(h.id)>=0;return '<button class="pick dh'+(on?' on':'')+'" data-h="'+h.id+'" style="box-shadow:none;border:2px solid '+(on?'var(--amber)':'#E4DDCF')+'"><span class="pi">'+ic(h.i,{s:18})+'</span><span class="grow"><b>'+h.t+'</b><small>'+h.s+'</small></span><span class="dh-ck">'+ic('check',{s:14,w:3.2})+'</span></button>'}).join('')+'</div><button class="btn primary" data-ref="ok">Save</button>',function(sh,close){
    $$('.dh',sh).forEach(function(b){b.addEventListener('click',function(){var id=b.dataset.h,k=S.hours.indexOf(id);if(k>=0)S.hours.splice(k,1);else S.hours.push(id);var on=k<0;b.classList.toggle('on',on);b.style.borderColor=on?'var(--amber)':'#E4DDCF';haptic(6)})});
@@ -3798,7 +3822,7 @@ var YI={
  help:{bg:'#E1EEFB',svg:'<ellipse cx="12" cy="21.4" rx="6.6" ry="1" fill="#1E3A35" opacity=".16"/><circle cx="12" cy="11.6" r="6" fill="none" stroke="#E5533D" stroke-width="4.4"/><circle cx="12" cy="11.6" r="6" fill="none" stroke="#fff" stroke-width="4.4" stroke-dasharray="4.71 4.71" stroke-dashoffset="2.36"/><circle cx="12" cy="11.6" r="8.2" fill="none" stroke="#C93F2C" stroke-width=".8" opacity=".35"/><path d="M7.4 7.6a6 6 0 0 1 2.4-1.7" stroke="#FFC2B8" stroke-width="1.2" stroke-linecap="round" fill="none"/>'},
  plan:{bg:'#FFF3C4',svg:'<ellipse cx="12" cy="21.4" rx="6.4" ry="1" fill="#1E3A35" opacity=".16"/><path d="M12 3.4l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z" fill="#F2B23A" stroke="#F2B23A" stroke-width="1.6" stroke-linejoin="round"/>'},
  restore:{bg:'#E2F0EA',svg:'<ellipse cx="12" cy="21.4" rx="6.4" ry="1" fill="#1E3A35" opacity=".16"/><path d="M18.4 9.4A7 7 0 0 0 5.6 8.6" stroke="#4FA884" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M5.6 14.2a7 7 0 0 0 12.8.8" stroke="#6CC3A0" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M19.4 5.4l-.6 4.6-4.4-1.2z" fill="#4FA884"/><path d="M4.6 18.4l.6-4.6 4.4 1.2z" fill="#6CC3A0"/>'},
- privacy:{bg:'#EEE9FF',svg:'<path d="M7.8 10.4V6.9a4.2 4.2 0 0 1 8.4 0v3.5" stroke="#8F7BE6" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M4.2 10.4h15.6v3a7.8 7.8 0 0 1-15.6 0z" fill="#8F7BE6"/><circle cx="12" cy="14.6" r="1.35" fill="#fff"/><path d="M12 15.3v1.8" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/>'},
+ privacy:{bg:'#EEE9FF',svg:'<path d="M7.9 10.6V7.6a4.1 4.1 0 0 1 8.2 0v3" stroke="#8F7BE6" stroke-width="2.9" stroke-linecap="round" fill="none"/><path d="M7.2 10.2h9.6a3 3 0 0 1 3 3v.4a7.8 7.8 0 0 1-15.6 0v-.4a3 3 0 0 1 3-3z" fill="#8F7BE6"/><circle cx="12" cy="14.6" r="1.35" fill="#fff"/><path d="M12 15.3v1.8" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/>'},
  export:{bg:'#E1EEFB',svg:'<ellipse cx="12" cy="21.4" rx="7" ry="1" fill="#1E3A35" opacity=".16"/><path d="M4 12.6h3.6l1.4 2.4h6l1.4-2.4H20v4.6a2.8 2.8 0 0 1-2.8 2.8H6.8A2.8 2.8 0 0 1 4 17.2z" fill="#5C8FD6"/><path d="M12 3.4l4 4.2h-2.6v4.6h-2.8V7.6H8z" fill="#F2B23A"/>'},
  signin:{bg:'#FFF3C4',svg:'<ellipse cx="12" cy="21.4" rx="6.6" ry="1" fill="#1E3A35" opacity=".16"/><circle cx="8.6" cy="11" r="4.6" fill="#F2B23A"/><circle cx="8.6" cy="11" r="1.7" fill="#FFF3C4"/><path d="M12.6 11h7.4v2.8M17.2 11v2" stroke="#E0A21F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.6 8.6c.4-.8 1-1.3 1.8-1.6" stroke="#FFE28A" stroke-width="1.3" stroke-linecap="round" fill="none"/>'}
 };
@@ -3931,7 +3955,7 @@ var JUMP={
  lockin:function(){resetTo('today',function(){push('lockin',{},'modal')})},
  slip:function(){resetTo('insights',function(){push('slip',{},'modal')})},
  checkin:function(){resetTo('today',function(){var m=$('[data-ref="moods"]',stack[0].el);if(m){m.scrollIntoView({behavior:'smooth',block:'center'});m.parentNode.classList.add('pulse');setTimeout(function(){m.parentNode.classList.remove('pulse')},2600)}})},
- picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},trophies:function(){resetTo('today',function(){push('trophies')})},theme:function(){resetTo('you',function(){push('display')})},plans:function(){resetTo('you',function(){push('plans')})},swaps:function(){resetTo('you',function(){push('swaps')})},urgelog:function(){resetTo('today',function(){celebrate({treats:20,urge:true,kicker:'URGE BEATEN',title:'You rode it out!',sub:'That was all you. I just cheered really loudly.'})})},voice:function(){resetTo('today',function(){S.vnHome='';save();refreshRoot()})},shake:function(){resetTo('today',function(){setTimeout(shakePet,500)})},
+ picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},trophies:function(){resetTo('today',function(){push('trophies')})},theme:function(){resetTo('you',function(){push('display')})},settings:function(){resetTo('you',function(){push('settings')})},plans:function(){resetTo('you',function(){push('plans')})},swaps:function(){resetTo('you',function(){push('swaps')})},urgelog:function(){resetTo('today',function(){celebrate({treats:20,urge:true,kicker:'URGE BEATEN',title:'You rode it out!',sub:'That was all you. I just cheered really loudly.'})})},voice:function(){resetTo('today',function(){S.vnHome='';save();refreshRoot()})},shake:function(){resetTo('today',function(){setTimeout(shakePet,500)})},
  reminders:function(){resetTo('today',function(){notify()})},
  sos:function(){resetTo('today',function(){push('sos',{},'modal')})},
  breathe:function(){resetTo('today',function(){push('breathe',{},'modal')})},
