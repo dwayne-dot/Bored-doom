@@ -1695,6 +1695,7 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .jb-sp{width:44px;height:44px;flex-shrink:0}
 #jb-ov.jb-full{position:fixed;inset:0;z-index:9999;background:#0A1613!important;font-family:'Nunito',sans-serif}
 #jb-ov.jb-full .jb-top{padding:14px 18px 4px!important}#jb-ov.jb-full .jb-hint{display:none}#jb-ov.jb-full .jb-bar{margin-bottom:6px}
+.jb-book.shut .jp.l,.jb-book.shut .jb-pg.l,.jb-book.shut .jb-spine{opacity:0}.jb-book.shut .jb-back{clip-path:inset(-30% -30% -30% 50%)}
 </style>
 </head>
 <body>
@@ -2627,15 +2628,18 @@ function openJournal(src){
  if(rm){cv.style.transform='rotateY(-180deg)';ov.classList.add('on');finishOpen();if(land())setSpread(true)}
  else{
   var fx=sr?(sr.left+sr.width/2-(gr.left+gr.width/2)):0,fy=sr?(sr.top+sr.height/2-(gr.top+gr.height/2)):60,fs=sr?sr.width/st.pw:.3;
-  requestAnimationFrame(function(){ov.classList.add('on')});haptic(8);
-  fly.animate([{transform:'translate('+fx+'px,'+fy+'px) scale('+fs+') rotate(-4deg)',opacity:sr?1:0},{transform:'translate(0,-8px) scale(1.04) rotate(1deg)',opacity:1,offset:.75},{transform:'none',opacity:1}],{duration:950,easing:'cubic-bezier(.25,.8,.3,1)'}).onfinish=function(){
+  requestAnimationFrame(function(){ov.classList.add('on')});haptic(8);book.classList.add('shut');var LFT=[$('.jb-back',book),L,$('.jb-pg.l',book),$('.jb-spine',book)].filter(Boolean);
+  fly.animate([{transform:'translate('+fx+'px,'+fy+'px) scale('+fs+') rotate(-4deg)',opacity:sr?1:0},{transform:'translate(0,-6px) scale(1.08) rotate(1deg)',opacity:1,offset:.78},{transform:'scale(1.04)',opacity:1}],{duration:950,easing:'cubic-bezier(.25,.8,.3,1)',fill:'forwards'}).onfinish=function(){
    haptic([10,30,14]);SFX.pop&&SFX.pop();
    var sh=-st.pw/2;
    book.animate([{transform:'translateX('+sh+'px)'},{transform:'translateX(0)'}],{duration:1150,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   var OE={duration:1150,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'};
+   LFT.forEach(function(el){el.animate(el.classList.contains('jb-back')?[{clipPath:'inset(-30% -30% -30% 50%)'},{clipPath:'inset(-30% -30% -30% 50%)',offset:.5},{clipPath:'inset(-30% -30% -30% 15%)',offset:.75},{clipPath:'inset(-30% -30% -30% -30%)'}]:[{opacity:0},{opacity:0,offset:.5},{opacity:1,offset:.56},{opacity:1}],OE)});
    cv.animate([{transform:'rotateY(0)'},{transform:'rotateY(-180deg)'}],{duration:1150,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}).onfinish=function(){
-    cv.style.transform='rotateY(-180deg)';R.classList.remove('under');
-    if(land()){book.getAnimations().forEach(function(a){a.cancel()});st.spread=true;layout(false);finishOpen();show();return}
-    setTimeout(function(){var a=book.animate([{transform:'translateX(0)'},{transform:'translateX('+sh+'px)'}],{duration:850,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});a.onfinish=function(){book.getAnimations().forEach(function(x){x.cancel()});layout(false);finishOpen();haptic(5)}},550)}}}
+    cv.style.transform='rotateY(-180deg)';R.classList.remove('under');book.classList.remove('shut');LFT.forEach(function(el){el.getAnimations().forEach(function(x){x.cancel()})});
+    function zoomOut(d){var z=fly.animate([{transform:'scale(1.04)'},{transform:'none'}],{duration:d,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});z.onfinish=function(){fly.getAnimations().forEach(function(x){x.cancel()})}}
+    if(land()){book.getAnimations().forEach(function(a){a.cancel()});st.spread=true;layout(false);finishOpen();show();setTimeout(function(){zoomOut(700)},300);return}
+    setTimeout(function(){zoomOut(850);var a=book.animate([{transform:'translateX(0)'},{transform:'translateX('+sh+'px)'}],{duration:850,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});a.onfinish=function(){book.getAnimations().forEach(function(x){x.cancel()});layout(false);finishOpen();haptic(5)}},550)}}}
  /* closing */
  function close(){if(st.closing)return;st.closing=true;st.busy=true;stopShake();
   if(rm){ov.remove();return}
@@ -2724,7 +2728,7 @@ function startOnb(){
    return '<div class="glass"><div class="gf-wrap"><div class="gf-feed">'+cards+cards+'</div></div><div class="gf-tint"></div><div class="gf-badges"></div><div class="gf-paws"></div><div class="gf-nose">'+face('neutral',300)+'</div><div class="gf-fog"></div><div class="gf-wiper">'+'<svg viewBox="0 0 24 24"><g fill="#F9F6F0"><path d="M12 11.6c-2.7 0-5.6 3.2-5.6 5.8 0 1.7 1.2 2.6 2.7 2.6 1.1 0 1.9-.7 2.9-.7s1.8.7 2.9.7c1.5 0 2.7-.9 2.7-2.6 0-2.6-2.9-5.8-5.6-5.8z"/><ellipse cx="4.5" cy="9.7" rx="1.8" ry="2.3"/><ellipse cx="8.9" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="15.1" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="19.5" cy="9.7" rx="1.8" ry="2.3"/></g></svg></div>'+
    '<div class="gw"><div class="gw-garden"><img src="assets/garden.png" alt=""></div><div class="gw-in"><div class="gw-milo">'+mimg('wave',230,'','Milo waving')+'</div><h1 class="onb-h">Hi. I’ve been<br>waiting for you.</h1><p class="onb-p">I’m Milo. I live on the other side of your screen, and I’d really like to go outside.</p><button class="btn primary" data-next>Hi, Milo</button><button class="onb-link gw-login">I already have an account</button></div></div><button class="gf-skip">Skip intro</button></div>'},
   wake:function(){return '<div class="onb-fill center-col"><div class="onb-hero rub wake-zone" data-ref="pet"><span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>Z</i></span>'+mimg('sleep',260,'','Milo sleeping','happy')+'</div><h1 class="onb-h" data-ref="h">Shh, he’s napping.</h1><p class="onb-p" data-ref="p">Every time you put your phone down, Milo gets a little rest. Give him a rub to wake him up.</p><span class="hint-dark" data-ref="hint" style="align-self:center">'+ic('hand',{s:14})+'Rub Milo</span></div><button class="btn primary onb-hide" data-next data-ref="go">Nice to meet you</button>'},
-  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" placeholder="Your first name" value="'+(O.name||'Friend').replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
+  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" placeholder="Friend" value="'+(O.name&&O.name!=='Friend'?O.name:'').replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
   bandana:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Pick Milo’s bandana</h2><p class="onb-p" style="margin-top:-6px">Every good dog needs one. You can change it anytime in his closet.</p><div data-ref="m">'+miloB('happy',230)+'</div><div class="band-row">'+BANDANAS.map(function(b){return '<button class="band'+(b.id===O.band?' on':'')+'" data-b="'+b.id+'" aria-label="'+b.l+' bandana"><span style="background:'+b.c+'"></span>'+b.l+'</button>'}).join('')+'</div></div><button class="btn primary" data-next>Looks sharp</button>'},
   idcard:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Make Milo official</h2><p class="onb-p" style="margin-top:-6px">Every good boy needs an ID. Pick his card. You\u2019ll renew it together each month.</p><div class="oid-prev" data-ref="pv"></div><div class="oid-row" data-ref="row"></div></div><button class="btn primary" data-ref="go">Issue his ID</button>'},
   habit:function(){var H=ONB_HABITS.filter(function(h){return h.id!=='other'});
@@ -2760,7 +2764,7 @@ function startOnb(){
   wake:function(el){var n=0,woke=false,z=ref(el,'pet');
    function wake(){if(woke)return;woke=true;var im=$('.mimg',z);im&&im.setAttribute('src','assets/m/wave.png');im&&im.removeAttribute('data-pet');z.classList.add('awake');ref(el,'h').textContent='He’s up! And he likes you.';ref(el,'p').textContent='Milo’s been waiting a long time to meet you.';ref(el,'hint').style.visibility='hidden';ref(el,'go').classList.remove('onb-hide');haptic([10,50,10,50,20]);SFX.bark&&SFX.bark()}
    rubbable(z,{pet:function(){if(++n>=6)wake()},end:function(){}});z.addEventListener('click',function(){if(++n>=6)wake()})},
-  name:function(el){var i=ref(el,'name');T(function(){i.focus();i.select()},500);i.addEventListener('focus',function(){if(i.value==='Friend')i.select()});i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
+  name:function(el){var i=ref(el,'name');T(function(){i.focus()},500);i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
   bandana:function(el){$$('.band',el).forEach(function(b){b.addEventListener('click',function(){O.band=b.dataset.b;$$('.band',el).forEach(function(x){x.classList.toggle('on',x===b)});var c=bc(),m=ref(el,'m');m.innerHTML=miloB('happy',230);$('.milo-b',m).classList.add('pop');haptic(8);SFX.pop&&SFX.pop()})})},
   idcard:function(el){if(!O.idStyle)O.idStyle='classic';var busy=false;
    function draw(pop){ref(el,'pv').innerHTML='<div class="mid oid">'+idFront({nm:O.name||'You',band:O.band,style:O.idStyle,photo:'head-happy',since:Date.now(),exp:Date.now()+30*864e5,preview:true})+'</div>';if(pop)$('.mid-f',ref(el,'pv')).classList.add('pop');
