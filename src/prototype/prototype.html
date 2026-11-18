@@ -1860,6 +1860,17 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .aw-sheet .btn{align-self:stretch}
 .tc-mini{display:flex;align-items:center;gap:1px;flex-shrink:0;min-width:58px}
 .tc-mini .plaque{--s:20px}.tc-mini .mys{--s:20px}
+
+.pl-tog.switch{border:none;padding:0;cursor:pointer;margin-left:auto}
+.pl-f .pl-try{margin-right:0}
+.pl-f{justify-content:flex-start}
+.aw-svg{display:inline-block;filter:drop-shadow(0 4px 5px rgba(0,0,0,.3));flex-shrink:0}
+.aw-svg svg{display:block;overflow:visible}
+.aw-svg.lk{filter:grayscale(1) brightness(.38) contrast(1.15);opacity:.8}
+.aw-svg.gold:not(.lk){filter:drop-shadow(0 0 8px rgba(242,204,107,.65)) drop-shadow(0 4px 5px rgba(0,0,0,.3))}
+.tc-it.got .aw-svg{animation:awBob 3s ease-in-out infinite}
+.mys{width:auto;height:auto}
+.mys .aw-svg{filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
 html.native .side,html.native #proto-btn,html.native #proto-pane{display:none!important}html.native #stage{padding:0}html.native #phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}</style>
 </head>
 <body>
@@ -2446,7 +2457,7 @@ SCREENS.insights={render:function(){
  return function(){clearTimeout(t)};
 }};
 
-var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['trophies','Trophy case (medals, ribbons, plaques)'],['plans','If–then plans'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
+var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['trophies','Trophy case (medals, ribbons, plaques)'],['plans','Plans (if–then)'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
 var APPS=[{n:'Clips',c:'#E5604D',i:'play',so:1},{n:'Chirp',c:'#4F7FD6',i:'msg',so:1},{n:'Snaps',c:'#E3B23C',i:'camera',so:1},{n:'Scroll',c:'#8B6FD6',i:'layers',so:1},{n:'Mail',c:'#3E88D4',i:'mail'},{n:'Maps',c:'#5FA864',i:'map'},{n:'Notes',c:'#E3B23C',i:'pen'},{n:'Music',c:'#E2557A',i:'music'},{n:'Weather',c:'#4A9BD9',i:'sun'},{n:'Photos',c:'#F9F6F0',i:'image',dk:1},{n:'Calendar',c:'#F9F6F0',i:'calendar',dk:1},{n:'Bored Doom',c:'#16302B',milo:1}];
 function appIcon(a,idx){return '<button class="app" data-app="'+idx+'"><span class="ai" style="background:'+a.c+';color:'+(a.dk?'#16302B':'#fff')+'">'+(a.milo?face('happy',58):ic(a.i,{s:30,w:2}))+'</span>'+a.n+'</button>'}
 function nowStr(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return ((h%12)||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
@@ -3314,7 +3325,7 @@ function ifT(k){var o=IF_OPTS.filter(function(x){return x.k===k})[0];return o?o.
 function thenO(k){return thenOpts().filter(function(x){return x.k===k})[0]||{k:k,t:k.replace(/^sw:/,'')}}
 function runThen(o){if(o.go)push(o.go,{},'modal');else if(o.tab)goRoot(o.tab);else if(o.sw){useSwap(o.sw.t);miniTask(swapPick(o.sw))}}
 function planSheet(onSave){var pick={i:null,t:null};
- openSheet('<div style="font-size:23px;font-weight:900">New if–then plan</div><p class="muted" style="margin:0">Decide now, so future you doesn’t have to.</p>'+
+ openSheet('<div style="font-size:23px;font-weight:900">New plan</div><p class="muted" style="margin:0">Decide now, so future you doesn’t have to.</p>'+
   '<div class="tl-build">'+
   '<div class="tl-row"><span class="tl-lab">if</span><span class="tl-dot big" data-ref="d1">'+emo('▲','ph')+'</span><div class="tl-card b"><b>Trigger</b><small>Every plan starts with a moment.</small><div class="pl-chips">'+IF_OPTS.map(function(o){return '<button class="chip" data-if="'+o.k+'">'+emo(IF_EMO[o.k])+o.t+'</button>'}).join('')+'</div></div></div>'+
   '<div class="tl-row"><span class="tl-lab then">then</span><span class="tl-dot big then" data-ref="d2">'+emo('●','ph')+'</span><div class="tl-card b dashed" data-ref="tc"><div class="tl-lock" data-ref="lk"><span class="tl-ghost">Add action</span><span><b>Pick a trigger to unlock the action.</b> Every plan ends with one small step.</span></div><div class="tl-acts" data-ref="acts" hidden><b>Action</b><small>What will you do instead?</small><div class="pl-chips">'+thenOpts().map(function(o){return '<button class="chip'+(o.sw?' own':'')+'" data-then="'+esc(o.k)+'">'+emo(thenEmo(o.k))+esc(o.t.replace(/^do my swap: /,''))+'</button>'}).join('')+'</div></div></div></div>'+
@@ -3331,7 +3342,7 @@ function planSheet(onSave){var pick={i:null,t:null};
   upd()})}
 function planNotify(p){var o=thenO(p.t);notify({title:'If '+ifT(p.i)+'…',body:'…then you’ll '+o.t+'. Tap to start. 🐾',onTap:function(){runThen(o)}})}
 SCREENS.plans={render:function(){
- return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">If–then plans</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Plans</span><div style="width:44px"></div></div>'+
  '<h1 class="title" style="margin:0">Decide before the moment</h1><p class="muted" style="margin:-4px 0 4px">“If this happens, then I’ll do that.” Simple plans like these make new habits far more likely to stick.</p>'+
  '<div class="col" style="gap:10px" data-ref="list"></div><button class="btn primary" data-ref="new" style="margin-top:4px">'+ic('plus',{s:18,w:3})+' New plan</button></div>';
 },mount:function(el){
@@ -3339,7 +3350,7 @@ SCREENS.plans={render:function(){
  function draw(){list.innerHTML=S.plans.length?S.plans.map(function(p,i){var o=thenO(p.t);return '<div class="plan tl'+(p.on?'':' off')+'">'+
   '<div class="tl-row"><span class="tl-lab">if</span><span class="tl-dot">'+emo(IF_EMO[p.i]||'✨')+'</span><div class="tl-card"><b>'+ifT(p.i)+'</b></div></div>'+
   '<div class="tl-row"><span class="tl-lab then">then</span><span class="tl-dot then">'+emo(thenEmo(p.t))+'</span><div class="tl-card then"><b>I’ll '+esc(o.t)+'</b></div></div>'+
-  '<div class="pl-f"><button class="chip pl-try" data-try="'+i+'">'+ic('bell',{s:14})+'Try the reminder</button><button class="pl-tog" data-tog="'+i+'" aria-label="Plan on or off"><span class="switch'+(p.on?' on':'')+'"></span></button><button class="sw-del" data-del="'+i+'" aria-label="Delete plan">'+ic('trash',{s:16})+'</button></div></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No plans yet. Start with your trickiest moment.</span></div>'}
+  '<div class="pl-f"><button class="chip pl-try" data-try="'+i+'">'+ic('bell',{s:14})+'Try reminder</button><button class="pl-tog switch'+(p.on?' on':'')+'" data-tog="'+i+'" role="switch" aria-checked="'+(!!p.on)+'" aria-label="Plan on or off"></button><button class="sw-del" data-del="'+i+'" aria-label="Delete plan">'+ic('trash',{s:16})+'</button></div></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No plans yet. Start with your trickiest moment.</span></div>'}
  el.addEventListener('click',function(e){var t=e.target.closest('[data-try]'),g=e.target.closest('[data-tog]'),d=e.target.closest('[data-del]');
   if(t){planNotify(S.plans[+t.dataset.try]);return}
   if(g){var p=S.plans[+g.dataset.tog];p.on=!p.on;save();draw();haptic(8);return}
@@ -3441,10 +3452,26 @@ var AWARDS=[
  {k:'x75',g:'Mystery prizes',mys:1,n:'Mystery prize',d:75,how:'Milo keeps hinting it has four little wheels.',teaser:'🛹'},
  {k:'x150',g:'Mystery prizes',mys:1,n:'Mystery prize',d:150,how:'Fast, fun, and Milo can’t stop talking about it.',teaser:'🛴'}];
 function awardHas(a){var best=Math.max(S.best||0,S.streak||0),tot=S.urgesTotal||23;if(a.d)return best>=a.d;if(a.u)return tot>=a.u;if(a.lock)return !!S.lockDone;return false}
+function awPaw(cx,cy,s,c){return '<g transform="translate('+(cx-12*s)+' '+(cy-12*s)+') scale('+s+')" style="color:'+c+'">'+pawP(12,11.6,2.15,true)+'</g>'}
+function awStar(x,y,r,c){return '<path d="M'+x+' '+(y-r)+'Q'+x+' '+y+' '+(x+r)+' '+y+'Q'+x+' '+y+' '+x+' '+(y+r)+'Q'+x+' '+y+' '+(x-r)+' '+y+'Q'+x+' '+y+' '+x+' '+(y-r)+'z" fill="'+c+'"/>'}
+var MEDAL={m7:['#B8743F','#DB9A5E','#8A5428'],m14:['#9EAAB6','#D6DEE6','#6F7C88'],m30:['#E0A92E','#F7D35E','#A8740E']};
+function awardSvg(a){var k=a.k,v='<svg viewBox="0 0 48 48" width="100%" height="100%">',e='</svg>';
+ if(MEDAL[k]){var c=MEDAL[k];return v+'<path d="M13 2h9l7 17h-9z" fill="#4F86C6"/><path d="M13 2h3.5l7 17H20z" fill="#3A6DA8"/><path d="M35 2h-9l-7 17h9z" fill="#E9958A"/><path d="M35 2h-3.5l-7 17H28z" fill="#D27A6E"/>'+
+  '<circle cx="24" cy="31.5" r="14.5" fill="'+c[2]+'"/><circle cx="24" cy="30.5" r="14" fill="'+c[0]+'"/><circle cx="24" cy="30.5" r="10.6" fill="'+c[1]+'"/>'+awPaw(24,30.8,.62,c[2])+'<path d="M15.6 26.4a9.6 9.6 0 0 1 6.6-5.6" stroke="#fff" stroke-opacity=".7" stroke-width="2.2" fill="none" stroke-linecap="round"/>'+e}
+ if(k==='bone')return v+'<g transform="rotate(-28 24 25)"><g fill="#B07D12"><circle cx="11.5" cy="20" r="6.2"/><circle cx="11.5" cy="30" r="6.2"/><circle cx="36.5" cy="20" r="6.2"/><circle cx="36.5" cy="30" r="6.2"/><rect x="11" y="19" width="26" height="12" rx="3"/></g><g fill="#F5C84C"><circle cx="11.5" cy="20" r="5"/><circle cx="11.5" cy="30" r="5"/><circle cx="36.5" cy="20" r="5"/><circle cx="36.5" cy="30" r="5"/><rect x="11" y="20.2" width="26" height="9.6" rx="2.5"/></g><path d="M14 20.6h19" stroke="#FFF1B8" stroke-width="2.2" stroke-linecap="round"/><circle cx="10.2" cy="18.6" r="1.6" fill="#FFF1B8"/></g>'+awStar(40,8,4.2,'#FFE27A')+awStar(7,40,3,'#FFE27A')+awStar(41,38,2.4,'#fff')+e;
+ if(k==='r1')return v+'<path d="M17 44 28.5 21C32 14 29.5 6 24 6s-8 8-4.5 15L31 44" stroke="#C26E36" stroke-width="7.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 44 28.5 21C32 14 29.5 6 24 6s-8 8-4.5 15L31 44" stroke="#F0985A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12c.6-2.4 2-3.6 3.6-3.6" stroke="#FFD2B0" stroke-width="1.8" fill="none" stroke-linecap="round"/>'+e;
+ if(k==='r3')return v+'<path d="M22 26 15 44l5-3 3.5 5L26 28z" fill="#D9577A"/><path d="M26 26l7 18-5-3-3.5 5L22 28z" fill="#E8708F"/><ellipse cx="13.5" cy="19" rx="11" ry="7.5" transform="rotate(-18 13.5 19)" fill="#F08DA8"/><ellipse cx="34.5" cy="19" rx="11" ry="7.5" transform="rotate(18 34.5 19)" fill="#F08DA8"/><ellipse cx="14.5" cy="19.5" rx="5.5" ry="3.4" transform="rotate(-18 14.5 19.5)" fill="#D9577A"/><ellipse cx="33.5" cy="19.5" rx="5.5" ry="3.4" transform="rotate(18 33.5 19.5)" fill="#D9577A"/><rect x="19.5" y="14.5" width="9" height="10" rx="4" fill="#E8708F"/><text x="24" y="23" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="8" fill="#fff">3</text>'+e;
+ if(k==='ro1'||k==='ro10'){var C=k==='ro1'?['#E88D4F','#F6B27C','#FFF4E6','#C26E36']:['#8B7FD0','#B8AEEB','#F3F0FF','#6A5DB5'],sc='';for(var i=0;i<14;i++){var an=i/14*Math.PI*2;sc+='<circle cx="'+(24+Math.cos(an)*14.5).toFixed(1)+'" cy="'+(21+Math.sin(an)*14.5).toFixed(1)+'" r="4.6"/>'}
+  return v+'<path d="M17 28l-5 18 5.5-3 3.5 5 4-17z" fill="'+C[3]+'"/><path d="M31 28l5 18-5.5-3-3.5 5-4-17z" fill="'+C[0]+'"/><g fill="'+C[0]+'">'+sc+'</g><circle cx="24" cy="21" r="14" fill="'+C[1]+'"/><circle cx="24" cy="21" r="9.5" fill="'+C[2]+'"/>'+(k==='ro1'?awPaw(24,21.4,.55,C[3]):'<text x="24" y="25.2" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="11" fill="'+C[3]+'">10</text>')+e}
+ if(k==='t1'||k==='t60'){var g=k==='t60'?['#E0A92E','#F7D35E','#A8740E']:['#7FA89C','#B9DCCF','#4F7A6E'];
+  return v+'<path d="M13.5 11H8a6 6 0 0 0 7 9" stroke="'+g[0]+'" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34.5 11H40a6 6 0 0 1-7 9" stroke="'+g[0]+'" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M13 6h22v10a11 11 0 0 1-22 0z" fill="'+g[0]+'"/><path d="M16 6h16v10a8 8 0 0 1-16 0z" fill="'+g[1]+'"/><rect x="21.5" y="26" width="5" height="7" fill="'+g[2]+'"/><rect x="15" y="33" width="18" height="5" rx="2" fill="'+g[0]+'"/><rect x="12" y="38" width="24" height="6" rx="2.5" fill="#6B4A33"/><rect x="17" y="40" width="14" height="2" rx="1" fill="'+g[1]+'" opacity=".8"/>'+
+  (k==='t60'?'<text x="24" y="20" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="9.5" fill="'+g[2]+'">60</text>':'<rect x="19.5" y="13.5" width="9" height="7" rx="1.6" fill="'+g[2]+'"/><path d="M21.3 13.6v-2a2.7 2.7 0 0 1 5.4 0v2" stroke="'+g[2]+'" stroke-width="1.8" fill="none"/>')+'<path d="M18 9v6" stroke="#fff" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>'+e}
+ if(a.mys)return v+'<rect x="8" y="20" width="32" height="24" rx="4" fill="#E88D4F"/><rect x="8" y="20" width="32" height="5" fill="#C26E36" opacity=".5"/><rect x="5.5" y="14" width="37" height="9" rx="3" fill="#F0985A"/><rect x="21" y="14" width="6" height="30" fill="#F9F6F0"/><path d="M24 14c-4-7-12-7-11-2 1 3 7 2 11 2zM24 14c4-7 12-7 11-2-1 3-7 2-11 2z" fill="#F9F6F0" stroke="#E4D7C4" stroke-width="1"/>'+e;
+ return v+e}
 function awardArt(a,sz){var has=awardHas(a);
  if(a.plaque)return '<span class="plaque'+(has?'':' lk')+'" style="--s:'+(sz||44)+'px"><i></i><b>'+a.plaque+'</b><small>'+esc((S.name||'You').toUpperCase())+' & MILO</small></span>';
- if(a.mys)return '<span class="mys" style="--s:'+sz+'px">'+emo('🎁')+'<b>?</b></span>';
- return '<span class="aw'+(has?'':' lk')+(a.gold?' gold':'')+(a.big?' big':'')+'" style="font-size:'+sz+'px">'+a.e+'</span>'}
+ if(a.mys)return '<span class="mys" style="--s:'+sz+'px"><span class="aw-svg" style="width:'+sz+'px;height:'+sz+'px">'+awardSvg(a)+'</span><b>?</b></span>';
+ return '<span class="aw-svg'+(has?'':' lk')+(a.gold?' gold':'')+'" style="width:'+sz+'px;height:'+sz+'px">'+awardSvg(a)+'</span>'}
 function awardsEarned(){return AWARDS.filter(awardHas)}
 function nextAward(){var best=Math.max(S.best||0,S.streak||0);return AWARDS.filter(function(a){return a.d&&a.d>best}).sort(function(x,y){return x.d-y.d})[0]}
 function awardSheet(a){var has=awardHas(a),best=Math.max(S.best||0,S.streak||0),left=a.d?a.d-best:0;
@@ -3469,8 +3496,8 @@ SCREENS.you={onShow:function(el){if(window.__idRenewed){window.__idRenewed=false
  return '<div class="scroll you2"><h1 class="large" style="margin:0">You</h1>'+
  miloID()+
  '<div class="you-main" data-ref="ym"><div class="gl keep">Your plan with Milo</div><div class="you-grid">'+
-  tile('🚨','Danger hours',hoursLabel(),'data-ref="hours"')+tile('👋','Check-ins',ciLabel(),'data-ref="ci"')+
-  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','If–then plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('🔁','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+trophyRow(true)+
+  tile('calendar','Danger hours',hoursLabel(),'data-ref="hours"')+tile('bell','Check-ins',ciLabel(),'data-ref="ci"')+
+  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','Plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('swaps','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+trophyRow(true)+
  '<div class="gl keep">Settings</div><div class="group">'+
   row('shieldpaw','Milo shield','Pauses social apps in danger hours','data-ref="tshield"',sw(S.shield))+
   row('moonz','Bedtime mode','Wind down from 11:30 PM','data-ref="tbed"',sw(S.bedtime))+
@@ -3676,7 +3703,7 @@ var YI={
 };
 YI.shield={bg:'#FDE7D6',svg:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" fill="#E88D4F" stroke="#E88D4F" stroke-width="2" stroke-linejoin="round"/>'+pawP(12,12.4,.62).replace(/<g /,'<g fill="#fff" ')};
 YI.ifthen={svg:'<rect x="10.9" y="3.2" width="2.2" height="17.6" rx="1.1" fill="#9A7556"/><path d="M4.2 4.8h10.4l2.8 2.6-2.8 2.6H4.2a1 1 0 0 1-1-1V5.8a1 1 0 0 1 1-1z" fill="#4FA884"/><path d="M19.8 11.6H9.4l-2.8 2.6 2.8 2.6h10.4a1 1 0 0 0 1-1v-3.2a1 1 0 0 0-1-1z" fill="#E88D4F"/>'};
-YI.swaps={svg:'<path d="M4.6 8.6h11.8" stroke="#5C8FD6" stroke-width="2.9" stroke-linecap="round"/><path d="M13.2 4.7l3.9 3.9-3.9 3.9" stroke="#5C8FD6" stroke-width="2.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4 15.4H7.6" stroke="#E88D4F" stroke-width="2.9" stroke-linecap="round"/><path d="M10.8 11.5l-3.9 3.9 3.9 3.9" stroke="#E88D4F" stroke-width="2.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'};
+YI.swaps={svg:'<path d="M5.4 10.6A6.9 6.9 0 0 1 17.3 7.2" stroke="#E88D4F" stroke-width="2.7" fill="none" stroke-linecap="round"/><path d="M18.4 3.4l-.9 4.2-4.2-.9" stroke="#E88D4F" stroke-width="2.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.6 13.4A6.9 6.9 0 0 1 6.7 16.8" stroke="#4FA884" stroke-width="2.7" fill="none" stroke-linecap="round"/><path d="M5.6 20.6l.9-4.2 4.2.9" stroke="#4FA884" stroke-width="2.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="#C9DB4C"/><path d="M9.4 11.2c1.2.8 4 .8 5.2 0" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round"/>'};
 var YOPT={hours:1.07,ci:1.16,pack:1.14,restore:1.04,bed:1.28,shield:.97,sound:1.03},YSLANT={ci:-14,plan:-12},__YN={},__yc=0;
 function yRaw(k){var c;if(k==='bed')c=FIG.bed;else if(k==='pack')c=kitIc('pack',24).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'');else c=YI[k].svg;
  return c.replace(/<(ellipse|path|rect|circle)\b[^>]*\bopacity="0?\.(1[0-9]|55)"[^>]*\/>/g,'')}
