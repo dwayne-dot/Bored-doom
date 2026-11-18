@@ -1771,6 +1771,87 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .swap.mine{box-shadow:inset 0 0 0 2px rgba(232,141,79,.35)}
 .shook{animation:shook .7s cubic-bezier(.3,1.6,.5,1)}
 @keyframes shook{0%{transform:rotate(0)}15%{transform:rotate(-9deg) scale(1.04)}30%{transform:rotate(8deg) scale(1.06)}45%{transform:rotate(-6deg)}60%{transform:rotate(4deg)}80%{transform:rotate(-2deg)}100%{transform:none}}
+
+/* Nov 18 b */
+.emo{font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-style:normal;line-height:1;display:inline-block}
+.emo-b{display:grid!important;place-items:center;font-size:20px}
+.sw-ic .emo{font-size:21px}.sw-ideas .chip .emo,.pk-own .chip .emo,.pl-chips .chip .emo{font-size:16px}
+.sos-e{font-size:18px}
+.yt-ic.emo-b{width:38px;height:38px;border-radius:19px;background:rgba(249,246,240,.08);font-size:20px}
+.tic.emo-b{font-size:22px}
+.rub-hand{display:inline-flex;transform-origin:50% 90%;animation:rubHand .55s ease-in-out infinite alternate}
+@keyframes rubHand{from{transform:translateX(-3px) rotate(-16deg)}to{transform:translateX(3px) rotate(14deg)}}
+.ghost-hand{position:absolute;left:50%;top:30%;margin:-27px 0 0 -27px;color:rgba(249,246,240,.92);filter:drop-shadow(0 4px 10px rgba(0,0,0,.35));opacity:0;pointer-events:none;z-index:3}
+.ghost-hand svg{fill:rgba(249,246,240,.25)}
+.onb-in::placeholder{color:rgba(169,189,183,.28)!important;font-weight:600}
+.rowcard.jsw{transition:none!important}.rowcard.jsw .tic{transition:none!important;z-index:2}
+.rowcard.ready .tic{filter:drop-shadow(0 0 10px rgba(242,204,107,.7))}
+.bag-card{position:relative;overflow:hidden}
+.bag-zip{position:absolute;left:0;right:0;top:8px;height:26px;pointer-events:none}
+.bz-tape{position:absolute;left:14px;top:9px;height:8px;width:0;border-radius:4px;background:repeating-linear-gradient(90deg,#C9A47A 0 4px,#E8D2B0 4px 7px);box-shadow:0 1px 0 rgba(0,0,0,.2);transition:width 1.1s cubic-bezier(.45,.05,.4,1)}
+.bz-pull{position:absolute;left:4px;top:0;width:26px;height:26px;border-radius:13px;background:var(--amber);box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),0 3px 8px rgba(0,0,0,.3);transition:left 1.1s cubic-bezier(.45,.05,.4,1);transform:scale(0);animation:bzIn .25s .02s cubic-bezier(.3,1.6,.5,1) forwards}
+.bz-tail{position:absolute;left:9px;top:20px;width:8px;height:18px;border-radius:4px;background:#C26E36;transform-origin:50% 0;animation:bzSwing .4s ease-in-out infinite alternate}
+@keyframes bzIn{to{transform:scale(1)}}@keyframes bzSwing{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+.bag-zip.go .bz-tape{width:calc(100% - 40px)}.bag-zip.go .bz-pull{left:calc(100% - 32px)}
+.bag-zip.open .bz-pull{transform:scale(1.25);transition:transform .2s}
+.bag-card.zipping{transform:scale(.985)}
+/* if-then timeline */
+.plan.tl{gap:4px;padding:14px 14px 12px}
+.tl-row{position:relative;display:grid;grid-template-columns:40px 46px 1fr;align-items:center;gap:8px;min-height:56px}
+.tl-row+.tl-row::before{content:'';position:absolute;left:69px;top:-26px;width:5px;height:34px;background:rgba(249,246,240,.18);border-radius:3px;z-index:0}
+.tl-lab{font:900 17px 'Nunito',sans-serif;color:#9FD0BD;text-align:right}.tl-lab.then{color:var(--amber)}
+.tl-dot{position:relative;z-index:1;width:46px;height:46px;border-radius:23px;display:grid;place-items:center;background:#9FD0BD;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.tl-dot.then{background:var(--amber)}.tl-dot .emo{font-size:23px}
+.tl-dot.big{width:52px;height:52px;border-radius:26px;background:#CFC5B5}.tl-dot.big.set{background:#9FD0BD}.tl-dot.big.then.set{background:var(--amber)}
+.tl-dot .emo.ph{color:#fff;font:900 20px 'Nunito',sans-serif}
+.tl-dot.pop{animation:tlPop .45s cubic-bezier(.3,1.6,.5,1)}@keyframes tlPop{40%{transform:scale(1.22)}}
+.tl-card{background:rgba(0,0,0,.18);border-radius:18px;padding:10px 12px;font-size:15px;line-height:20px}
+.tl-build{display:flex;flex-direction:column;gap:14px}
+.tl-build .tl-row{grid-template-columns:44px 52px 1fr;align-items:start}
+.tl-build .tl-lab{color:var(--ink2);padding-top:14px;font-size:19px}.tl-build .tl-lab.then{color:var(--ink2)}
+.tl-build .tl-row+.tl-row::before{left:77px;top:-40px;height:56px;background:#CFC5B5}
+.tl-card.b{background:#F1ECE3;color:var(--ink);display:flex;flex-direction:column;gap:6px;padding:12px}
+.tl-card.b small{color:var(--ink2);font-weight:600;font-size:13px}
+.tl-card.b.dashed{background:none;border:2px dashed #D6CCBC}
+.tl-lock{display:flex;flex-direction:column;gap:8px;font-size:13px;color:#A69C8C;line-height:1.35}
+.tl-lock b{color:#8E8474}
+.tl-ghost{align-self:flex-start;background:#ECE5D9;color:#fff;font:800 14px 'Nunito',sans-serif;padding:9px 16px;border-radius:999px}
+.tl-acts{display:flex;flex-direction:column;gap:6px;animation:jf2In .35s cubic-bezier(.22,1.2,.36,1)}
+.tl-acts[hidden],.tl-lock[hidden]{display:none!important}
+.pl-chips .chip{display:inline-flex;align-items:center;gap:6px}
+/* trophy case */
+.tc-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;background:var(--cream);color:var(--ink);border-radius:30px;padding:14px 18px 14px 8px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.08)}
+.tc-hero .mimg{width:120px!important;height:120px!important;flex-shrink:0}
+.tc-shine{position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 20deg,rgba(242,204,107,.22) 20deg 40deg,transparent 40deg 70deg,rgba(242,204,107,.18) 70deg 90deg,transparent 90deg 140deg,rgba(242,204,107,.2) 140deg 160deg,transparent 160deg 220deg,rgba(242,204,107,.16) 220deg 240deg,transparent 240deg 300deg,rgba(242,204,107,.2) 300deg 320deg,transparent 320deg);animation:tcSpin 24s linear infinite;pointer-events:none}
+@keyframes tcSpin{to{transform:rotate(360deg)}}
+.tc-next{background:var(--bg2);border-radius:24px;padding:12px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15);font-weight:700}
+.tc-bar{height:10px;border-radius:5px;background:rgba(249,246,240,.1);overflow:hidden}.tc-bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#F2CC6B,var(--amber))}
+.tc-g{display:flex;flex-direction:column;gap:8px}
+.tc-shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px;border-radius:24px;background:linear-gradient(#1E3D37,#1A3631);box-shadow:inset 0 -6px 0 #6B4A33,inset 0 -9px 0 #4E3424}
+.tc-it{border:none;background:none;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px 12px;border-radius:18px;font:800 12px/1.2 'Nunito',sans-serif;text-align:center;cursor:pointer}
+.tc-it b{color:var(--muted);font-size:12px}.tc-it.got b{color:var(--cream)}.tc-it small{font-weight:700;font-size:11px;opacity:.75}
+.tc-it:active{transform:scale(.95)}
+.aw{font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;line-height:1.1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));display:inline-block}
+.aw.lk{filter:grayscale(1) brightness(.35) contrast(1.2);opacity:.75}
+.aw.gold{filter:sepia(1) saturate(4) hue-rotate(-12deg) brightness(1.08) drop-shadow(0 0 8px rgba(242,204,107,.8))}
+.aw.gold.lk{filter:grayscale(1) brightness(.35)}
+.tc-it.got .aw{animation:awBob 3s ease-in-out infinite}@keyframes awBob{50%{transform:translateY(-3px) rotate(-3deg)}}
+.plaque{--s:44px;width:calc(var(--s)*1.5);height:calc(var(--s)*1.15);border-radius:8px;background:linear-gradient(135deg,#8A5A3A,#5E3B25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px;box-shadow:0 4px 8px rgba(0,0,0,.35),inset 0 0 0 2px #A87750;position:relative}
+.plaque i{position:absolute;inset:5px;border-radius:4px;background:linear-gradient(135deg,#F6DE8C,#C9A13E);opacity:.95}
+.plaque b,.plaque small{position:relative;color:#5A3B10;font-weight:900;line-height:1.05;text-align:center}
+.plaque b{font-size:calc(var(--s)*.22)}.plaque small{font-size:calc(var(--s)*.12);letter-spacing:.02em}
+.plaque.lk{filter:grayscale(1) brightness(.4)}
+.mys{--s:44px;position:relative;display:inline-grid;place-items:center;font-size:var(--s);width:calc(var(--s)*1.15);height:calc(var(--s)*1.1)}
+.mys .emo{filter:drop-shadow(0 4px 6px rgba(0,0,0,.35)) saturate(.8)}
+.mys b{position:absolute;right:-4px;top:-6px;width:calc(var(--s)*.5);height:calc(var(--s)*.5);border-radius:50%;background:var(--amber);color:#16302B;display:grid;place-items:center;font:900 calc(var(--s)*.32) 'Nunito',sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.3);animation:mysQ 1.6s ease-in-out infinite}
+@keyframes mysQ{50%{transform:rotate(14deg) scale(1.1)}}
+.aw-sheet{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.aw-got,.aw-left{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:999px;font:800 14px 'Nunito',sans-serif}
+.aw-got{background:#9FD0BD;color:var(--ink)}.aw-left{background:#F1ECE3;color:var(--ink2)}
+.aw-tease{margin:0;font-size:13.5px;color:var(--ink2)}
+.aw-sheet .btn{align-self:stretch}
+.tc-mini{display:flex;align-items:center;gap:1px;flex-shrink:0;min-width:58px}
+.tc-mini .plaque{--s:20px}.tc-mini .mys{--s:20px}
 </style>
 </head>
 <body>
@@ -2138,13 +2219,13 @@ SCREENS.today={render:function(){
  var d=new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
  function tool(i,bg,c,t,sub,attrs){return '<button class="srow" '+attrs+'><span class="si" style="background:'+bg+';color:'+c+'">'+ic(i,{s:18})+'</span><span class="grow">'+t+'<small>'+sub+'</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}
  return '<div class="scroll"><div class="stagger col" style="gap:16px">'+
- '<div class="topbar"><div><div class="over">'+d+'</div><h1 class="large" style="font-size:28px;line-height:34px">'+hello()+'</h1></div><button class="streak-chip" data-tab="insights" aria-label="Streak">'+ic('flame',{s:16,fill:'#E88D4F',c:'#E88D4F',w:1.5})+'<span data-ref="streak">'+S.streak+'</span> days</button></div>'+
+ '<div class="topbar"><div><div class="over">'+d+'</div><h1 class="large" style="font-size:28px;line-height:34px">'+hello()+'</h1></div><button class="streak-chip" data-go="trophies" aria-label="Streak and trophy case">'+ic('flame',{s:16,fill:'#E88D4F',c:'#E88D4F',w:1.5})+'<span data-ref="streak">'+S.streak+'</span> days</button></div>'+
  '<button class="since" data-tab="insights">'+ic('clock',{s:15,w:2.4})+'<span>'+sinceLine()+'</span></button>'+'<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark">'+ic('hand',{s:14})+'Rub Milo, or shake your phone, for a smile</span></div>'+
  '<div data-ref="vnh">'+homeVN()+'</div>'+bagCardHTML()+
  '<div data-ref="lkc">'+lockCardHTML()+'</div>'+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
  '</div></div></div>';
 },mount:function(el){
- var say=ref(el,'say'),i=0,lines=LINES();el.addEventListener('click',function(e){if(e.target.closest('[data-ref="vnx"]')){S.vnHome='home'+S.streak;save();var c=ref(el,'vnc');if(c){c.style.transition='opacity .25s,transform .25s';c.style.opacity='0';c.style.transform='scale(.96)';setTimeout(function(){ref(el,'vnh').innerHTML=''},260)}haptic(6)}});var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);
+ var say=ref(el,'say'),i=0,lines=LINES();el.addEventListener('click',function(e){if(e.target.closest('[data-ref="vnx"]')){S.vnHome='home'+S.streak;save();var c=ref(el,'vnc');if(c){c.style.transition='opacity .25s,transform .25s';c.style.opacity='0';c.style.transform='scale(.96)';setTimeout(function(){ref(el,'vnh').innerHTML=''},260)}haptic(6)}});var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);bg&&bagHold(bg);
  var iv=setInterval(function(){i=(i+1)%lines.length;swapText(say,lines[i])},6500);
  var pets=0;
  rubbable(ref(el,'milo'),{pet:function(){pets++;if(pets===1||pets%6===0)swapText(say,['Hehe, right there!','Best human ever.','More, more!','You\'re good at this.'][Math.floor(Math.random()*4)])},end:function(){if(pets>3){S.treats+=1;save()}}});
@@ -2157,7 +2238,7 @@ SCREENS.picks={render:function(p){
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="pill" style="font-size:14px;color:var(--cream)"><span style="color:'+mm.bg+'">'+ic(mm.i,{s:16,w:2.3})+'</span>Feeling '+mm.l.toLowerCase()+'</span><div style="width:44px"></div></div>'+
  '<div class="row" style="align-items:flex-end;gap:6px"><div style="flex-shrink:0;width:120px" class="rub" data-ref="milo">'+mimg(PICKIMG[m],132,'','Milo','happy')+'</div><div class="speech" style="margin-bottom:36px">'+SAY[m]+'</div></div>'+
  '<div class="encourage">'+ic('thumb',{c:'#7BC47F'})+'<span>You\'ve beaten <b style="color:#7BC47F">'+S.beaten+' urges</b> today. That counts.</span></div>'+
- (S.swaps.length?'<div class="over" style="margin-top:4px">YOUR GO-TO SWAPS</div><div class="pk-own" data-ref="own">'+S.swaps.map(function(s,i){return '<button class="chip" data-own="'+i+'">'+ic(s.i||swapIc(s.t),{s:15})+esc(s.t)+'</button>'}).join('')+'<button class="chip add" data-go="swaps">'+ic('plus',{s:14,w:3})+'Add</button></div>':'')+'<div class="over" style="margin-top:4px">MILO\'S PICKS FOR '+mm.l.toUpperCase()+'</div><div class="picks stagger" data-ref="list"></div>'+fbHTML('picks-'+m,'Were these picks helpful?')+
+ (S.swaps.length?'<div class="over" style="margin-top:4px">YOUR GO-TO SWAPS</div><div class="pk-own" data-ref="own">'+S.swaps.map(function(s,i){return '<button class="chip" data-own="'+i+'">'+emo(swapEmo(s.t))+esc(s.t)+'</button>'}).join('')+'<button class="chip add" data-go="swaps">'+ic('plus',{s:14,w:3})+'Add</button></div>':'')+'<div class="over" style="margin-top:4px">MILO\'S PICKS FOR '+mm.l.toUpperCase()+'</div><div class="picks stagger" data-ref="list"></div>'+fbHTML('picks-'+m,'Were these picks helpful?')+
  '<div class="spacer"></div><button class="link" data-ref="shuffle" style="display:flex;align-items:center;gap:8px">'+ic('refresh',{s:18})+'Show me different picks</button></div>';
 },mount:function(el,p){
  var m=p.arg||'bored',all=PICKS[m].slice().sort(function(a,b){return (S.worked[b.t]||0)-(S.worked[a.t]||0)}),off=0,list=ref(el,'list');
@@ -2178,7 +2259,7 @@ SCREENS.sos={cls:'dark',render:function(){
  '<h1 class="title center">Ride the wave</h1>'+
  '<div class="ring-wrap"><svg class="ring" viewBox="0 0 270 270"><circle class="bg" cx="135" cy="135" r="118"/><circle class="fg" data-ref="ring" cx="135" cy="135" r="118" stroke-dasharray="741.4" stroke-dashoffset="0"/></svg><div class="ring-inner"><img src="assets/surf.png" alt="Milo surfing a wave" class="illo" style="width:124px;height:124px;border-radius:50%"><div class="big-time" data-ref="time">1:00</div></div></div>'+
  '<div class="msg-dark" data-ref="msg">'+SOS_MSGS[0]+'</div><div class="why-card" data-ref="why">'+whyInner()+'</div><button class="chip t-open" data-ref="talk">'+ic('msg',{s:16})+'Tell Milo what\'s going on</button>'+
- '<div class="over" style="align-self:stretch;display:flex;justify-content:space-between;align-items:center">TRY ONE INSTEAD<button class="sos-own" data-ref="own">'+ic('plus',{s:13,w:3})+'Your swaps</button></div><div class="swaps" data-ref="swaps">'+S.swaps.slice(0,2).map(function(s){return [s.i||swapIc(s.t),s.t,1]}).concat([['droplet','Sip cold water'],['feet','Walk it off'],['msg','Text someone']]).slice(0,3).map(function(s){return '<button class="swap'+(s[2]?' mine':'')+'" data-sw="'+esc(s[1])+'"><span class="ck">'+ic('check',{s:14,w:3.2})+'</span><span style="color:var(--amber)">'+ic(s[0])+'</span>'+esc(s[1])+'</button>'}).join('')+'</div>'+
+ '<div class="over" style="align-self:stretch;display:flex;justify-content:space-between;align-items:center">TRY ONE INSTEAD<button class="sos-own" data-ref="own">'+ic('plus',{s:13,w:3})+'Your swaps</button></div><div class="swaps" data-ref="swaps">'+S.swaps.slice(0,2).map(function(s){return [s.i||swapIc(s.t),s.t,1]}).concat([['droplet','Sip cold water'],['feet','Walk it off'],['msg','Text someone']]).slice(0,3).map(function(s){return '<button class="swap'+(s[2]?' mine':'')+'" data-sw="'+esc(s[1])+'"><span class="ck">'+ic('check',{s:14,w:3.2})+'</span>'+(s[2]?emo(swapEmo(s[1]),'sos-e'):'<span style="color:var(--amber)">'+ic(s[0])+'</span>')+esc(s[1])+'</button>'}).join('')+'</div>'+
  '<div class="spacer"></div><button class="btn primary" data-ref="win" style="align-self:stretch">I rode it out</button><button class="link" data-ref="slip">I slipped, and that\'s okay</button></div>';
 },mount:function(el){
  var t=60,done=false,ring=ref(el,'ring'),time=ref(el,'time'),msg=ref(el,'msg'),mi=0,C=741.4;
@@ -2329,7 +2410,7 @@ SCREENS.milo={render:function(){
   if(S.treats<it.cost)return nope(b,'Need '+(it.cost-S.treats)+' more treats. Beat an urge!');
   buySheet(it.n,it.cost,milo({size:150,acc:it.id}),function(){S.owned.push(it.id);save();setTr();wear(it.id);toast('New look unlocked!')});
  });
- function talk(){view.innerHTML='<div data-ref="tk"></div><button class="rowcard" data-go="journal"><span class="tic tic-j">'+JOURNAL_SVG+'</span><span class="grow"><b>Your journal</b><small>'+S.notes.length+' entries · see how you\'ve grown</small></span>'+ic('chevR',{c:'#A9BDB7'})+'</button>';talkUI(ref(view,'tk'),{where:'milo'})}
+ function talk(){view.innerHTML='<div data-ref="tk"></div><button class="rowcard" data-go="journal"><span class="tic tic-j">'+JOURNAL_SVG+'</span><span class="grow"><b>Journal</b><small>'+S.notes.length+' entries · see how you\'ve grown</small></span>'+ic('chevR',{c:'#A9BDB7'})+'</button>';talkUI(ref(view,'tk'),{where:'milo'});var jr=$('.rowcard[data-go="journal"]',view);jr&&journalSwipe(jr)}
  function setMode(m){seg.className='seg s3 p'+['talk','outfits','room'].indexOf(m);$$('button',seg).forEach(function(b){b.classList.toggle('on',b.dataset.v===m)});if(m==='room')room();else if(m==='talk')talk();else outfits()}
  seg.addEventListener('click',function(e){var b=e.target.closest('button');if(b){haptic(5);setMode(b.dataset.v)}});
  var p=ref(el,'pro');p&&p.addEventListener('click',paywall);
@@ -2342,7 +2423,7 @@ SCREENS.insights={render:function(){
  var hb=mk.map(function(k){var v=S.moods[k]||0;return '<span>'+k[0].toUpperCase()+k.slice(1)+'</span><div class="hb"><i data-w="'+Math.round(v/mx*100)+'" style="background:'+({bored:'#F2CC6B',stressed:'#E9958A',tired:'#BDB8DD',anxious:'#8DBCE0',great:'#9FD0BD'})[k]+'"></i></div><span style="text-align:right">'+v+'</span>'}).join('');
  var tod=[['Morning',2],['Afternoon',6],['Evening',9],['Late night',12]];
  return '<div class="scroll stagger"><h1 class="large" style="margin:0">Insights</h1>'+
- '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('frisbee',{s:14,w:1.4})+'Freebie: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+
+ '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('frisbee',{s:14,w:1.4})+'Freebie: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+trophyRow(true)+
  '<button class="rowcard cream" data-go="wrapped" data-mode="modal"><img src="assets/gift.png" alt="" class="illo" style="width:56px;height:56px;border-radius:14px"><span class="grow"><b>Your Milo Wrapped is ready</b><small style="color:var(--ink2)">Your week in 6 tiny stories</small></span><span class="playc">'+ic('play',{s:16,fill:'#F9F6F0',c:'#F9F6F0'})+'</span></button>'+
  '<div class="card col"><div class="over">LAST 4 WEEKS</div><div class="cal">'+cal+'</div><div style="display:flex;gap:14px;font-size:12px;font-weight:800;color:var(--muted)"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#7FA89C;margin-right:5px"></i>Habit-free</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--line);margin-right:5px"></i>Slip</span></div></div>'+
  '<div class="card cream row"><img src="assets/garden.png" alt="Milo watering sprouts" class="illo" style="width:96px;height:96px;border-radius:18px;flex-shrink:0"><div class="col" style="gap:4px"><span class="over" style="color:var(--ink2)">MILO NOTICED</span><b style="font-size:17px;line-height:22px">Most urges hit when you\'re <span style="color:#A8541E">Bored after 8 PM</span>.</b><button class="chip" data-ref="boost" style="align-self:flex-start;border-color:#E4DDCF;color:var(--ink);padding:6px 12px;font-size:13px">Add a 7:45 PM booster</button></div>'+fbHTML('insight-bored-8pm','Is this insight useful?')+'</div>'+
@@ -2357,7 +2438,7 @@ SCREENS.insights={render:function(){
  return function(){clearTimeout(t)};
 }};
 
-var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['plans','If–then plans'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
+var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['trophies','Trophy case (medals, ribbons, plaques)'],['plans','If–then plans'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
 var APPS=[{n:'Clips',c:'#E5604D',i:'play',so:1},{n:'Chirp',c:'#4F7FD6',i:'msg',so:1},{n:'Snaps',c:'#E3B23C',i:'camera',so:1},{n:'Scroll',c:'#8B6FD6',i:'layers',so:1},{n:'Mail',c:'#3E88D4',i:'mail'},{n:'Maps',c:'#5FA864',i:'map'},{n:'Notes',c:'#E3B23C',i:'pen'},{n:'Music',c:'#E2557A',i:'music'},{n:'Weather',c:'#4A9BD9',i:'sun'},{n:'Photos',c:'#F9F6F0',i:'image',dk:1},{n:'Calendar',c:'#F9F6F0',i:'calendar',dk:1},{n:'Bored Doom',c:'#16302B',milo:1}];
 function appIcon(a,idx){return '<button class="app" data-app="'+idx+'"><span class="ai" style="background:'+a.c+';color:'+(a.dk?'#16302B':'#fff')+'">'+(a.milo?face('happy',58):ic(a.i,{s:30,w:2}))+'</span>'+a.n+'</button>'}
 function nowStr(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return ((h%12)||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
@@ -2492,7 +2573,7 @@ SCREENS.pack={render:function(){
  '<div class="card alert" data-ref="alert"><div class="row" style="gap:12px"><span class="ava">J</span><div class="grow"><b style="font-size:16px">Jade hit SOS 2 minutes ago</b><div style="font-size:13px;color:#F3D3CC;font-weight:600">A paw buzzes their phone. No words needed.</div></div></div><button class="btn primary" data-ref="paw" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+ic('paw',{s:20})+'Send a paw</button></div>'+
  '<div class="card row"><span class="ava" style="background:#2E6B5E">J</span><div class="grow"><b>Jade</b><div class="muted" style="font-size:13px">11-day streak · beat 2 urges today</div></div><span class="pill" style="font-size:12px;padding:5px 10px"><span class="dot-on"></span>Online</span><button class="icon-btn fm-more" data-ref="fm" aria-label="Options for Jade">'+ic('more',{s:20,w:2.6})+'</button></div>'+
  '<button class="qr-add" data-qr><span class="qr-add-ic">'+qrSvg(30)+'</span><span class="grow"><b>Add a friend</b><small>Show your Milo code or scan theirs</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'+'<div class="card col" style="gap:10px"><div class="over">PACK GOAL · THIS MONTH</div><b style="font-size:17px">Beat 50 urges together</b><div class="bar"><i style="width:62%;background:#9FD0BD"></i></div><div class="muted" style="font-size:13px">31 of 50. Hit it and both Milos get the winter beanie.</div></div>'+
- '<button class="rowcard" data-ref="invite"><span class="tic">'+ic('users')+'</span><span class="grow"><b>Invite a friend</b><small>You both get 50 treats</small></span>'+ic('share',{s:18,c:'#A9BDB7'})+'</button>'+
+ '<button class="rowcard" data-ref="invite"><span class="tic emo-b">'+emo('💌')+'</span><span class="grow"><b>Invite a friend</b><small>You both get 50 treats</small></span>'+ic('share',{s:18,c:'#A9BDB7'})+'</button>'+
  '<div class="note">Sample pack. In the real app, friends join with an invite link.</div></div>';
 },mount:function(el){
  ref(el,'paw').addEventListener('click',function(e){var b=e.currentTarget,a=ref(el,'alert');for(var i=0;i<5;i++){(function(i){setTimeout(function(){var p=document.createElement('div');p.className='pawfly';p.innerHTML=ic('paw',{s:26,c:'#F9F6F0'});p.style.left=(30+i*60)+'px';a.appendChild(p);setTimeout(function(){p.remove()},1100)},i*90)})(i)}
@@ -2656,7 +2737,7 @@ function openJournal(src){
  var app=$('#app'),rm=S.rm||app.classList.contains('rm'),D=jbData(),P=1+D.days.length,FIL=null;
  var TAGS=[];S.notes.forEach(function(n){if(TAGS.indexOf(n.tag)<0)TAGS.push(n.tag)});
  var ov=document.createElement('div');ov.id='jb-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Your journal');
- ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><span class="jb-sp" aria-hidden="true"></span></div>'+
+ ov.innerHTML='<div class="jb-top"><button class="icon-btn jb-x" aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Journal</span><span class="jb-sp" aria-hidden="true"></span></div>'+
   '<div class="jb-stage"><div class="jb-fly"><div class="jb-book">'+
    '<i class="jb-back"></i><i class="jb-pg l"></i><i class="jb-pg r"></i>'+
    '<div class="jb-cv"><div class="jb-cf"><span class="jb-cspine"></span><svg viewBox="0 0 24 24" class="jb-cpaw">'+pawP(12,12,2)+'</svg><b class="jb-ctitle">'+esc(S.name||'My')+'’s journal</b></div><div class="jb-cb"><div class="jp-plate"><small>This journal belongs to</small><b>'+esc(S.name||'You')+'</b>'+face('happy',54)+'<span>& Milo</span></div></div></div>'+
@@ -2711,7 +2792,7 @@ function openJournal(src){
   ov.appendChild(ji);var jc=$('.ji-cover',ji);
   var cx=ar.width/2-W/2,cy=ar.height*.42-H/2,sx=r.width/W,x0=r.left-ar.left+r.width/2-W/2,y0=r.top-ar.top+r.height/2-H/2;
   ji.style.left=cx+'px';ji.style.top=cy+'px';haptic(8);
-  ji.animate([{transform:'translate('+(x0-cx)+'px,'+(y0-cy)+'px) scale('+sx+') rotate(-4deg)'},{transform:'translate(0,-10px) scale(1.06) rotate(1deg)',offset:.75},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.8,.3,1)',fill:'forwards'}).onfinish=function(){
+  var egg=window.__jbEgg;window.__jbEgg=false;ji.animate([{transform:'translate('+(x0-cx)+'px,'+(y0-cy)+'px) scale('+sx+') rotate('+(egg?-364:-4)+'deg)'},{transform:'translate(0,-10px) scale(1.06) rotate(1deg)',offset:.75},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.8,.3,1)',fill:'forwards'}).onfinish=function(){
    haptic([10,30,14]);SFX.pop&&SFX.pop();
    jc.animate([{transform:'perspective(900px) rotateY(0)'},{transform:'perspective(900px) rotateY(-168deg)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
    ji.animate([{transform:'none'},{transform:'translateX('+(W*.42)+'px) scale(1.08)'}],{duration:620,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
@@ -2808,8 +2889,8 @@ function startOnb(){
    var cards='';for(var i=0;i<14;i++){cards+='<div class="gf-card"><span class="gf-av" style="background:'+['#5C6F96','#7A5C96','#4F7FA8','#8A6A9C'][i%4]+'"></span><span class="gf-lines"><i style="width:'+(50+i*7%40)+'%"></i><i style="width:'+(70+i*13%25)+'%"></i></span><span class="gf-img" style="height:'+(90+(i*37)%70)+'px"></span></div>'}
    return '<div class="glass"><div class="gf-wrap"><div class="gf-feed">'+cards+cards+'</div></div><div class="gf-tint"></div><div class="gf-badges"></div><div class="gf-paws"></div><div class="gf-nose">'+face('neutral',300)+'</div><div class="gf-fog"></div><div class="gf-wiper">'+'<svg viewBox="0 0 24 24"><g fill="#F9F6F0"><path d="M12 11.6c-2.7 0-5.6 3.2-5.6 5.8 0 1.7 1.2 2.6 2.7 2.6 1.1 0 1.9-.7 2.9-.7s1.8.7 2.9.7c1.5 0 2.7-.9 2.7-2.6 0-2.6-2.9-5.8-5.6-5.8z"/><ellipse cx="4.5" cy="9.7" rx="1.8" ry="2.3"/><ellipse cx="8.9" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="15.1" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="19.5" cy="9.7" rx="1.8" ry="2.3"/></g></svg></div>'+
    '<div class="gw"><div class="gw-garden"><img src="assets/garden.png" alt=""></div><div class="gw-in"><div class="gw-milo">'+mimg('wave',230,'','Milo waving')+'</div><h1 class="onb-h">Hi. I’ve been<br>waiting for you.</h1><p class="onb-p">I’m Milo. I live on the other side of your screen, and I’d really like to go outside.</p><button class="btn primary" data-next>Hi, Milo</button><button class="onb-link gw-login">I already have an account</button></div></div><button class="gf-skip">Skip intro</button></div>'},
-  wake:function(){return '<div class="onb-fill center-col"><div class="onb-hero rub wake-zone" data-ref="pet"><span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>Z</i></span>'+mimg('sleep',260,'','Milo sleeping','happy')+'</div><h1 class="onb-h" data-ref="h">Shh, he’s napping.</h1><p class="onb-p" data-ref="p">Every time you put your phone down, Milo gets a little rest. Give him a rub to wake him up.</p><span class="hint-dark" data-ref="hint" style="align-self:center">'+ic('hand',{s:14})+'Rub Milo</span></div><button class="btn primary onb-hide" data-next data-ref="go">Nice to meet you</button>'},
-  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" placeholder="Friend" value="'+(O.name&&O.name!=='Friend'?O.name:'').replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
+  wake:function(){return '<div class="onb-fill center-col"><div class="onb-hero rub wake-zone" data-ref="pet"><span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>Z</i></span>'+mimg('sleep',260,'','Milo sleeping','happy')+'<span class="ghost-hand" data-ref="gh" aria-hidden="true">'+ic('hand',{s:54,w:1.8})+'</span></div><h1 class="onb-h" data-ref="h">Shh, he’s napping.</h1><p class="onb-p" data-ref="p">Every time you put your phone down, Milo gets a little rest. Give him a rub to wake him up.</p><span class="hint-dark" data-ref="hint" style="align-self:center">'+'<span class="rub-hand">'+ic('hand',{s:15})+'</span>Rub Milo</span></div><button class="btn primary onb-hide" data-next data-ref="go">Nice to meet you</button>'},
+  name:function(){return '<div class="onb-fill">'+bubble('Before we go anywhere. What should I call you?','wave')+'<input class="onb-in" data-ref="name" maxlength="24" autocomplete="given-name" autofocus enterkeyhint="done" placeholder="Friend" value="'+(O.name&&O.name!=='Friend'?O.name:'').replace(/"/g,'')+'"></div><button class="btn primary" data-next>Continue</button>'},
   bandana:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Pick Milo’s bandana</h2><p class="onb-p" style="margin-top:-6px">Every good dog needs one. You can change it anytime in his closet.</p><div data-ref="m">'+miloB('happy',230)+'</div><div class="band-row">'+BANDANAS.map(function(b){return '<button class="band'+(b.id===O.band?' on':'')+'" data-b="'+b.id+'" aria-label="'+b.l+' bandana"><span style="background:'+b.c+'"></span>'+b.l+'</button>'}).join('')+'</div></div><button class="btn primary" data-next>Looks sharp</button>'},
   idcard:function(){return '<div class="onb-fill center-col"><h2 class="onb-h2">Make Milo official</h2><p class="onb-p" style="margin-top:-6px">Every good boy needs an ID. Pick his card. You\u2019ll renew it together each month.</p><div class="oid-prev" data-ref="pv"></div><div class="oid-row" data-ref="row"></div></div><button class="btn primary" data-ref="go">Issue his ID</button>'},
   habit:function(){var H=ONB_HABITS.filter(function(h){return h.id!=='other'});
@@ -2844,8 +2925,10 @@ function startOnb(){
    $('.gw-login',el).addEventListener('click',function(){openLogin({title:'Welcome back',sub:'Sign in to pick up right where you left off.',skip:'Back',onDone:function(){O.name=S.name||O.name}})})},
   wake:function(el){var n=0,woke=false,z=ref(el,'pet');
    function wake(){if(woke)return;woke=true;var im=$('.mimg',z);im&&im.setAttribute('src','assets/m/wave.png');im&&im.removeAttribute('data-pet');z.classList.add('awake');ref(el,'h').textContent='He’s up! And he likes you.';ref(el,'p').textContent='Milo’s been waiting a long time to meet you.';ref(el,'hint').style.visibility='hidden';ref(el,'go').classList.remove('onb-hide');haptic([10,50,10,50,20]);SFX.bark&&SFX.bark()}
+   var gh=ref(el,'gh'),touched=false,demo=null;function stroke(){if(touched||woke||!gh.isConnected){clearInterval(demo);return}gh.classList.add('on');gh.animate([{transform:'translate(-42px,0) rotate(-14deg)',opacity:0},{transform:'translate(-38px,0) rotate(-14deg)',opacity:.85,offset:.12},{transform:'translate(40px,-10px) rotate(12deg)',opacity:.85,offset:.37},{transform:'translate(-38px,0) rotate(-14deg)',opacity:.85,offset:.62},{transform:'translate(40px,-10px) rotate(12deg)',opacity:.85,offset:.87},{transform:'translate(40px,-10px) rotate(12deg)',opacity:0}],{duration:1500,easing:'ease-in-out'});[150,520,900,1260].forEach(function(d,i){setTimeout(function(){if(!touched&&!woke){swish();if(i%2===1)haptic(3)}},d)})}
+   setTimeout(stroke,900);demo=setInterval(stroke,3200);z.addEventListener('pointerdown',function(){touched=true;clearInterval(demo);gh.classList.remove('on');gh.style.display='none'});
    rubbable(z,{pet:function(){if(++n>=6)wake()},end:function(){}});z.addEventListener('click',function(){if(++n>=6)wake()})},
-  name:function(el){var i=ref(el,'name');T(function(){i.focus()},500);i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
+  name:function(el){var i=ref(el,'name');try{i.focus({preventScroll:true})}catch(_){}T(function(){i.focus()},500);i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next()}})},
   bandana:function(el){$$('.band',el).forEach(function(b){b.addEventListener('click',function(){O.band=b.dataset.b;$$('.band',el).forEach(function(x){x.classList.toggle('on',x===b)});var c=bc(),m=ref(el,'m');m.innerHTML=miloB('happy',230);$('.milo-b',m).classList.add('pop');haptic(8);SFX.pop&&SFX.pop()})})},
   idcard:function(el){if(!O.idStyle)O.idStyle='classic';var busy=false;
    function draw(pop){ref(el,'pv').innerHTML='<div class="mid oid">'+idFront({nm:O.name||'You',band:O.band,style:O.idStyle,photo:'head-happy',since:Date.now(),exp:Date.now()+30*864e5,preview:true})+'</div>';if(pop)$('.mid-f',ref(el,'pv')).classList.add('pop');
@@ -2997,7 +3080,7 @@ function freshInsights(){
   ref(el,'talk').addEventListener('click',function(){goRoot('milo')});return null};
  var jr=SCREENS.journal.render;
  SCREENS.journal.render=function(p){if(!FRESH()&&S.notes&&S.notes.length)return jr(p);
-  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your journal</span><div style="width:44px"></div></div><div class="fresh-empty">'+mimg('neutral',170,'','Milo waiting')+'<h1 class="title center">Nothing here yet</h1><p class="muted center" style="margin:0;font-size:16px;line-height:23px">The first thing you tell Milo will live here, with his reply. Only you can see it.</p><button class="btn primary" data-tab="milo" style="margin-top:8px">Talk to Milo</button></div></div>'};
+  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Journal</span><div style="width:44px"></div></div><div class="fresh-empty">'+mimg('neutral',170,'','Milo waiting')+'<h1 class="title center">Nothing here yet</h1><p class="muted center" style="margin:0;font-size:16px;line-height:23px">The first thing you tell Milo will live here, with his reply. Only you can see it.</p><button class="btn primary" data-tab="milo" style="margin-top:8px">Talk to Milo</button></div></div>'};
  var wr=SCREENS.wrapped.render,wm=SCREENS.wrapped.mount;
  SCREENS.wrapped.render=function(p){if(!FRESH())return wr(p);
   return '<div class="fresh-wr"><button class="icon-btn" data-back aria-label="Close" style="position:absolute;top:54px;right:20px">'+ic('x',{w:2.6})+'</button>'+mimg('sleep',200,'','Milo napping')+'<h2 class="w-h">Wrapped is still being written</h2><p class="w-p">Your first one arrives Sunday evening. Live your week, Milo’s taking notes.</p></div>'};
@@ -3134,7 +3217,7 @@ function miloID(){
  return '<div class="mid" data-ref="mid" role="button" tabindex="0" aria-label="Milo’s companion ID. Tap to flip"><div class="mid-in">'+
  idFront({nm:nm,band:S.bandana,style:st,photo:S.idPhoto,since:S.since,exp:idExp()})+
  '<div class="mid-b mid-s-'+st+'"><svg class="mid-wm" viewBox="0 0 24 24" aria-hidden="true">'+pawP(12,12,2)+'</svg><div class="mid-top"><span>Milo’s human</span><span class="mid-hint">'+ic('refresh',{s:12,w:2.6})+'Flip</span></div>'+
- '<div class="mid-own"><span class="mid-av">'+esc(nm.charAt(0).toUpperCase())+'</span><div class="grow"><b>'+esc(nm)+'</b><small>'+days+' days together'+(S.signedIn?' · backed up':'')+'</small></div><button class="mid-qr" data-qr aria-label="Invite a friend with your QR code">'+qrSvg(30)+'<span>Invite</span></button></div>'+
+ '<div class="mid-own"><span class="mid-av">'+esc(nm.charAt(0).toUpperCase())+'</span><div class="grow"><b>'+esc(nm)+'</b><small>'+days+' days together'+(S.signedIn?' · backed up':'')+'</small></div><button class="mid-qr" data-qr aria-label="Invite a friend with your QR code">'+qrSvg(30)+'<span>💌 Invite</span></button></div>'+
  '<div class="mid-note">“'+esc(nm)+' is my favorite human.” <span>— Milo</span></div>'+
  '<div class="mid-acts"><span class="mid-down">'+ic('chevD',{s:14,w:2.8})+'Your account is below</span>'+plan+'</div></div>'+
  '</div></div>'}
@@ -3205,9 +3288,9 @@ SCREENS.swaps={render:function(){
 },mount:function(el){
  var list=ref(el,'list'),inp=ref(el,'in');
  function draw(){S.swapUse=S.swapUse||{};
-  list.innerHTML=S.swaps.length?S.swaps.map(function(s,i){var n=S.swapUse[s.t]||0;return '<div class="srow sw-item"><span class="si sw-ic">'+ic(s.i||swapIc(s.t),{s:18})+'</span><span class="grow">'+esc(s.t)+'<small>'+(n?'Used '+n+'×':'Not tried yet')+'</small></span><button class="sw-del" data-del="'+i+'" aria-label="Remove '+esc(s.t)+'">'+ic('x',{s:16,w:2.8})+'</button></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No swaps yet. Add the little things that pull you back to real life.</span></div>';
+  list.innerHTML=S.swaps.length?S.swaps.map(function(s,i){var n=S.swapUse[s.t]||0;return '<div class="srow sw-item"><span class="si sw-ic">'+emo(swapEmo(s.t))+'</span><span class="grow">'+esc(s.t)+'<small>'+(n?'Used '+n+'×':'Not tried yet')+'</small></span><button class="sw-del" data-del="'+i+'" aria-label="Remove '+esc(s.t)+'">'+ic('x',{s:16,w:2.8})+'</button></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No swaps yet. Add the little things that pull you back to real life.</span></div>';
   var have=S.swaps.map(function(s){return s.t.toLowerCase()});
-  ref(el,'ideas').innerHTML=SWAP_IDEAS.filter(function(x){return have.indexOf(x[0].toLowerCase())<0}).map(function(x){return '<button class="chip sw-idea" data-idea="'+esc(x[0])+'">'+ic(x[1],{s:15})+esc(x[0])+'</button>'}).join('')}
+  ref(el,'ideas').innerHTML=SWAP_IDEAS.filter(function(x){return have.indexOf(x[0].toLowerCase())<0}).map(function(x){return '<button class="chip sw-idea" data-idea="'+esc(x[0])+'">'+emo(swapEmo(x[0]))+esc(x[0])+'</button>'}).join('')}
  function add(t){t=String(t||'').trim();if(!t)return;if(S.swaps.some(function(s){return s.t.toLowerCase()===t.toLowerCase()})){toast('Already in your swaps');return}
   S.swaps.unshift({t:t,i:swapIc(t)});save();draw();haptic([8,30,8]);SFX.pop();var f=list.firstChild;f&&f.classList.add('sw-new')}
  ref(el,'add').addEventListener('click',function(){add(inp.value);inp.value=''});
@@ -3223,14 +3306,19 @@ function ifT(k){var o=IF_OPTS.filter(function(x){return x.k===k})[0];return o?o.
 function thenO(k){return thenOpts().filter(function(x){return x.k===k})[0]||{k:k,t:k.replace(/^sw:/,'')}}
 function runThen(o){if(o.go)push(o.go,{},'modal');else if(o.tab)goRoot(o.tab);else if(o.sw){useSwap(o.sw.t);miniTask(swapPick(o.sw))}}
 function planSheet(onSave){var pick={i:null,t:null};
- openSheet('<div style="font-size:23px;font-weight:900">New if–then plan</div><p class="muted" style="margin:0">Decide now, so future you doesn’t have to. Milo reminds you right at that moment.</p>'+
-  '<div class="pl-prev" data-ref="pv"></div>'+
-  '<div class="over" style="color:var(--ink2)">IF…</div><div class="pl-chips" data-ref="ifs">'+IF_OPTS.map(function(o){return '<button class="chip" data-if="'+o.k+'">'+o.t+'</button>'}).join('')+'</div>'+
-  '<div class="over" style="color:var(--ink2)">THEN I’LL…</div><div class="pl-chips" data-ref="ths">'+thenOpts().map(function(o){return '<button class="chip'+(o.sw?' own':'')+'" data-then="'+esc(o.k)+'">'+esc(o.t)+'</button>'}).join('')+'</div>'+
-  '<button class="btn primary" data-ref="ok" disabled>Save my plan</button>',function(sh,close){
-  function upd(){ref(sh,'pv').innerHTML='<span>If</span> <b class="'+(pick.i?'':'blank')+'">'+(pick.i?ifT(pick.i):'…')+'</b>, <span>then I’ll</span> <b class="'+(pick.t?'':'blank')+'">'+(pick.t?esc(thenO(pick.t).t):'…')+'</b>.';
+ openSheet('<div style="font-size:23px;font-weight:900">New if–then plan</div><p class="muted" style="margin:0">Decide now, so future you doesn’t have to.</p>'+
+  '<div class="tl-build">'+
+  '<div class="tl-row"><span class="tl-lab">if</span><span class="tl-dot big" data-ref="d1">'+emo('▲','ph')+'</span><div class="tl-card b"><b>Trigger</b><small>Every plan starts with a moment.</small><div class="pl-chips">'+IF_OPTS.map(function(o){return '<button class="chip" data-if="'+o.k+'">'+emo(IF_EMO[o.k])+o.t+'</button>'}).join('')+'</div></div></div>'+
+  '<div class="tl-row"><span class="tl-lab then">then</span><span class="tl-dot big then" data-ref="d2">'+emo('●','ph')+'</span><div class="tl-card b dashed" data-ref="tc"><div class="tl-lock" data-ref="lk"><span class="tl-ghost">Add action</span><span><b>Pick a trigger to unlock the action.</b> Every plan ends with one small step.</span></div><div class="tl-acts" data-ref="acts" hidden><b>Action</b><small>What will you do instead?</small><div class="pl-chips">'+thenOpts().map(function(o){return '<button class="chip'+(o.sw?' own':'')+'" data-then="'+esc(o.k)+'">'+emo(thenEmo(o.k))+esc(o.t.replace(/^do my swap: /,''))+'</button>'}).join('')+'</div></div></div></div>'+
+  '</div><div class="pl-prev" data-ref="pv"></div><button class="btn primary" data-ref="ok" disabled>Save my plan</button>',function(sh,close){
+  function upd(){var d1=ref(sh,'d1'),d2=ref(sh,'d2');
+   d1.innerHTML=emo(pick.i?IF_EMO[pick.i]:'▲',pick.i?'':'ph');d1.classList.toggle('set',!!pick.i);
+   d2.innerHTML=emo(pick.t?thenEmo(pick.t):'●',pick.t?'':'ph');d2.classList.toggle('set',!!pick.t);
+   ref(sh,'tc').classList.toggle('dashed',!pick.i);ref(sh,'lk').hidden=!!pick.i;ref(sh,'acts').hidden=!pick.i;
+   ref(sh,'pv').innerHTML='<span>If</span> <b class="'+(pick.i?'':'blank')+'">'+(pick.i?ifT(pick.i):'…')+'</b>, <span>then I’ll</span> <b class="'+(pick.t?'':'blank')+'">'+(pick.t?esc(thenO(pick.t).t):'…')+'</b>.';
    $$('[data-if]',sh).forEach(function(b){b.classList.toggle('on',b.dataset.if===pick.i)});$$('[data-then]',sh).forEach(function(b){b.classList.toggle('on',b.dataset.then===pick.t)});ref(sh,'ok').disabled=!(pick.i&&pick.t)}
-  sh.addEventListener('click',function(e){var a=e.target.closest('[data-if]'),b=e.target.closest('[data-then]');if(a){pick.i=a.dataset.if;haptic(6);upd()}if(b){pick.t=b.dataset.then;haptic(6);upd()}});
+  function pop(d){d.classList.remove('pop');void d.offsetWidth;d.classList.add('pop')}
+  sh.addEventListener('click',function(e){var a=e.target.closest('[data-if]'),b=e.target.closest('[data-then]');if(a){pick.i=a.dataset.if;haptic(6);upd();pop(ref(sh,'d1'))}if(b){pick.t=b.dataset.then;haptic(6);upd();pop(ref(sh,'d2'))}});
   ref(sh,'ok').addEventListener('click',function(){S.plans.unshift({id:Date.now(),i:pick.i,t:pick.t,on:true});save();close();haptic([10,40,16]);SFX.chime();toast('Plan saved. Milo will remind you.');onSave&&onSave()});
   upd()})}
 function planNotify(p){var o=thenO(p.t);notify({title:'If '+ifT(p.i)+'…',body:'…then you’ll '+o.t+'. Tap to start. 🐾',onTap:function(){runThen(o)}})}
@@ -3240,7 +3328,9 @@ SCREENS.plans={render:function(){
  '<div class="col" style="gap:10px" data-ref="list"></div><button class="btn primary" data-ref="new" style="margin-top:4px">'+ic('plus',{s:18,w:3})+' New plan</button></div>';
 },mount:function(el){
  var list=ref(el,'list');
- function draw(){list.innerHTML=S.plans.length?S.plans.map(function(p,i){var o=thenO(p.t);return '<div class="plan'+(p.on?'':' off')+'"><div class="pl-l"><span class="pl-k">IF</span><b>'+ifT(p.i)+'</b></div><div class="pl-arrow">'+ic('chevD',{s:18,w:2.6})+'</div><div class="pl-l"><span class="pl-k then">THEN</span><b>I’ll '+esc(o.t)+'</b></div>'+
+ function draw(){list.innerHTML=S.plans.length?S.plans.map(function(p,i){var o=thenO(p.t);return '<div class="plan tl'+(p.on?'':' off')+'">'+
+  '<div class="tl-row"><span class="tl-lab">if</span><span class="tl-dot">'+emo(IF_EMO[p.i]||'✨')+'</span><div class="tl-card"><b>'+ifT(p.i)+'</b></div></div>'+
+  '<div class="tl-row"><span class="tl-lab then">then</span><span class="tl-dot then">'+emo(thenEmo(p.t))+'</span><div class="tl-card then"><b>I’ll '+esc(o.t)+'</b></div></div>'+
   '<div class="pl-f"><button class="chip pl-try" data-try="'+i+'">'+ic('bell',{s:14})+'Try the reminder</button><button class="pl-tog" data-tog="'+i+'" aria-label="Plan on or off"><span class="switch'+(p.on?' on':'')+'"></span></button><button class="sw-del" data-del="'+i+'" aria-label="Delete plan">'+ic('trash',{s:16})+'</button></div></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No plans yet. Start with your trickiest moment.</span></div>'}
  el.addEventListener('click',function(e){var t=e.target.closest('[data-try]'),g=e.target.closest('[data-tog]'),d=e.target.closest('[data-del]');
   if(t){planNotify(S.plans[+t.dataset.try]);return}
@@ -3293,15 +3383,86 @@ window.__shakePet=shakePet;
 function sinceLine(){var hrs=Math.max(1,Math.round(S.streak*1.1+S.beaten*.25+(S.urgeLog||[]).length*.2)),mv=Math.max(1,Math.round(hrs/2)),hk=Math.max(1,Math.round(hrs/3.5));
  return 'You’ve taken back '+hrs+' hour'+(hrs===1?'':'s')+'. That’s '+mv+' movie'+(mv===1?'':'s')+' or '+hk+' hike'+(hk===1?'':'s')+'.'}
 
+/* ===== Nov 18 (b): emoji, trophy case, easter eggs ===== */
+var SWAP_EMO={'call mom':'📞','guitar for 5 minutes':'🎸','stretch for 2 minutes':'🧘','make a cup of tea':'🍵','step outside':'🌳','read 2 pages':'📖','sketch something':'🎨','text a friend':'💬','water the plants':'🪴','cold glass of water':'💧'};
+function swapEmo(t){t=String(t||'').toLowerCase();if(SWAP_EMO[t])return SWAP_EMO[t];
+ var K=[[/dog|pup/,'🐕'],[/walk/,'🚶'],[/run|jog/,'🏃'],[/call|phone/,'📞'],[/guitar|piano|music|sing|song/,'🎸'],[/read|book/,'📖'],[/tea|coffee/,'🍵'],[/water|drink/,'💧'],[/cook|bake/,'🍳'],[/draw|sketch|paint|art/,'🎨'],[/stretch|yoga/,'🧘'],[/text|message|chat/,'💬'],[/outside|garden|park|plant/,'🌳'],[/gym|workout|push/,'💪'],[/clean|tidy/,'🧹'],[/journal|write/,'✍️'],[/game|puzzle/,'🧩'],[/shower|bath/,'🚿'],[/sleep|nap|bed/,'😴'],[/hug|mom|dad|family/,'🤗']];
+ for(var i=0;i<K.length;i++)if(K[i][0].test(t))return K[i][1];return '✨'}
+function emo(e,cls){return '<span class="emo'+(cls?' '+cls:'')+'" aria-hidden="true">'+e+'</span>'}
+var IF_EMO={late:'🌙',open:'📱',couch:'🛋️',wake:'⏰',home:'🏠',stress:'😣'},THEN_EMO={breathe:'🌬️',phonedown:'📵',sos:'🆘',talk:'🐶'};
+function thenEmo(k){return k.indexOf('sw:')===0?swapEmo(k.slice(3)):(THEN_EMO[k]||'✨')}
+function swish(){var a=audio();if(!a)return;try{var n=Math.floor(a.sampleRate*.24),buf=a.createBuffer(1,n,a.sampleRate),d=buf.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(Math.sin(Math.PI*i/n),2);
+ var src=a.createBufferSource();src.buffer=buf;var f=a.createBiquadFilter();f.type='bandpass';f.frequency.value=1700;f.Q.value=.7;var g=a.createGain();g.gain.value=.07;src.connect(f);f.connect(g);g.connect(a.destination);src.start()}catch(e){}}
+
+/* easter eggs */
+function eggFound(k,msg){S.eggs=S.eggs||{};if(S.eggs[k])return false;S.eggs[k]=Date.now();S.treats+=10;save();setTimeout(function(){toast('🥚 Secret found! '+msg+' +10 treats');haptic([10,40,10,40,30]);SFX.win()},350);return true}
+function journalSwipe(row){var ic0=$('.tic',row),sx=null,dx=0,swiped=false,pid=null;
+ row.addEventListener('pointerdown',function(e){sx=e.clientX;dx=0;swiped=false;pid=e.pointerId});
+ row.addEventListener('pointermove',function(e){if(sx==null)return;dx=Math.max(0,e.clientX-sx);if(dx>8){try{row.setPointerCapture(pid)}catch(_){}row.classList.add('jsw');ic0.style.transform='translateX('+Math.min(dx,120)*.9+'px) rotate('+Math.min(dx,120)/8+'deg) scale('+(1+Math.min(dx,120)/400)+')';row.style.transform='translateX('+Math.min(dx,120)*.15+'px)';if(dx>70&&!row.classList.contains('ready')){row.classList.add('ready');haptic(12)}else if(dx<=70)row.classList.remove('ready')}});
+ function end(){if(sx==null)return;var go=dx>70;sx=null;row.classList.remove('jsw','ready');row.style.transition='transform .35s cubic-bezier(.3,1.4,.5,1)';row.style.transform='';ic0.style.transition='transform .35s cubic-bezier(.3,1.4,.5,1)';
+  if(go){swiped=true;window.__jbEgg=true;openJournal(ic0);eggFound('journal','Swipe the Journal to pull it out.')}
+  setTimeout(function(){ic0.style.transform='';},10);setTimeout(function(){row.style.transition='';ic0.style.transition=''},400)}
+ row.addEventListener('pointerup',end);row.addEventListener('pointercancel',end);
+ row.addEventListener('click',function(e){if(swiped){e.stopImmediatePropagation();e.preventDefault();swiped=false}},true)}
+function bagHold(bag){var t=null,holding=false,done=false,z=null,ticks=null;
+ function start(){holding=true;bag.classList.add('zipping');z=document.createElement('div');z.className='bag-zip';z.innerHTML='<i class="bz-tape"></i><span class="bz-pull"><i class="bz-tail"></i></span>';bag.appendChild(z);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){z.classList.add('go')})});haptic(10);var n=0;ticks=setInterval(function(){haptic(4);if(++n%3===0)tone(1300+n*30,.03,'square',.02)},90);
+  t=setTimeout(function(){done=true;clearInterval(ticks);haptic([10,30,20]);eggFound('zip','Hold Milo’s toolkit to unzip it.');z.classList.add('open');setTimeout(function(){cleanup();openToolkit()},260)},1250)}
+ function cleanup(){clearInterval(ticks);bag.classList.remove('zipping');if(z){var zz=z;z=null;zz.classList.remove('go');setTimeout(function(){zz.remove()},300)}}
+ bag.addEventListener('pointerdown',function(){done=false;clearTimeout(t);t=setTimeout(start,280)});
+ function up(){clearTimeout(t);if(holding&&!done){cleanup()}holding=false}
+ bag.addEventListener('pointerup',up);bag.addEventListener('pointerleave',up);bag.addEventListener('pointercancel',up);
+ bag.addEventListener('click',function(e){if(done||bag.__held){e.stopImmediatePropagation();done=false;bag.__held=false}},true);
+ bag.addEventListener('pointerup',function(){if(holding)bag.__held=true},true)}
+
+/* trophy case */
+var AWARDS=[
+ {k:'r1',g:'Ribbons & rosettes',e:'🎗️',n:'First Day ribbon',d:1,how:'Your first habit-free day.'},
+ {k:'r3',g:'Ribbons & rosettes',e:'🎀',n:'Three-Day ribbon',d:3,how:'Three days in a row.'},
+ {k:'ro1',g:'Ribbons & rosettes',e:'🏵️',n:'Wave Rider rosette',u:1,how:'Rode out your first urge with SOS.'},
+ {k:'ro10',g:'Ribbons & rosettes',e:'🌼',n:'Ten Waves rosette',u:10,how:'Rode out 10 urges.'},
+ {k:'m7',g:'Medals',e:'🥉',n:'Bronze medal',d:7,how:'A full week habit-free.'},
+ {k:'m14',g:'Medals',e:'🥈',n:'Silver medal',d:14,how:'Two weeks habit-free.'},
+ {k:'m30',g:'Medals',e:'🥇',n:'Gold medal',d:30,how:'A whole month habit-free.'},
+ {k:'bone',g:'Special bone',e:'🦴',n:'The Golden Bone',d:12,how:'Milo buried it for your 12th day. Very rare.',gold:1},
+ {k:'t1',g:'Trophies',e:'🏆',n:'Locked In trophy',lock:1,how:'Finish your first Locked In session.'},
+ {k:'t60',g:'Trophies',e:'🏆',n:'Sixty-Day cup',d:60,how:'Sixty days habit-free.',big:1},
+ {k:'p100',g:'Plaques',plaque:'100 DAYS',n:'Century plaque',d:100,how:'One hundred days. Engraved with your names.'},
+ {k:'p365',g:'Plaques',plaque:'ONE YEAR',n:'Best Friends plaque',d:365,how:'A full year with Milo.'},
+ {k:'x45',g:'Mystery prizes',mys:1,n:'Mystery prize',d:45,how:'Something big for Milo. Rumor has it there’s a roof involved.',teaser:'🏠'},
+ {k:'x75',g:'Mystery prizes',mys:1,n:'Mystery prize',d:75,how:'Milo keeps hinting it has four little wheels.',teaser:'🛹'},
+ {k:'x150',g:'Mystery prizes',mys:1,n:'Mystery prize',d:150,how:'Fast, fun, and Milo can’t stop talking about it.',teaser:'🛴'}];
+function awardHas(a){var best=Math.max(S.best||0,S.streak||0),tot=S.urgesTotal||23;if(a.d)return best>=a.d;if(a.u)return tot>=a.u;if(a.lock)return !!S.lockDone;return false}
+function awardArt(a,sz){var has=awardHas(a);
+ if(a.plaque)return '<span class="plaque'+(has?'':' lk')+'" style="--s:'+(sz||44)+'px"><i></i><b>'+a.plaque+'</b><small>'+esc((S.name||'You').toUpperCase())+' & MILO</small></span>';
+ if(a.mys)return '<span class="mys" style="--s:'+sz+'px">'+emo('🎁')+'<b>?</b></span>';
+ return '<span class="aw'+(has?'':' lk')+(a.gold?' gold':'')+(a.big?' big':'')+'" style="font-size:'+sz+'px">'+a.e+'</span>'}
+function awardsEarned(){return AWARDS.filter(awardHas)}
+function nextAward(){var best=Math.max(S.best||0,S.streak||0);return AWARDS.filter(function(a){return a.d&&a.d>best}).sort(function(x,y){return x.d-y.d})[0]}
+function awardSheet(a){var has=awardHas(a),best=Math.max(S.best||0,S.streak||0),left=a.d?a.d-best:0;
+ openSheet('<div class="aw-sheet">'+awardArt(a,96)+'<div style="font-size:24px;font-weight:900">'+(a.mys&&!has?'Mystery prize':a.n)+'</div><p class="muted" style="margin:0">'+a.how+'</p>'+
+  (has?'<span class="aw-got">'+ic('check',{s:14,w:3})+' Earned'+(a.mys?'':'')+'</span>':'<span class="aw-left">'+(a.d?left+' more day'+(left===1?'':'s')+' to go':a.u?'Ride out '+(a.u-(S.urgesTotal||23))+' more urges':'Not yet earned')+'</span>')+
+  (a.mys&&!has?'<p class="aw-tease">We’re still wrapping this one. It arrives in a future update, and you’ll be first to open it.</p>':'')+'<button class="btn primary" data-ref="ok">'+(has?'Show Milo':'Keep going')+'</button></div>',function(sh,close){ref(sh,'ok').addEventListener('click',function(){close();if(has){haptic([10,40,10]);toast('Milo is wagging so hard right now 🐾')}})})}
+SCREENS.trophies={render:function(){
+ var got=awardsEarned().length,nx=nextAward(),best=Math.max(S.best||0,S.streak||0);
+ var groups=['Medals','Special bone','Ribbons & rosettes','Trophies','Plaques','Mystery prizes'];
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Trophy case</span><div style="width:44px"></div></div>'+
+ '<div class="tc-hero"><div class="tc-shine"></div>'+mimg('celebrate',120,'','Milo celebrating')+'<div class="col" style="gap:2px"><span class="over" style="color:var(--ink2)">YOUR STREAK</span><b style="font-size:44px;line-height:46px;font-weight:900">'+S.streak+' days</b><small style="color:var(--ink2);font-weight:700">'+got+' of '+AWARDS.length+' earned</small></div></div>'+
+ (nx?'<div class="tc-next"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span>Next: <b>'+(nx.mys?'a mystery prize':nx.n)+'</b> in '+(nx.d-best)+' days</span>'+awardArt(nx,30)+'</div><div class="tc-bar"><i style="width:'+Math.round(best/nx.d*100)+'%"></i></div></div>':'')+
+ groups.map(function(g){var items=AWARDS.filter(function(a){return a.g===g});return '<div class="tc-g"><div class="over">'+g.toUpperCase()+'</div><div class="tc-shelf">'+items.map(function(a){var has=awardHas(a);return '<button class="tc-it'+(has?' got':'')+'" data-aw="'+a.k+'">'+awardArt(a,a.plaque?0:44)+'<b>'+(a.mys&&!has?'???':a.n)+'</b><small>'+(has?'Earned':a.d?a.d+' days':a.u?a.u+' urges':'Locked In')+'</small></button>'}).join('')+'</div></div>'}).join('')+
+ '<p class="muted" style="text-align:center;font-size:13px">Slips never take away what you’ve earned.</p></div>';
+},mount:function(el){el.addEventListener('click',function(e){var b=e.target.closest('[data-aw]');if(!b)return;haptic(8);awardSheet(AWARDS.filter(function(a){return a.k===b.dataset.aw})[0])})}};
+function trophyRow(dark){var g=awardsEarned();return '<button class="rowcard tc-row'+(dark?'':' cream')+'" data-go="trophies"><span class="tc-mini">'+g.slice(-4).map(function(a){return awardArt(a,22)}).join('')+'</span><span class="grow"><b>Trophy case</b><small'+(dark?'':' style="color:var(--ink2)"')+'>'+g.length+' of '+AWARDS.length+' earned · next in '+((nextAward()||{d:0}).d-Math.max(S.best,S.streak))+' days</small></span>'+ic('chevR',{c:'#A9BDB7'})+'</button>'}
+
 SCREENS.you={onShow:function(el){if(window.__idRenewed){window.__idRenewed=false;var m=ref(el,'mid');if(m){var t=document.createElement('div');t.innerHTML=miloID();m.parentNode.replaceChild(t.firstChild,m);SCREENS.you.bindID(el)}}},render:function(){
- var YM={ifthen:'ifthen',swaps:'swaps',calendar:'hours',bell:'ci',heart:'why',pawpair:'pack',shieldpaw:'shield',moonz:'bed',wind:'sound',lifebuoy:'help',lock:'privacy'};function tile(i,t,sub,attrs){return '<button class="you-tile" '+attrs+'>'+yIcon(YM[i],'yt-ic')+'<span class="yt-t"><b>'+t+'</b><small>'+sub+'</small></span></button>'}
+ var YM={ifthen:'ifthen',swaps:'swaps',calendar:'hours',bell:'ci',heart:'why',pawpair:'pack',shieldpaw:'shield',moonz:'bed',wind:'sound',lifebuoy:'help',lock:'privacy'};function tile(i,t,sub,attrs){return '<button class="you-tile" '+attrs+'>'+(YM[i]?yIcon(YM[i],'yt-ic'):'<span class="yt-ic yi emo-b">'+emo(i)+'</span>')+'<span class="yt-t"><b>'+t+'</b><small>'+sub+'</small></span></button>'}
  function row(i,t,sub,attrs,right){return '<button class="srow" '+attrs+'>'+yIcon(YM[i])+'<span class="grow">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>'+(right||ic('chevR',{s:18,c:'#A9BDB7'}))+'</button>'}
  var sw=function(on){return '<span class="switch'+(on?' on':'')+'"></span>'};
  return '<div class="scroll you2"><h1 class="large" style="margin:0">You</h1>'+
  miloID()+
  '<div class="you-main" data-ref="ym"><div class="gl keep">Your plan with Milo</div><div class="you-grid">'+
-  tile('calendar','Danger hours',hoursLabel(),'data-ref="hours"')+tile('bell','Check-ins',ciLabel(),'data-ref="ci"')+
-  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','If–then plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('swaps','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+
+  tile('🚨','Danger hours',hoursLabel(),'data-ref="hours"')+tile('👋','Check-ins',ciLabel(),'data-ref="ci"')+
+  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','If–then plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('🔁','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+trophyRow(true)+
  '<div class="gl keep">Settings</div><div class="group">'+
   row('shieldpaw','Milo shield','Pauses social apps in danger hours','data-ref="tshield"',sw(S.shield))+
   row('moonz','Bedtime mode','Wind down from 11:30 PM','data-ref="tbed"',sw(S.bedtime))+
@@ -3537,7 +3698,7 @@ function bagCardHTML(){return '<button class="bag-card" data-ref="bag" aria-labe
 function openToolkit(){
  var old=$('#tk-ov');old&&old.remove();
  var w=document.createElement('div');w.id='tk-ov';w.setAttribute('role','dialog');w.setAttribute('aria-label','Milo’s toolkit');
- w.innerHTML='<div class="tk-zip" aria-hidden="false"><i class="tk-tape"></i><button class="tk-x tk-pull" aria-label="Close toolkit"><i class="tk-tail"></i><span class="tk-pc">'+ic('x',{s:20,w:3})+'</span><i class="tk-key" aria-hidden="true">'+ic('key',{s:38,w:2})+'</i></button></div><div class="tk-head"><b>Milo’s toolkit</b><small>Pick a tool. Milo packed them for you.</small></div><div class="tk-ring"><div class="tk-bag">'+bagSvg(118,true)+'</div>'+toolRing()+'</div>';
+ w.innerHTML='<div class="tk-zip" aria-hidden="false"><i class="tk-tape"></i><button class="tk-x tk-pull" aria-label="Close toolkit"><i class="tk-tail"></i><span class="tk-pc">'+ic('x',{s:20,w:3})+'</span></button></div><div class="tk-head"><b>Milo’s toolkit</b><small>Pick a tool. Milo packed them for you.</small></div><div class="tk-ring"><div class="tk-bag">'+bagSvg(118,true)+'</div>'+toolRing()+'</div>';
  $('#app').appendChild(w);
  var zip=$('.tk-zip',w),T=[],busy=true,rm=S.rm||document.getElementById('app').classList.contains('rm');
  function later(f,t){T.push(setTimeout(f,t))}
@@ -3634,7 +3795,7 @@ var JUMP={
  lockin:function(){resetTo('today',function(){push('lockin',{},'modal')})},
  slip:function(){resetTo('insights',function(){push('slip',{},'modal')})},
  checkin:function(){resetTo('today',function(){var m=$('[data-ref="moods"]',stack[0].el);if(m){m.scrollIntoView({behavior:'smooth',block:'center'});m.parentNode.classList.add('pulse');setTimeout(function(){m.parentNode.classList.remove('pulse')},2600)}})},
- picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},plans:function(){resetTo('you',function(){push('plans')})},swaps:function(){resetTo('you',function(){push('swaps')})},urgelog:function(){resetTo('today',function(){celebrate({treats:20,urge:true,kicker:'URGE BEATEN',title:'You rode it out!',sub:'That was all you. I just cheered really loudly.'})})},voice:function(){resetTo('today',function(){S.vnHome='';save();refreshRoot()})},shake:function(){resetTo('today',function(){setTimeout(shakePet,500)})},
+ picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},trophies:function(){resetTo('today',function(){push('trophies')})},plans:function(){resetTo('you',function(){push('plans')})},swaps:function(){resetTo('you',function(){push('swaps')})},urgelog:function(){resetTo('today',function(){celebrate({treats:20,urge:true,kicker:'URGE BEATEN',title:'You rode it out!',sub:'That was all you. I just cheered really loudly.'})})},voice:function(){resetTo('today',function(){S.vnHome='';save();refreshRoot()})},shake:function(){resetTo('today',function(){setTimeout(shakePet,500)})},
  reminders:function(){resetTo('today',function(){notify()})},
  sos:function(){resetTo('today',function(){push('sos',{},'modal')})},
  breathe:function(){resetTo('today',function(){push('breathe',{},'modal')})},
