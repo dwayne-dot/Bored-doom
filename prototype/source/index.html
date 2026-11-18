@@ -1707,7 +1707,70 @@ svg.jb-rib{position:absolute;right:16%;bottom:-1.9em;width:1.15em!important;heig
 .ji-front{background:#EC2A0E;display:grid;place-items:center;box-shadow:inset 0 -5px 0 rgba(0,0,0,.15)}
 .ji-spine{position:absolute;left:0;top:0;bottom:0;width:22px;background:#D61F0A;border-radius:8px 0 0 8px}
 .ji-back{background:#F4EEE4;transform:rotateY(180deg)}
-.ji-rib{position:absolute;right:34px;bottom:-22px;width:16px;height:30px;background:#F5B335;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.ji-rib{position:absolute;right:34px;bottom:-20px;width:16px;height:30px;overflow:visible}
+
+/* Nov 18 features */
+.since{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;margin:-8px 0 -4px;padding:4px 0;border:none;background:none;color:var(--muted);font:600 13.5px 'Nunito',sans-serif;text-align:left;line-height:1.3}
+.since svg{flex-shrink:0;color:#9FD0BD}
+.vn-wrap{display:flex;flex-direction:column;gap:6px;align-self:stretch}
+.vn-lab{display:inline-flex;align-items:center;gap:5px;font:800 12px 'Nunito',sans-serif;color:var(--ink2);text-transform:none}
+.vnote{display:flex;align-items:center;gap:10px;width:100%;padding:8px 14px 8px 8px;border:none;border-radius:999px;background:#fff;color:var(--ink);box-shadow:inset 0 -4px 0 rgba(0,0,0,.08);font:800 13px 'Nunito',sans-serif;cursor:pointer;transition:transform .12s}
+.vnote:active{transform:translateY(2px)}
+.vnote img.mface{width:36px!important;height:36px!important;flex-shrink:0}
+.vn-play{width:34px;height:34px;flex-shrink:0;border-radius:17px;background:var(--amber);color:#fff;display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.vn-wave{flex:1;display:flex;align-items:center;gap:2.5px;height:26px}
+.vn-wave i{flex:1;border-radius:2px;background:#D9CFC0;transition:background .3s}
+.vnote.heard .vn-wave i{background:#E7B48D}
+.vnote.playing .vn-wave i{background:var(--amber);animation:vnBar .5s ease-in-out var(--d) infinite alternate}
+@keyframes vnBar{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.vn-t{flex-shrink:0;color:var(--ink2);font-variant-numeric:tabular-nums}
+.vn-card{background:var(--cream)!important;color:var(--ink)!important;gap:10px}
+.vn-card .sw-del{background:rgba(0,0,0,.06);color:var(--ink2)}
+.urge-q{align-self:stretch;background:#fff;border-radius:24px;padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.08);color:var(--ink);text-align:center}
+.urge-q b{font-size:16px}
+.uq-row{display:flex;align-items:flex-end;justify-content:center;gap:12px}
+.uq{border:none;background:none;padding:4px;color:#E4D7C4;cursor:pointer;transition:transform .2s,color .2s}
+.uq:active{transform:scale(.9)}.uq.on{color:var(--amber);transform:scale(1.12)}
+.uq-l{display:flex;justify-content:space-between;width:100%;font:700 12px 'Nunito',sans-serif;color:var(--ink2)}
+.uq-done{font:600 13.5px 'Nunito',sans-serif;color:var(--ink2);line-height:1.35}
+.ubars{display:flex;align-items:flex-end;gap:10px;height:110px;padding-top:6px}
+.ub{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;font:800 12px 'Nunito',sans-serif;color:var(--muted)}
+.ub i{width:100%;height:0;border-radius:10px;transition:height .9s cubic-bezier(.2,.8,.3,1)}
+.ub.now{color:var(--cream)}
+.ug-pill{display:inline-flex;align-items:center;gap:4px;background:#9FD0BD;color:var(--ink);font:800 11.5px 'Nunito',sans-serif;padding:3px 9px;border-radius:999px}
+.sw-add{display:flex;gap:8px;align-items:center}
+.sw-add input{flex:1;min-width:0;height:52px;border-radius:26px;border:none;background:var(--bg2);color:var(--cream);padding:0 18px;font:700 16px 'Nunito',sans-serif;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+.sw-add input::placeholder{color:rgba(169,189,183,.7)}
+.sw-plus{width:52px;height:52px;flex-shrink:0;border-radius:26px;border:none;background:var(--amber);color:#16302B;display:grid;place-items:center;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+.sw-plus:active{transform:translateY(2px)}
+.sw-item{background:var(--bg2);border-radius:28px;border:none!important;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+.sw-ic{width:38px;height:38px;border-radius:19px;display:grid;place-items:center;background:rgba(249,246,240,.08);color:#F0985A;flex-shrink:0}
+.sw-del{width:34px;height:34px;flex-shrink:0;border-radius:17px;border:none;background:rgba(249,246,240,.08);color:var(--muted);display:grid;place-items:center;cursor:pointer}
+.sw-new{animation:swNew .5s cubic-bezier(.2,1.4,.4,1)}@keyframes swNew{from{transform:scale(.9);opacity:0}}
+.sw-ideas,.pk-own,.pl-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sw-ideas .chip,.pk-own .chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg2)!important;border:none!important;color:var(--cream)!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.sw-ideas .chip svg,.pk-own .chip svg{color:#F0985A}
+.pk-own .chip.add{color:var(--amber)!important}
+.sw-empty{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:24px;background:var(--bg2);color:var(--muted);font:600 14px 'Nunito',sans-serif}
+.sw-empty img{width:44px!important;height:44px!important}
+.plan{background:var(--bg2);border-radius:28px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:6px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15);transition:opacity .25s}
+.plan.off{opacity:.55}
+.pl-l{display:flex;align-items:baseline;gap:10px;font-size:16px;line-height:21px}
+.pl-k{flex-shrink:0;width:44px;font:900 11px 'Nunito',sans-serif;letter-spacing:.06em;color:#9FD0BD}.pl-k.then{color:var(--amber)}
+.pl-arrow{margin-left:8px;color:var(--muted);height:14px;display:flex;align-items:center}
+.pl-f{display:flex;align-items:center;gap:8px;margin-top:6px}
+.pl-try{display:inline-flex;align-items:center;gap:6px;margin-right:auto;background:rgba(0,0,0,.18)!important;border:none!important;color:var(--cream)!important;font-size:13px!important;padding:7px 12px!important}
+.pl-tog{border:none;background:none;padding:4px}
+.pl-prev{background:#fff;border-radius:22px;padding:14px 16px;font:700 17px/1.4 'Nunito',sans-serif;color:var(--ink2);box-shadow:inset 0 -4px 0 rgba(0,0,0,.06)}
+.pl-prev b{color:var(--ink)}.pl-prev b.blank{color:#C9BFAF}
+.pl-chips .chip{border:2px solid #E4DDCF;background:#fff;color:var(--ink);font-size:14px}
+.pl-chips .chip.own{border-style:dashed}
+.pl-chips .chip.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.btn:disabled{opacity:.45;pointer-events:none}
+.sos-own{display:inline-flex;align-items:center;gap:4px;border:none;background:none;color:var(--amber);font:800 12.5px 'Nunito',sans-serif;letter-spacing:0;padding:4px 0}
+.swap.mine{box-shadow:inset 0 0 0 2px rgba(232,141,79,.35)}
+.shook{animation:shook .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes shook{0%{transform:rotate(0)}15%{transform:rotate(-9deg) scale(1.04)}30%{transform:rotate(8deg) scale(1.06)}45%{transform:rotate(-6deg)}60%{transform:rotate(4deg)}80%{transform:rotate(-2deg)}100%{transform:none}}
 </style>
 </head>
 <body>
@@ -1740,7 +1803,7 @@ var ref=function(el,n){return el.querySelector('[data-ref="'+n+'"]')};
 function haptic(p){if(S&&S.hap===false)return;try{navigator.vibrate&&navigator.vibrate(p||8)}catch(e){}}
 
 /* ---------- state ---------- */
-var DEF={signedIn:true,provider:'Apple',treats:140,streak:12,best:19,beaten:2,acc:'none',owned:['none','sunglasses','scarf'],pro:false,shield:true,bedtime:true,moods:{bored:9,stressed:5,tired:4,anxious:3,great:1},mercy:1,sound:true,why:{text:'Be present for the people I love.',img:null},worked:{},lastWin:null,room:['rug']};
+var DEF={signedIn:true,provider:'Apple',treats:140,streak:12,best:19,beaten:2,acc:'none',owned:['none','sunglasses','scarf'],pro:false,shield:true,bedtime:true,moods:{bored:9,stressed:5,tired:4,anxious:3,great:1},mercy:1,sound:true,why:{text:'Be present for the people I love.',img:null},worked:{},lastWin:null,room:['rug'],swaps:[{t:'Call Mom',i:'phone'},{t:'Guitar for 5 minutes',i:'music'},{t:'Make a cup of tea',i:'coffee'}],swapUse:{'Call Mom':3,'Guitar for 5 minutes':2},plans:[{id:1,i:'late',t:'phonedown',on:true},{id:2,i:'couch',t:'sw:Guitar for 5 minutes',on:true}],urgeLog:[],vnHome:''};
 var S;
 try{S=JSON.parse(localStorage.getItem('bd-proto-v1')||'null')}catch(e){S=null}
 if(!S||typeof S!=='object')S=JSON.parse(JSON.stringify(DEF));
@@ -1990,7 +2053,7 @@ function notify(o){
  $('#app').appendChild(b);requestAnimationFrame(function(){requestAnimationFrame(function(){b.classList.add('show')})});haptic([15,60,15]);
  var t=setTimeout(hide,5200);
  function hide(){b.classList.remove('show');setTimeout(function(){b.remove()},500)}
- b.addEventListener('click',function(){clearTimeout(t);hide();checkinSheet()});
+ b.addEventListener('click',function(){clearTimeout(t);hide();if(o.onTap)o.onTap();else checkinSheet()});
 }
 function checkinSheet(){
  openSheet('<div class="row"><div style="width:80px;flex-shrink:0">'+mimg('wave',90,'','Milo waving')+'</div><div><div class="over">MILO CHECKING IN</div><div style="font-size:21px;font-weight:800;line-height:26px">How are you feeling right now?</div></div></div><div class="faces">'+faceButtons(false)+'</div><p class="muted center" style="font-size:13px">One tap. Milo picks what helps.</p><button class="link" data-ref="notok" style="color:#B5473A">I\'m not okay right now</button>',function(sh,close){
@@ -2076,12 +2139,12 @@ SCREENS.today={render:function(){
  function tool(i,bg,c,t,sub,attrs){return '<button class="srow" '+attrs+'><span class="si" style="background:'+bg+';color:'+c+'">'+ic(i,{s:18})+'</span><span class="grow">'+t+'<small>'+sub+'</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}
  return '<div class="scroll"><div class="stagger col" style="gap:16px">'+
  '<div class="topbar"><div><div class="over">'+d+'</div><h1 class="large" style="font-size:28px;line-height:34px">'+hello()+'</h1></div><button class="streak-chip" data-tab="insights" aria-label="Streak">'+ic('flame',{s:16,fill:'#E88D4F',c:'#E88D4F',w:1.5})+'<span data-ref="streak">'+S.streak+'</span> days</button></div>'+
- '<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark">'+ic('hand',{s:14})+'Rub Milo any time you need a smile</span></div>'+
- bagCardHTML()+
+ '<button class="since" data-tab="insights">'+ic('clock',{s:15,w:2.4})+'<span>'+sinceLine()+'</span></button>'+'<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark">'+ic('hand',{s:14})+'Rub Milo, or shake your phone, for a smile</span></div>'+
+ '<div data-ref="vnh">'+homeVN()+'</div>'+bagCardHTML()+
  '<div data-ref="lkc">'+lockCardHTML()+'</div>'+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
  '</div></div></div>';
 },mount:function(el){
- var say=ref(el,'say'),i=0,lines=LINES();var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);
+ var say=ref(el,'say'),i=0,lines=LINES();el.addEventListener('click',function(e){if(e.target.closest('[data-ref="vnx"]')){S.vnHome='home'+S.streak;save();var c=ref(el,'vnc');if(c){c.style.transition='opacity .25s,transform .25s';c.style.opacity='0';c.style.transform='scale(.96)';setTimeout(function(){ref(el,'vnh').innerHTML=''},260)}haptic(6)}});var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);
  var iv=setInterval(function(){i=(i+1)%lines.length;swapText(say,lines[i])},6500);
  var pets=0;
  rubbable(ref(el,'milo'),{pet:function(){pets++;if(pets===1||pets%6===0)swapText(say,['Hehe, right there!','Best human ever.','More, more!','You\'re good at this.'][Math.floor(Math.random()*4)])},end:function(){if(pets>3){S.treats+=1;save()}}});
@@ -2094,7 +2157,7 @@ SCREENS.picks={render:function(p){
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="pill" style="font-size:14px;color:var(--cream)"><span style="color:'+mm.bg+'">'+ic(mm.i,{s:16,w:2.3})+'</span>Feeling '+mm.l.toLowerCase()+'</span><div style="width:44px"></div></div>'+
  '<div class="row" style="align-items:flex-end;gap:6px"><div style="flex-shrink:0;width:120px" class="rub" data-ref="milo">'+mimg(PICKIMG[m],132,'','Milo','happy')+'</div><div class="speech" style="margin-bottom:36px">'+SAY[m]+'</div></div>'+
  '<div class="encourage">'+ic('thumb',{c:'#7BC47F'})+'<span>You\'ve beaten <b style="color:#7BC47F">'+S.beaten+' urges</b> today. That counts.</span></div>'+
- '<div class="over" style="margin-top:4px">MILO\'S PICKS FOR '+mm.l.toUpperCase()+'</div><div class="picks stagger" data-ref="list"></div>'+fbHTML('picks-'+m,'Were these picks helpful?')+
+ (S.swaps.length?'<div class="over" style="margin-top:4px">YOUR GO-TO SWAPS</div><div class="pk-own" data-ref="own">'+S.swaps.map(function(s,i){return '<button class="chip" data-own="'+i+'">'+ic(s.i||swapIc(s.t),{s:15})+esc(s.t)+'</button>'}).join('')+'<button class="chip add" data-go="swaps">'+ic('plus',{s:14,w:3})+'Add</button></div>':'')+'<div class="over" style="margin-top:4px">MILO\'S PICKS FOR '+mm.l.toUpperCase()+'</div><div class="picks stagger" data-ref="list"></div>'+fbHTML('picks-'+m,'Were these picks helpful?')+
  '<div class="spacer"></div><button class="link" data-ref="shuffle" style="display:flex;align-items:center;gap:8px">'+ic('refresh',{s:18})+'Show me different picks</button></div>';
 },mount:function(el,p){
  var m=p.arg||'bored',all=PICKS[m].slice().sort(function(a,b){return (S.worked[b.t]||0)-(S.worked[a.t]||0)}),off=0,list=ref(el,'list');
@@ -2105,6 +2168,7 @@ SCREENS.picks={render:function(p){
  list.addEventListener('click',function(e){var b=e.target.closest('.pick');if(!b)return;var x=all[+b.dataset.idx];window.__lastPick=x.t;if(x.go)push(x.go,{},x.m||'push');else if(x.tab)goRoot(x.tab);else miniTask(x)});
  ref(el,'shuffle').addEventListener('click',function(){off=(off+3)%all.length;list.style.opacity='0';setTimeout(function(){draw();list.style.opacity='1'},180);haptic(6)});
  list.style.transition='opacity .18s';
+ var ow=ref(el,'own');ow&&ow.addEventListener('click',function(e){var b=e.target.closest('[data-own]');if(!b)return;var sw=S.swaps[+b.dataset.own];useSwap(sw.t);window.__lastPick=null;miniTask(swapPick(sw))});
  rubbable(ref(el,'milo'));
 }};
 
@@ -2114,7 +2178,7 @@ SCREENS.sos={cls:'dark',render:function(){
  '<h1 class="title center">Ride the wave</h1>'+
  '<div class="ring-wrap"><svg class="ring" viewBox="0 0 270 270"><circle class="bg" cx="135" cy="135" r="118"/><circle class="fg" data-ref="ring" cx="135" cy="135" r="118" stroke-dasharray="741.4" stroke-dashoffset="0"/></svg><div class="ring-inner"><img src="assets/surf.png" alt="Milo surfing a wave" class="illo" style="width:124px;height:124px;border-radius:50%"><div class="big-time" data-ref="time">1:00</div></div></div>'+
  '<div class="msg-dark" data-ref="msg">'+SOS_MSGS[0]+'</div><div class="why-card" data-ref="why">'+whyInner()+'</div><button class="chip t-open" data-ref="talk">'+ic('msg',{s:16})+'Tell Milo what\'s going on</button>'+
- '<div class="over" style="align-self:stretch">TRY ONE INSTEAD</div><div class="swaps" data-ref="swaps">'+[['droplet','Sip cold water'],['feet','Walk it off'],['msg','Text someone']].map(function(s){return '<button class="swap"><span class="ck">'+ic('check',{s:14,w:3.2})+'</span><span style="color:var(--amber)">'+ic(s[0])+'</span>'+s[1]+'</button>'}).join('')+'</div>'+
+ '<div class="over" style="align-self:stretch;display:flex;justify-content:space-between;align-items:center">TRY ONE INSTEAD<button class="sos-own" data-ref="own">'+ic('plus',{s:13,w:3})+'Your swaps</button></div><div class="swaps" data-ref="swaps">'+S.swaps.slice(0,2).map(function(s){return [s.i||swapIc(s.t),s.t,1]}).concat([['droplet','Sip cold water'],['feet','Walk it off'],['msg','Text someone']]).slice(0,3).map(function(s){return '<button class="swap'+(s[2]?' mine':'')+'" data-sw="'+esc(s[1])+'"><span class="ck">'+ic('check',{s:14,w:3.2})+'</span><span style="color:var(--amber)">'+ic(s[0])+'</span>'+esc(s[1])+'</button>'}).join('')+'</div>'+
  '<div class="spacer"></div><button class="btn primary" data-ref="win" style="align-self:stretch">I rode it out</button><button class="link" data-ref="slip">I slipped, and that\'s okay</button></div>';
 },mount:function(el){
  var t=60,done=false,ring=ref(el,'ring'),time=ref(el,'time'),msg=ref(el,'msg'),mi=0,C=741.4;
@@ -2126,7 +2190,7 @@ SCREENS.sos={cls:'dark',render:function(){
  ref(el,'skip').addEventListener('click',function(){t=Math.min(t,3);upd()});
  ref(el,'win').addEventListener('click',finish);
  ref(el,'talk').addEventListener('click',function(){openSheet('<div class="over" style="color:var(--ink2)">TALK TO MILO · YOUR TIMER IS STILL RUNNING</div><div data-ref="tk"></div>',function(sh,close){talkUI(ref(sh,'tk'),{where:'sos',light:true,onAction:close,onCrisis:function(){close();setTimeout(supportSheet,300)}})})});
- $$('.swap',el).forEach(function(b){b.addEventListener('click',function(){b.classList.toggle('done');haptic(10)})});
+ $$('.swap',el).forEach(function(b){b.addEventListener('click',function(){b.classList.toggle('done');haptic(10);if(b.classList.contains('done')&&b.classList.contains('mine'))useSwap(b.dataset.sw)})});ref(el,'own').addEventListener('click',function(){push('swaps')});
  ref(el,'slip').addEventListener('click',function(){done=true;clearInterval(iv);push('slip',{from:'sos'},'modal')});
  return function(){clearInterval(iv);clearTimeout(wt)};
 }};
@@ -2220,14 +2284,15 @@ SCREENS.findmilo={cls:'dark',render:function(){
 SCREENS.win={cls:'warm',render:function(r){
  return '<div class="scroll nosb" style="align-items:center;gap:16px;padding-top:calc(env(safe-area-inset-top) + 70px)"><div class="conf-layer" data-ref="conf"></div><img src="assets/gift.png" alt="Milo bursting out of a gift box" class="illo win-illo">'+
  '<div class="col center" style="gap:6px;align-items:center"><span class="over amber">'+(r.kicker||'NICE WORK')+'</span><h1 class="title center">'+r.title+'</h1><p class="muted center">'+(r.sub||'')+'</p></div>'+
- ''+fbHTML('win-'+(r.urge?'sos':'pick'),'Did that help you this time?')+'<div class="stats3"><div class="stat">'+ic('flame',{s:22,fill:'#E88D4F',c:'#E88D4F',w:1.5})+'<b>'+S.streak+'</b><small>day streak safe</small></div><div class="stat">'+ic('check',{c:'#7BC47F',w:3})+'<b>'+S.beaten+'</b><small>urges beaten today</small></div><div class="stat">'+ic('bone',{c:'#F2CC6B'})+'<b data-ref="tr">+0</b><small>treats · <span data-ref="bal">'+r.prev+'</span> total</small></div></div>'+
+ (r.urge?vnote('Woof! That urge was loud, and you were louder. I knew you could ride it out.','Milo sent you a voice note')+urgeQ():vnote('Woof! Look at you, picking real life. That’s my human.','Milo sent you a voice note'))+fbHTML('win-'+(r.urge?'sos':'pick'),'Did that help you this time?')+'<div class="stats3"><div class="stat">'+ic('flame',{s:22,fill:'#E88D4F',c:'#E88D4F',w:1.5})+'<b>'+S.streak+'</b><small>day streak safe</small></div><div class="stat">'+ic('check',{c:'#7BC47F',w:3})+'<b>'+S.beaten+'</b><small>urges beaten today</small></div><div class="stat">'+ic('bone',{c:'#F2CC6B'})+'<b data-ref="tr">+0</b><small>treats · <span data-ref="bal">'+r.prev+'</span> total</small></div></div>'+
  '<div class="spacer"></div><button class="btn primary" data-ref="closet" style="align-self:stretch">Spend treats in Milo\'s closet</button><button class="link" data-ref="home">Back home</button></div>';
 },mount:function(el,r){
+ var uq=ref(el,'uq');uq&&uq.addEventListener('click',function(e){var b=e.target.closest('[data-u]');if(!b)return;var v=+b.dataset.u;S.urgeLog.push({ts:Date.now(),s:v});save();haptic([8,30,8]);$$('[data-u]',uq).forEach(function(x){x.classList.toggle('on',+x.dataset.u<=v)});setTimeout(function(){uq.innerHTML='<b>Logged: '+v+' out of 5</b><span class="uq-done">Watch this number shrink in Insights. Every wave you ride makes the next one smaller.</span>'},420)});
  confetti(ref(el,'conf'));var n=0,tgt=r.treats||0,bal=r.prev,tr=ref(el,'tr'),b=ref(el,'bal');
  var iv=setInterval(function(){if(n>=tgt){clearInterval(iv);return}n++;bal++;tr.textContent='+'+n;b.textContent=bal;if(n%3===0)haptic(4)},Math.max(25,600/Math.max(1,tgt)));
  ref(el,'closet').addEventListener('click',function(){popToRoot(function(){if(curTab!=='milo')switchTab('milo')})});
  ref(el,'home').addEventListener('click',function(){popToRoot(function(){if(curTab!=='today')switchTab('today')})});
- return function(){clearInterval(iv)};
+ return function(){clearInterval(iv);vnStop()};
 }};
 
 var ROOM=[{id:'rug',n:'Cozy rug',cost:0,i:'layers'},{id:'bed',n:'Dog bed',cost:80,i:'bed'},{id:'plant',n:'Plant',cost:40,i:'sprout'},{id:'lamp',n:'Warm lamp',cost:60,i:'lamp'},{id:'ball',n:'Tennis ball',cost:30,i:'ball'},{id:'art',n:'Milo portrait',cost:120,i:'image'}];
@@ -2281,7 +2346,7 @@ SCREENS.insights={render:function(){
  '<button class="rowcard cream" data-go="wrapped" data-mode="modal"><img src="assets/gift.png" alt="" class="illo" style="width:56px;height:56px;border-radius:14px"><span class="grow"><b>Your Milo Wrapped is ready</b><small style="color:var(--ink2)">Your week in 6 tiny stories</small></span><span class="playc">'+ic('play',{s:16,fill:'#F9F6F0',c:'#F9F6F0'})+'</span></button>'+
  '<div class="card col"><div class="over">LAST 4 WEEKS</div><div class="cal">'+cal+'</div><div style="display:flex;gap:14px;font-size:12px;font-weight:800;color:var(--muted)"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#7FA89C;margin-right:5px"></i>Habit-free</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--line);margin-right:5px"></i>Slip</span></div></div>'+
  '<div class="card cream row"><img src="assets/garden.png" alt="Milo watering sprouts" class="illo" style="width:96px;height:96px;border-radius:18px;flex-shrink:0"><div class="col" style="gap:4px"><span class="over" style="color:var(--ink2)">MILO NOTICED</span><b style="font-size:17px;line-height:22px">Most urges hit when you\'re <span style="color:#A8541E">Bored after 8 PM</span>.</b><button class="chip" data-ref="boost" style="align-self:flex-start;border-color:#E4DDCF;color:var(--ink);padding:6px 12px;font-size:13px">Add a 7:45 PM booster</button></div>'+fbHTML('insight-bored-8pm','Is this insight useful?')+'</div>'+
- wordsCard()+'<div class="card col"><div class="over">URGES BY MOOD · 30 DAYS</div><div class="hbars">'+hb+'</div></div>'+
+ urgeCard()+wordsCard()+'<div class="card col"><div class="over">URGES BY MOOD · 30 DAYS</div><div class="hbars">'+hb+'</div></div>'+
  '<div class="card col"><div class="over">WHEN URGES HIT</div><div class="vbars">'+tod.map(function(t){return '<div class="vb'+(t[1]===12?' hot':'')+'"><i data-h="'+Math.round(t[1]/12*100)+'" style="background:'+({Morning:'#F2CC6B',Afternoon:'#8DBCE0',Evening:'#BDB8DD','Late night':'#E88D4F'})[t[0]]+'"></i>'+t[0]+'</div>'}).join('')+'</div></div>'+
  '<div class="card col"><div style="display:flex;justify-content:space-between;align-items:center"><div class="over">SCROLL TIME TODAY</div><span style="font-size:12px;font-weight:800;color:var(--ink);background:var(--sun);padding:3px 8px;border-radius:999px">SCREEN TIME</span></div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:800">1h 12m</span><span style="color:#7BC47F;font-weight:800">↓ 34 min vs last week</span></div><div class="hbars" style="grid-template-columns:60px minmax(0,1fr) 40px">'+[['Clips',38],['Chirp',21],['Scroll',13]].map(function(a){return '<span>'+a[0]+'</span><div class="hb"><i data-w="'+Math.round(a[1]/38*100)+'" style="background:#E88D4F"></i></div><span style="text-align:right">'+a[1]+'m</span>'}).join('')+'</div><div class="note">Sample data. The real version reads Apple Screen Time (needs a dev build)</div></div>'+
  '<div class="card col"><div class="over">WHAT YOU GAINED THIS MONTH</div><div class="stats3"><div class="stat" style="background:var(--bg)"><b>6h 10m</b><small>time reclaimed</small></div><div class="stat" style="background:var(--bg)"><b>41</b><small>swaps made</small></div><div class="stat" style="background:var(--bg)"><b>128</b><small>Milo pets</small></div></div><div class="muted" style="font-size:13px">That\'s a movie marathon, or three long walks.</div></div>'+
@@ -2292,7 +2357,7 @@ SCREENS.insights={render:function(){
  return function(){clearTimeout(t)};
 }};
 
-var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
+var TOUR=[['onboarding','Onboarding & permissions'],['slip','"I slipped" flow'],['toolkit','Milo\'s toolkit bag'],['lockin','Locked In mode (strict)'],['fresh','First day (empty states)'],['notifs','Notification previews'],['offline','Offline & error states'],['a11y','Reduce motion & larger text'],['account','Account, plan & privacy'],['login','Sign in screen'],['help','Help & support'],['renew','Renew Milo\'s ID'],['qr','Add a friend (QR code)'],['checkin','Mood check-ins'],['picks','Milo\'s Picks (remembers what works)'],['plans','If–then plans'],['swaps','Your swaps library'],['urgelog','Urge strength log'],['voice','Voice notes from Milo'],['shake','Shake to pet Milo'],['reminders','Smart reminders'],['sos','Urge SOS + your why'],['why','Set your why'],['breathe','Guided breathing'],['deck','Boredom busters'],['feed','The Finite Feed'],['findmilo','Find & Pet Milo'],['shield','Milo shield'],['phonedown','Phone-down challenge'],['bedtime','Bedtime mode'],['streaks','Streaks + Milo\'s Freebie'],['insights','Insights & what you gained'],['wrapped','Milo Wrapped'],['pack','Pack mode'],['rewards','Rewards & sounds'],['closet','Closet + seasonal outfit'],['room','Milo\'s room'],['talk','Tell Milo how you feel'],['journal','Your words & growth'],['welcome','Welcome back'],['support','Support resources'],['widget','Home-screen widget'],['native','Lock Screen, Action Button & Watch']];
 var APPS=[{n:'Clips',c:'#E5604D',i:'play',so:1},{n:'Chirp',c:'#4F7FD6',i:'msg',so:1},{n:'Snaps',c:'#E3B23C',i:'camera',so:1},{n:'Scroll',c:'#8B6FD6',i:'layers',so:1},{n:'Mail',c:'#3E88D4',i:'mail'},{n:'Maps',c:'#5FA864',i:'map'},{n:'Notes',c:'#E3B23C',i:'pen'},{n:'Music',c:'#E2557A',i:'music'},{n:'Weather',c:'#4A9BD9',i:'sun'},{n:'Photos',c:'#F9F6F0',i:'image',dk:1},{n:'Calendar',c:'#F9F6F0',i:'calendar',dk:1},{n:'Bored Doom',c:'#16302B',milo:1}];
 function appIcon(a,idx){return '<button class="app" data-app="'+idx+'"><span class="ai" style="background:'+a.c+';color:'+(a.dk?'#16302B':'#fff')+'">'+(a.milo?face('happy',58):ic(a.i,{s:30,w:2}))+'</span>'+a.n+'</button>'}
 function nowStr(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return ((h%12)||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
@@ -2642,7 +2707,7 @@ function openJournal(src){
   ov.classList.add('intro');requestAnimationFrame(function(){ov.classList.add('on')});
   var ar=ov.getBoundingClientRect(),r=st.src.getBoundingClientRect(),W=170,H=226;
   var ji=document.createElement('div');ji.className='ji-book';
-  ji.innerHTML='<div class="ji-pages"></div><div class="ji-cover"><div class="ji-front"><span class="ji-spine"></span><svg viewBox="0 0 24 24" width="54" height="54" style="color:#FFD9CF">'+pawP(12,12,1.2)+'</svg></div><div class="ji-back"></div></div><i class="ji-rib"></i>';
+  ji.innerHTML='<div class="ji-pages"></div><div class="ji-cover"><div class="ji-front"><span class="ji-spine"></span><svg viewBox="0 0 24 24" width="54" height="54" style="color:#FFD9CF">'+pawP(12,12,1.2)+'</svg></div><div class="ji-back"></div></div><svg class="ji-rib" viewBox="0 0 12 20" preserveAspectRatio="none"><path d="M1.5 1.2h9v16.6l-4.5-3.6-4.5 3.6z" fill="#F5B335" stroke="#F5B335" stroke-width="2.4" stroke-linejoin="round"/></svg>';
   ov.appendChild(ji);var jc=$('.ji-cover',ji);
   var cx=ar.width/2-W/2,cy=ar.height*.42-H/2,sx=r.width/W,x0=r.left-ar.left+r.width/2-W/2,y0=r.top-ar.top+r.height/2-H/2;
   ji.style.left=cx+'px';ji.style.top=cy+'px';haptic(8);
@@ -3124,15 +3189,119 @@ SCREENS.renew={render:function(){idInit();var l=idLeft();
   ref(el,'h2').textContent='Renewed! Good boy.';ref(el,'p2').textContent='Valid until '+fmtD(idExp())+'. Milo got 25 treats for being so photogenic.';
   ref(el,'ok').textContent='Done';$$('.oid-c',el).forEach(function(c){c.disabled=true});window.__idRenewed=true})},
 onShow:function(){}};
+/* ===== Nov 18 features: swaps library, if–then plans, urge surfing log, voice notes, shake to pet, since-you-started ===== */
+P.plus='<path d="M12 5v14M5 12h14"/>';
+var SWAP_IDEAS=[['Call Mom','phone'],['Guitar for 5 minutes','music'],['Stretch for 2 minutes','activity'],['Make a cup of tea','coffee'],['Step outside','sun'],['Read 2 pages','book'],['Sketch something','pen'],['Text a friend','msg'],['Water the plants','sprout'],['Cold glass of water','droplet']];
+function swapIc(t){var m=SWAP_IDEAS.filter(function(x){return x[0].toLowerCase()===String(t).toLowerCase()})[0];return m?m[1]:'sparkles'}
+function swapPick(sw){return {t:sw.t,s:'One of your own swaps',i:sw.i||swapIc(sw.t),bg:'#E2F0EA',c:'#2F6F5B',own:1}}
+function useSwap(t){S.swapUse=S.swapUse||{};S.swapUse[t]=(S.swapUse[t]||0)+1;save()}
+
+SCREENS.swaps={render:function(){
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your swaps</span><div style="width:44px"></div></div>'+
+ '<h1 class="title" style="margin:0">What works for you?</h1><p class="muted" style="margin:-4px 0 4px">Your own go-to swaps. Milo puts them first in Urge SOS and in his Picks.</p>'+
+ '<div class="sw-add"><input data-ref="in" maxlength="40" placeholder="Add a swap, like “Call Mom”" aria-label="New swap"><button class="sw-plus" data-ref="add" aria-label="Add swap">'+ic('plus',{s:22,w:3})+'</button></div>'+
+ '<div class="col" style="gap:8px" data-ref="list"></div>'+
+ '<div class="over" style="margin-top:6px">IDEAS</div><div class="sw-ideas" data-ref="ideas"></div></div>';
+},mount:function(el){
+ var list=ref(el,'list'),inp=ref(el,'in');
+ function draw(){S.swapUse=S.swapUse||{};
+  list.innerHTML=S.swaps.length?S.swaps.map(function(s,i){var n=S.swapUse[s.t]||0;return '<div class="srow sw-item"><span class="si sw-ic">'+ic(s.i||swapIc(s.t),{s:18})+'</span><span class="grow">'+esc(s.t)+'<small>'+(n?'Used '+n+'×':'Not tried yet')+'</small></span><button class="sw-del" data-del="'+i+'" aria-label="Remove '+esc(s.t)+'">'+ic('x',{s:16,w:2.8})+'</button></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No swaps yet. Add the little things that pull you back to real life.</span></div>';
+  var have=S.swaps.map(function(s){return s.t.toLowerCase()});
+  ref(el,'ideas').innerHTML=SWAP_IDEAS.filter(function(x){return have.indexOf(x[0].toLowerCase())<0}).map(function(x){return '<button class="chip sw-idea" data-idea="'+esc(x[0])+'">'+ic(x[1],{s:15})+esc(x[0])+'</button>'}).join('')}
+ function add(t){t=String(t||'').trim();if(!t)return;if(S.swaps.some(function(s){return s.t.toLowerCase()===t.toLowerCase()})){toast('Already in your swaps');return}
+  S.swaps.unshift({t:t,i:swapIc(t)});save();draw();haptic([8,30,8]);SFX.pop();var f=list.firstChild;f&&f.classList.add('sw-new')}
+ ref(el,'add').addEventListener('click',function(){add(inp.value);inp.value=''});
+ inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add(inp.value);inp.value=''}});
+ el.addEventListener('click',function(e){var d=e.target.closest('[data-del]');if(d){S.swaps.splice(+d.dataset.del,1);save();draw();haptic(6);return}
+  var i=e.target.closest('[data-idea]');if(i)add(i.dataset.idea)});
+ draw();
+}};
+
+var IF_OPTS=[{k:'late',t:'it’s after 10 PM'},{k:'open',t:'I open Clips'},{k:'couch',t:'I’m bored on the couch'},{k:'wake',t:'I wake up and reach for my phone'},{k:'home',t:'I get home from work'},{k:'stress',t:'I start feeling stressed'}];
+function thenOpts(){return [{k:'breathe',t:'breathe with Milo for 60 seconds',go:'breathe'},{k:'phonedown',t:'put my phone down for 10 minutes',go:'phonedown'},{k:'sos',t:'start an Urge SOS',go:'sos'},{k:'talk',t:'tell Milo how I feel',tab:'milo'}].concat(S.swaps.map(function(s){return {k:'sw:'+s.t,t:'do my swap: '+s.t.charAt(0).toLowerCase()+s.t.slice(1),sw:s}}))}
+function ifT(k){var o=IF_OPTS.filter(function(x){return x.k===k})[0];return o?o.t:k}
+function thenO(k){return thenOpts().filter(function(x){return x.k===k})[0]||{k:k,t:k.replace(/^sw:/,'')}}
+function runThen(o){if(o.go)push(o.go,{},'modal');else if(o.tab)goRoot(o.tab);else if(o.sw){useSwap(o.sw.t);miniTask(swapPick(o.sw))}}
+function planSheet(onSave){var pick={i:null,t:null};
+ openSheet('<div style="font-size:23px;font-weight:900">New if–then plan</div><p class="muted" style="margin:0">Decide now, so future you doesn’t have to. Milo reminds you right at that moment.</p>'+
+  '<div class="pl-prev" data-ref="pv"></div>'+
+  '<div class="over" style="color:var(--ink2)">IF…</div><div class="pl-chips" data-ref="ifs">'+IF_OPTS.map(function(o){return '<button class="chip" data-if="'+o.k+'">'+o.t+'</button>'}).join('')+'</div>'+
+  '<div class="over" style="color:var(--ink2)">THEN I’LL…</div><div class="pl-chips" data-ref="ths">'+thenOpts().map(function(o){return '<button class="chip'+(o.sw?' own':'')+'" data-then="'+esc(o.k)+'">'+esc(o.t)+'</button>'}).join('')+'</div>'+
+  '<button class="btn primary" data-ref="ok" disabled>Save my plan</button>',function(sh,close){
+  function upd(){ref(sh,'pv').innerHTML='<span>If</span> <b class="'+(pick.i?'':'blank')+'">'+(pick.i?ifT(pick.i):'…')+'</b>, <span>then I’ll</span> <b class="'+(pick.t?'':'blank')+'">'+(pick.t?esc(thenO(pick.t).t):'…')+'</b>.';
+   $$('[data-if]',sh).forEach(function(b){b.classList.toggle('on',b.dataset.if===pick.i)});$$('[data-then]',sh).forEach(function(b){b.classList.toggle('on',b.dataset.then===pick.t)});ref(sh,'ok').disabled=!(pick.i&&pick.t)}
+  sh.addEventListener('click',function(e){var a=e.target.closest('[data-if]'),b=e.target.closest('[data-then]');if(a){pick.i=a.dataset.if;haptic(6);upd()}if(b){pick.t=b.dataset.then;haptic(6);upd()}});
+  ref(sh,'ok').addEventListener('click',function(){S.plans.unshift({id:Date.now(),i:pick.i,t:pick.t,on:true});save();close();haptic([10,40,16]);SFX.chime();toast('Plan saved. Milo will remind you.');onSave&&onSave()});
+  upd()})}
+function planNotify(p){var o=thenO(p.t);notify({title:'If '+ifT(p.i)+'…',body:'…then you’ll '+o.t+'. Tap to start. 🐾',onTap:function(){runThen(o)}})}
+SCREENS.plans={render:function(){
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">If–then plans</span><div style="width:44px"></div></div>'+
+ '<h1 class="title" style="margin:0">Decide before the moment</h1><p class="muted" style="margin:-4px 0 4px">“If this happens, then I’ll do that.” Simple plans like these make new habits far more likely to stick.</p>'+
+ '<div class="col" style="gap:10px" data-ref="list"></div><button class="btn primary" data-ref="new" style="margin-top:4px">'+ic('plus',{s:18,w:3})+' New plan</button></div>';
+},mount:function(el){
+ var list=ref(el,'list');
+ function draw(){list.innerHTML=S.plans.length?S.plans.map(function(p,i){var o=thenO(p.t);return '<div class="plan'+(p.on?'':' off')+'"><div class="pl-l"><span class="pl-k">IF</span><b>'+ifT(p.i)+'</b></div><div class="pl-arrow">'+ic('chevD',{s:18,w:2.6})+'</div><div class="pl-l"><span class="pl-k then">THEN</span><b>I’ll '+esc(o.t)+'</b></div>'+
+  '<div class="pl-f"><button class="chip pl-try" data-try="'+i+'">'+ic('bell',{s:14})+'Try the reminder</button><button class="pl-tog" data-tog="'+i+'" aria-label="Plan on or off"><span class="switch'+(p.on?' on':'')+'"></span></button><button class="sw-del" data-del="'+i+'" aria-label="Delete plan">'+ic('trash',{s:16})+'</button></div></div>'}).join(''):'<div class="sw-empty">'+face('thinking',44)+'<span>No plans yet. Start with your trickiest moment.</span></div>'}
+ el.addEventListener('click',function(e){var t=e.target.closest('[data-try]'),g=e.target.closest('[data-tog]'),d=e.target.closest('[data-del]');
+  if(t){planNotify(S.plans[+t.dataset.try]);return}
+  if(g){var p=S.plans[+g.dataset.tog];p.on=!p.on;save();draw();haptic(8);return}
+  if(d){S.plans.splice(+d.dataset.del,1);save();draw();haptic(6)}});
+ ref(el,'new').addEventListener('click',function(){planSheet(draw)});
+ draw();
+}};
+
+/* urge surfing log */
+function urgeQ(){return '<div class="urge-q" data-ref="uq"><b>How strong was that urge?</b><div class="uq-row">'+[1,2,3,4,5].map(function(n){return '<button class="uq" data-u="'+n+'" aria-label="Strength '+n+' of 5"><svg viewBox="0 0 24 24" width="'+(18+n*3)+'" height="'+(18+n*3)+'">'+pawP(12,11.6,2.15,true)+'</svg></button>'}).join('')+'</div><div class="uq-l"><span>Barely there</span><span>Really strong</span></div></div>'}
+function urgeWeeks(){var base=[4.3,4.0,3.7,3.3,3.0];var wk=Date.now()-7*864e5,cur=S.urgeLog.filter(function(u){return u.ts>wk});var now=cur.length?cur.reduce(function(a,u){return a+u.s},0)/cur.length:2.6;return base.concat([Math.round(now*10)/10])}
+function urgeCard(){var w=urgeWeeks(),first=w[0],now=w[5],down=now<first;
+ return '<div class="card col"><div style="display:flex;justify-content:space-between;align-items:center"><div class="over">URGE STRENGTH · 6 WEEKS</div>'+(down?'<span class="ug-pill">'+ic('check',{s:12,w:3.2})+'Getting weaker</span>':'')+'</div>'+
+ '<div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:900">'+now.toFixed(1)+'</span><span class="muted" style="font-weight:800">out of 5 this week</span></div>'+
+ '<div class="ubars">'+w.map(function(v,i){var c=['#E9958A','#EBA07E','#EFB06E','#E3C27A','#B9CFA0','#9FD0BD'][i];return '<div class="ub'+(i===5?' now':'')+'"><i data-h="'+Math.round(v/5*100)+'" style="background:'+c+'"></i>'+(i===5?'Now':(5-i)+'w')+'</div>'}).join('')+'</div>'+
+ '<div class="muted" style="font-size:13px">'+(down?'Down from '+first.toFixed(1)+'. Riding them out is working: each wave is smaller than the last.':'Log how strong each urge felt after an SOS to see the trend.')+'</div></div>'}
+
+/* voice notes from Milo */
+function vnote(text,label){var bars='';for(var i=0;i<22;i++){var h=[30,55,80,45,95,60,35,70,100,50,40,85,65,30,75,90,45,60,35,80,50,30][i];bars+='<i style="height:'+h+'%;--d:'+(i*37%400)+'ms"></i>'}
+ var dur=Math.max(3,Math.min(9,Math.round(text.split(' ').length/2.6)));
+ return '<div class="vn-wrap">'+(label?'<div class="vn-lab">'+ic('mic',{s:13})+label+'</div>':'')+'<button class="vnote" data-vn="'+esc(text)+'" data-dur="'+dur+'" aria-label="Play Milo\'s voice note">'+face('happy',36)+'<span class="vn-play">'+ic('play',{s:15,fill:'currentColor'})+'</span><span class="vn-wave">'+bars+'</span><span class="vn-t">0:0'+dur+'</span></button></div>'}
+var VN_PLAY=null;
+function vnStop(){if(!VN_PLAY)return;var b=VN_PLAY;VN_PLAY=null;b.classList.remove('playing');clearTimeout(b.__t);try{speechSynthesis.cancel()}catch(e){}$('.vn-play',b).innerHTML=ic('play',{s:15,fill:'currentColor'})}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.vnote');if(!b)return;e.stopPropagation();if(VN_PLAY===b){vnStop();return}vnStop();
+ VN_PLAY=b;b.classList.add('playing','heard');$('.vn-play',b).innerHTML=ic('pause',{s:15,fill:'currentColor'});haptic([8,30,8]);SFX.bark();setTimeout(function(){SFX.bark()},260);
+ var txt=b.dataset.vn,dur=(+b.dataset.dur||5)*1000,t=b.dataset.vn;
+ try{if(S.sound&&window.speechSynthesis){var u=new SpeechSynthesisUtterance(txt.replace(/^Woof[!,.]*\s*/i,''));u.pitch=1.55;u.rate=1.04;var t0=Date.now();u.onend=function(){if(VN_PLAY===b&&Date.now()-t0>1500)vnStop()};setTimeout(function(){speechSynthesis.speak(u)},520)}}catch(_){}
+ b.__t=setTimeout(function(){if(VN_PLAY===b)vnStop()},dur+900);
+ var k='vn:'+t.slice(0,24);S.vnHeard=S.vnHeard||{};S.vnHeard[k]=1;save()},true);
+function homeVN(){if(S.streak<7)return '';var k='home'+S.streak;if(S.vnHome===k)return '';
+ return '<div class="card vn-card" data-ref="vnc"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><b style="font-size:16px;line-height:21px">'+S.streak+' days! Milo recorded something for you.</b><button class="sw-del" data-ref="vnx" aria-label="Dismiss">'+ic('x',{s:15,w:2.8})+'</button></div>'+vnote('Woof! '+S.streak+' days, '+(S.name||'friend')+'. I’ve been doing zoomies all morning. So proud of you.')+'</div>'}
+
+/* shake to pet */
+var SHAKE_LINES=['Wheee! Again!','Hehe, that tickles!','You shook my whole world. In a good way.','I’m awake! I’m awake!','Zoomies unlocked.'];
+function shakePet(){if(document.getElementById('jb-ov')||$('#onb')||$('.sheet-wrap.open'))return;var top=stack[stack.length-1];if(!top)return;
+ var z=$('[data-ref="milo"]',top.el)||$('.rub',top.el);if(!z)return;var im=z.querySelector('.mimg,.milo');
+ if(im){im.classList.remove('shook');void im.offsetWidth;im.classList.add('shook')}
+ var r=z.getBoundingClientRect();for(var i=0;i<7;i++)(function(i){setTimeout(function(){heart(z,r.width*(.2+Math.random()*.6),r.height*(.15+Math.random()*.5))},i*80)})(i);
+ SFX.bark();setTimeout(function(){SFX.bark()},220);haptic([25,40,25,40,25]);
+ var say=$('[data-ref="say"]',top.el);say&&swapText(say,SHAKE_LINES[Math.floor(Math.random()*SHAKE_LINES.length)]);
+ S.pets=(S.pets||0)+1;save()}
+(function(){var last=0,hits=0,lh=0,cool=0;
+ window.addEventListener('devicemotion',function(e){var g=e.accelerationIncludingGravity;if(!g)return;var m=Math.abs(g.x||0)+Math.abs(g.y||0)+Math.abs(g.z||0),n=Date.now();
+  if(m-last>22&&n-lh>120){hits=n-lh<700?hits+1:1;lh=n;if(hits>=3&&n-cool>1500){hits=0;cool=n;shakePet()}}last=m});
+ var asked=false;document.addEventListener('pointerdown',function(){if(asked)return;asked=true;try{if(window.DeviceMotionEvent&&DeviceMotionEvent.requestPermission)DeviceMotionEvent.requestPermission().catch(function(){})}catch(_){}},true)})();
+window.__shakePet=shakePet;
+
+/* since you started */
+function sinceLine(){var hrs=Math.max(1,Math.round(S.streak*1.1+S.beaten*.25+(S.urgeLog||[]).length*.2)),mv=Math.max(1,Math.round(hrs/2)),hk=Math.max(1,Math.round(hrs/3.5));
+ return 'You’ve taken back '+hrs+' hour'+(hrs===1?'':'s')+'. That’s '+mv+' movie'+(mv===1?'':'s')+' or '+hk+' hike'+(hk===1?'':'s')+'.'}
+
 SCREENS.you={onShow:function(el){if(window.__idRenewed){window.__idRenewed=false;var m=ref(el,'mid');if(m){var t=document.createElement('div');t.innerHTML=miloID();m.parentNode.replaceChild(t.firstChild,m);SCREENS.you.bindID(el)}}},render:function(){
- var YM={calendar:'hours',bell:'ci',heart:'why',pawpair:'pack',shieldpaw:'shield',moonz:'bed',wind:'sound',lifebuoy:'help',lock:'privacy'};function tile(i,t,sub,attrs){return '<button class="you-tile" '+attrs+'>'+yIcon(YM[i],'yt-ic')+'<span class="yt-t"><b>'+t+'</b><small>'+sub+'</small></span></button>'}
+ var YM={ifthen:'ifthen',swaps:'swaps',calendar:'hours',bell:'ci',heart:'why',pawpair:'pack',shieldpaw:'shield',moonz:'bed',wind:'sound',lifebuoy:'help',lock:'privacy'};function tile(i,t,sub,attrs){return '<button class="you-tile" '+attrs+'>'+yIcon(YM[i],'yt-ic')+'<span class="yt-t"><b>'+t+'</b><small>'+sub+'</small></span></button>'}
  function row(i,t,sub,attrs,right){return '<button class="srow" '+attrs+'>'+yIcon(YM[i])+'<span class="grow">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>'+(right||ic('chevR',{s:18,c:'#A9BDB7'}))+'</button>'}
  var sw=function(on){return '<span class="switch'+(on?' on':'')+'"></span>'};
  return '<div class="scroll you2"><h1 class="large" style="margin:0">You</h1>'+
  miloID()+
  '<div class="you-main" data-ref="ym"><div class="gl keep">Your plan with Milo</div><div class="you-grid">'+
   tile('calendar','Danger hours',hoursLabel(),'data-ref="hours"')+tile('bell','Check-ins',ciLabel(),'data-ref="ci"')+
-  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+'</div>'+
+  tile('heart','Your why',esc((S.why&&S.why.text)||'Add your why'),'data-go="why"')+tile('pawpair','Your pack','You and Jade','data-go="pack"')+tile('ifthen','If–then plans',S.plans.filter(function(p){return p.on}).length+' active','data-go="plans"')+tile('swaps','Your swaps',S.swaps.length+' saved','data-go="swaps"')+'</div>'+
  '<div class="gl keep">Settings</div><div class="group">'+
   row('shieldpaw','Milo shield','Pauses social apps in danger hours','data-ref="tshield"',sw(S.shield))+
   row('moonz','Bedtime mode','Wind down from 11:30 PM','data-ref="tbed"',sw(S.bedtime))+
@@ -3337,6 +3506,8 @@ var YI={
  signin:{bg:'#FFF3C4',svg:'<ellipse cx="12" cy="21.4" rx="6.6" ry="1" fill="#1E3A35" opacity=".16"/><circle cx="8.6" cy="11" r="4.6" fill="#F2B23A"/><circle cx="8.6" cy="11" r="1.7" fill="#FFF3C4"/><path d="M12.6 11h7.4v2.8M17.2 11v2" stroke="#E0A21F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.6 8.6c.4-.8 1-1.3 1.8-1.6" stroke="#FFE28A" stroke-width="1.3" stroke-linecap="round" fill="none"/>'}
 };
 YI.shield={bg:'#FDE7D6',svg:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" fill="#E88D4F" stroke="#E88D4F" stroke-width="2" stroke-linejoin="round"/>'+pawP(12,12.4,.62).replace(/<g /,'<g fill="#fff" ')};
+YI.ifthen={svg:'<rect x="10.9" y="3.2" width="2.2" height="17.6" rx="1.1" fill="#9A7556"/><path d="M4.2 4.8h10.4l2.8 2.6-2.8 2.6H4.2a1 1 0 0 1-1-1V5.8a1 1 0 0 1 1-1z" fill="#4FA884"/><path d="M19.8 11.6H9.4l-2.8 2.6 2.8 2.6h10.4a1 1 0 0 0 1-1v-3.2a1 1 0 0 0-1-1z" fill="#E88D4F"/>'};
+YI.swaps={svg:'<path d="M4.6 8.6h11.8" stroke="#5C8FD6" stroke-width="2.9" stroke-linecap="round"/><path d="M13.2 4.7l3.9 3.9-3.9 3.9" stroke="#5C8FD6" stroke-width="2.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4 15.4H7.6" stroke="#E88D4F" stroke-width="2.9" stroke-linecap="round"/><path d="M10.8 11.5l-3.9 3.9 3.9 3.9" stroke="#E88D4F" stroke-width="2.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'};
 var YOPT={hours:1.07,ci:1.16,pack:1.14,restore:1.04,bed:1.28,shield:.97,sound:1.03},YSLANT={ci:-14,plan:-12},__YN={},__yc=0;
 function yRaw(k){var c;if(k==='bed')c=FIG.bed;else if(k==='pack')c=kitIc('pack',24).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'');else c=YI[k].svg;
  return c.replace(/<(ellipse|path|rect|circle)\b[^>]*\bopacity="0?\.(1[0-9]|55)"[^>]*\/>/g,'')}
@@ -3463,7 +3634,7 @@ var JUMP={
  lockin:function(){resetTo('today',function(){push('lockin',{},'modal')})},
  slip:function(){resetTo('insights',function(){push('slip',{},'modal')})},
  checkin:function(){resetTo('today',function(){var m=$('[data-ref="moods"]',stack[0].el);if(m){m.scrollIntoView({behavior:'smooth',block:'center'});m.parentNode.classList.add('pulse');setTimeout(function(){m.parentNode.classList.remove('pulse')},2600)}})},
- picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},
+ picks:function(){resetTo('today',function(){push('picks',{arg:'bored'})})},plans:function(){resetTo('you',function(){push('plans')})},swaps:function(){resetTo('you',function(){push('swaps')})},urgelog:function(){resetTo('today',function(){celebrate({treats:20,urge:true,kicker:'URGE BEATEN',title:'You rode it out!',sub:'That was all you. I just cheered really loudly.'})})},voice:function(){resetTo('today',function(){S.vnHome='';save();refreshRoot()})},shake:function(){resetTo('today',function(){setTimeout(shakePet,500)})},
  reminders:function(){resetTo('today',function(){notify()})},
  sos:function(){resetTo('today',function(){push('sos',{},'modal')})},
  breathe:function(){resetTo('today',function(){push('breathe',{},'modal')})},
