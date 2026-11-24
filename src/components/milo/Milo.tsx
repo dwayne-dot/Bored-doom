@@ -16,12 +16,13 @@ type Props = {
   rubbable?: boolean;       // rub/drag to pet: wiggle, hearts, haptics
   onPet?: (strokes: number) => void;
   breathing?: boolean;      // idle "alive" breathing loop
+  hopSignal?: number;       // change this number to make Milo do a little hop
   accessibilityLabel?: string;
 };
 
 // Milo, the companion. Static poses now; swap internals for Rive later
 // without changing this API (pose / rubbable / onPet).
-export function Milo({ pose = 'happy', size = 220, rubbable = false, onPet, breathing = true, accessibilityLabel }: Props) {
+export function Milo({ pose = 'happy', size = 220, rubbable = false, onPet, breathing = true, hopSignal, accessibilityLabel }: Props) {
   const reduce = useReducedMotion();
   const breath = useSharedValue(1);
   const tilt = useSharedValue(0);
@@ -40,6 +41,12 @@ export function Milo({ pose = 'happy', size = 220, rubbable = false, onPet, brea
     if (reduce) return;
     lift.value = withSequence(withTiming(1.06, { duration: 110 }), withSpring(1, { damping: 9, stiffness: 260 }));
   }, [pose]);
+
+  // External hop (e.g. the 3D room's ball games).
+  useEffect(() => {
+    if (hopSignal === undefined || reduce) return;
+    lift.value = withSequence(withTiming(1.1, { duration: 120 }), withSpring(1, { damping: 7, stiffness: 240 }));
+  }, [hopSignal]);
 
   function petTick(x: number) {
     const now = Date.now();

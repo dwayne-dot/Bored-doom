@@ -28,6 +28,19 @@ Edit `prototype/source/index.html`, then run `python3 scripts/build-prototype.py
 - `src/lib/haptics.ts` — one haptics helper for the whole app.
 - `src/prototype/prototype.html` + `src/components/PrototypeView.tsx` — the full interactive prototype running inside the app with native haptics, so you can feel it on a real phone today. Native screens will replace it phase by phase.
 
+## Milo's 3D room
+
+Milo tab → **Room** → **Play with Milo in 3D** opens `app/room.tsx`, a native Three.js room
+(`@react-three/fiber/native` + `expo-gl`) drawn behind Milo:
+
+- Flick the tennis ball to throw it (gravity, bounces, rolling), tap it to pop it up.
+- Rub Milo for floating 3D hearts; he watches the ball and gets excited when you throw.
+- Day / Sunset / Night lighting (starts from the phone's clock), tilt parallax (`expo-sensors`) or drag to look around.
+
+Code: `src/components/scene/` (room, ball, particles, lighting, bridge) and
+`src/components/milo/driver.ts` (one Milo control API: PNG poses today, Rive `MiloVM` later).
+Runs in Expo Go. Rive will need a development build.
+
 ## Folder structure
 
 ```

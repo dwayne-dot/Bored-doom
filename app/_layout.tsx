@@ -25,6 +25,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg }, animation: 'slide_from_right' }}>
           <Stack.Screen name="index" />
           <Stack.Screen name="design" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="room" options={{ presentation: 'fullScreenModal', animation: 'fade' }} />
         </Stack>
       </SafeAreaProvider>
     </GestureHandlerRootView>
