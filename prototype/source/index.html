@@ -5218,16 +5218,16 @@ function yrow(k,t,s,attrs,right){return '<button class="srow" '+(attrs||'')+'>'+
 
 /* ---------- Milo's toolkit bag ---------- */
 var TOOLS=[['breath','Breathe','data-go="breathe" data-mode="modal"'],['ball','Busters','data-go="deck"'],['feed','Finite Feed','data-go="feed"'],['find','Find Milo','data-go="findmilo" data-mode="modal"'],['down','Phone down','data-go="phonedown"'],['bed','Bedtime','data-go="bedtime" data-mode="modal"'],['shield','Milo shield','data-go="shield"'],['pack','Your pack','data-go="pack"']];
-function bagSvg(sz,open){return '<svg class="bag'+(open?' open':'')+'" width="'+sz+'" height="'+sz+'" viewBox="0 0 100 100" aria-hidden="true">'+
- '<path d="M30 30V20a8 8 0 0 1 8-8h3M70 30V20a8 8 0 0 0-8-8h-3" fill="none" stroke="#2E6B5E" stroke-width="7" stroke-linecap="round"/>'+
- '<rect x="11" y="52" width="12" height="26" rx="5" fill="#C9744A"/><rect x="77" y="52" width="12" height="26" rx="5" fill="#C9744A"/>'+
- '<path d="M20 50c0-17 13-28 30-28s30 11 30 28v32a10 10 0 0 1-10 10H30a10 10 0 0 1-10-10z" fill="#E88D4F"/>'+
- '<path d="M62 24c11 4 18 13 18 26v32a10 10 0 0 1-10 10h-6c8-2 10-8 10-14V48c0-10-4-19-12-24z" fill="#D9702F" opacity=".55"/>'+
- '<g class="bag-flap"><path d="M30 46V40c0-11 9-18 20-18s20 7 20 18v6" fill="none" stroke="#B85F2E" stroke-width="4" stroke-linecap="round"/></g>'+
- '<rect x="28" y="56" width="44" height="28" rx="7" fill="#F9F6F0"/><path d="M33 64h34" stroke="#E2D6C3" stroke-width="2.5" stroke-linecap="round"/>'+
- '<circle cx="35" cy="64" r="2.6" fill="#F2B23A"/><path d="M35 66.5v5" stroke="#F2B23A" stroke-width="2" stroke-linecap="round"/>'+
- '<g transform="translate(50 76) scale(1.15) translate(-12 -14)" fill="#E88D4F">'+pawP(12,11.6,1.15,true).replace('fill="currentColor"','')+'</g>'+
- '<ellipse cx="42" cy="34" rx="7" ry="3" fill="#fff" opacity=".25" transform="rotate(-25 42 34)"/></svg>'}
+function bagSvg(sz,open){/* backpack from Figma (Bored Doom – Icons, node 69:144) */return '<svg class="bag'+(open?' open':'')+'" width="'+sz+'" height="'+sz+'" viewBox="0 6 92 92" fill="none" aria-hidden="true">'+
+ '<path d="M27.6 27.6V24.27c0-.71.78-1.39 2.17-1.89 1.39-.5 3.27-.78 5.23-.78h2.78M64.6 27.6V24.27c0-.71-.78-1.39-2.17-1.89-1.39-.5-3.27-.78-5.23-.78h-2.78" stroke="#2E6B5E" stroke-width="6.44" stroke-linecap="round"/>'+
+ '<rect x="10.12" y="47.84" width="11.04" height="23.92" rx="4.6" fill="#C9744A"/><rect x="70.84" y="47.84" width="11.04" height="23.92" rx="4.6" fill="#C9744A"/>'+
+ '<path d="M18.4 46c0-15.64 11.96-25.76 27.6-25.76S73.6 30.36 73.6 46v29.44a9.2 9.2 0 0 1-9.2 9.2H27.6a9.2 9.2 0 0 1-9.2-9.2z" fill="#E88D4F"/>'+
+ '<path opacity=".6" d="M57.04 22.08C67.16 25.76 73.6 34.04 73.6 46v29.44a9.2 9.2 0 0 1-9.2 9.2h-5.52c7.36-1.84 9.2-7.36 9.2-12.88v-27.6c0-9.2-3.68-17.48-11.04-22.08z" fill="#D9702F"/>'+
+ '<g class="bag-flap"></g>'+
+ '<rect x="25.76" y="51.52" width="40.48" height="25.76" rx="6.44" fill="#F9F6F0"/><path d="M30.36 58.88h31.28" stroke="#E2D6C3" stroke-width="2.3" stroke-linecap="round"/>'+
+ '<circle cx="32.2" cy="58.88" r="2.39" fill="#F2B23A"/><path d="M32.2 61.18v4.6" stroke="#F2B23A" stroke-width="1.84" stroke-linecap="round"/>'+
+ '<g fill="#E88D4F"><path d="M46 67.49c-1.37 0-2.83 1.62-2.83 2.94 0 .86.61 1.32 1.37 1.32.56 0 .96-.36 1.46-.36s.91.36 1.47.36c.76 0 1.37-.46 1.37-1.32 0-1.32-1.47-2.94-2.84-2.94z"/><ellipse cx="42.2" cy="66.53" rx=".91" ry="1.16"/><ellipse cx="44.43" cy="64.3" rx=".96" ry="1.27"/><ellipse cx="47.57" cy="64.3" rx=".96" ry="1.27"/><ellipse cx="49.8" cy="66.53" rx=".91" ry="1.16"/></g>'+
+ '<ellipse cx="38.64" cy="31.28" rx="6.4" ry="2.6" fill="#fff" opacity=".2" transform="rotate(-25 38.64 31.28)"/></svg>'}
 function toolRing(){return TOOLS.map(function(x,i){var a=(i*45-90)*Math.PI/180,R=128;
  return '<button class="ring-paw tk-p" '+x[2]+' style="--x:'+(Math.cos(a)*R).toFixed(1)+'px;--y:'+(Math.sin(a)*R).toFixed(1)+'px;--d:'+(0.15+i*0.09).toFixed(3)+'s;--r:'+((7-i)*0.035).toFixed(3)+'s"><span class="rp-art"><svg viewBox="2.2 2.4 19.6 18" aria-hidden="true"><g class="rp-shape"><path d="M12 11.6c-2.7 0-5.6 3.2-5.6 5.8 0 1.7 1.2 2.6 2.7 2.6 1.1 0 1.9-.7 2.9-.7s1.8.7 2.9.7c1.5 0 2.7-.9 2.7-2.6 0-2.6-2.9-5.8-5.6-5.8z"/><ellipse cx="4.5" cy="9.7" rx="1.8" ry="2.3"/><ellipse cx="8.9" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="15.1" cy="5.3" rx="1.9" ry="2.5"/><ellipse cx="19.5" cy="9.7" rx="1.8" ry="2.3"/></g></svg><span class="rp-ic" style="background:'+KIT[x[0]].bg+'">'+kitIc(x[0],x[0]==='find'?28:25)+'</span></span><b>'+x[1]+'</b></button>'}).join('')}
 function bagCardHTML(){return '<button class="bag-card" data-ref="bag" aria-label="Open Milo’s toolkit">'+bagSvg(92)+'<span class="grow"><b>Milo’s toolkit</b><small>8 tools for hard moments</small><span class="bag-peek">'+['breath','ball','feed','find'].map(function(k){return '<i style="background:'+KIT[k].bg+'">'+kitIc(k,k==='find'?20:18)+'</i>'}).join('')+'<em>+4</em></span></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}
