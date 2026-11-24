@@ -3172,6 +3172,67 @@ html.arcade .screen.dark,html.arcade .screen.night{background:#13111C!important}
 html.arcade #tk-ov .tk-bd,html.arcade .tk-bd{background:rgba(19,17,28,.72)!important}
 #tabbar .tab-sos,#tabbar .tab-sos *{color:#FFFFFF!important}#tabbar .tab-sos svg{fill:#FFFFFF}
 .set-acc{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+
+/* ===== Home look (Nov 24 rebuild): white page, icon header, floating tab bar + SOS, settings gear ===== */
+.home-top{display:grid!important;grid-template-columns:repeat(3,1fr);justify-items:center;align-items:center;gap:0!important;margin:-6px -20px 0!important;padding:10px 20px 12px!important;background:var(--home-bg,var(--bg))!important;box-shadow:0 -80px 0 var(--home-bg,var(--bg))!important;border-bottom:2px solid var(--home-line,rgba(0,0,0,.08))}
+html.native .home-scroll{padding-top:4px!important}
+html.native .home-top{top:0!important}
+.home-top>button{width:58px!important;height:58px!important;padding:0!important;border:none!important;background:none!important;box-shadow:none!important;border-radius:29px!important;display:inline-flex;align-items:center;justify-content:center;margin:0!important;transition:transform .35s var(--spring)}
+.home-top>button:active{transform:scale(.88)!important}
+.home-top .lock-chip.on{width:auto!important;padding:0 14px!important;gap:6px;background:rgba(242,204,107,.2)!important;font-size:16px}
+.home-you svg{width:46px;height:46px;filter:drop-shadow(0 2px 0 rgba(94,79,208,.18))}
+.home-top .lock-chip .lkico.home-lk{width:44px;height:44px}
+.home-top .wheel-chip svg{width:50px!important;height:50px!important;filter:drop-shadow(0 2px 1px rgba(0,0,0,.12))}
+.home-top .wheel-chip .wm{animation:wmSpin 14s linear infinite}
+.home-scroll .since{margin:2px 0 -2px!important;font-size:15px!important;line-height:1.35!important;align-items:flex-start!important;gap:10px!important}
+.home-scroll .since-ic{margin-top:2px}
+.home-scroll .say{max-width:300px!important;font-size:17px!important;font-weight:600!important;line-height:1.3!important;padding:13px 20px!important;border-radius:26px!important;box-shadow:none!important}
+.home-scroll .hero-stage{margin-top:-2px!important}
+.home-scroll .hero-milo{width:214px!important}
+.home-scroll .hero-q{font-size:28px!important;line-height:34px!important;margin:10px 0 6px!important}
+.home-scroll .faces{gap:12px!important;padding:4px 20px 6px!important}
+.home-scroll .faces .face{min-width:86px;gap:9px;font-size:15.5px;font-weight:800;background:none!important;border:none!important;box-shadow:none!important;padding:0!important}
+.home-scroll .faces .fc{width:84px!important;height:84px!important;border-radius:42px!important;box-shadow:none!important;overflow:hidden}
+.home-scroll .faces .fc .mface{width:76px!important;height:76px!important;transform:translateY(8px)!important}
+.home-scroll .faces .face[data-arg="bored"]{color:#A0643A!important}.home-scroll .faces .face[data-arg="bored"] .fc{background:#EDC9AE!important}
+.home-scroll .faces .face[data-arg="stressed"]{color:#A54F66!important}.home-scroll .faces .face[data-arg="stressed"] .fc{background:#E8BFC6!important}
+.home-scroll .faces .face[data-arg="tired"]{color:#6656AE!important}.home-scroll .faces .face[data-arg="tired"] .fc{background:#CFC8EC!important}
+.home-scroll .faces .face[data-arg="anxious"]{color:#3B6C63!important}.home-scroll .faces .face[data-arg="anxious"] .fc{background:#C3DCD5!important}
+.home-scroll .faces .face[data-arg="great"]{color:#8A6A12!important}.home-scroll .faces .face[data-arg="great"] .fc{background:#F6E2A6!important}
+.home-scroll .hint-dark{font-size:15px!important;margin-top:8px!important;gap:9px!important}
+html.light{--home-bg:#FFFFFF;--home-line:#E8E8E4}
+html.light .screen:has(>.home-scroll){background:#FFFFFF!important}
+html.light .screen:has(>.home-scroll)>.bg-art{display:none!important}
+html.light .home-scroll .since{color:#58726C!important}
+html.light .home-scroll .since svg{color:#3E8C80!important}
+html.light .home-scroll .say{background:#F4F4F0!important;color:#1E2A27!important;border:2px solid #E3E3DE!important}
+html.light .home-scroll .hero-q{color:#C27A2C!important}
+html.light .home-scroll .hint-dark{color:#5E6E6A!important}
+html.light .home-top .lock-chip:not(.on){color:#4E8F86!important}
+/* floating tab bar */
+#tabbar{left:14px!important;right:98px!important;bottom:calc(max(env(safe-area-inset-bottom),var(--sab,0px)) + 8px)!important;height:66px!important;padding:0 6px!important;border-radius:33px!important;align-items:center!important;justify-content:space-between!important;border:none!important;overflow:visible!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;box-shadow:0 10px 26px rgba(110,64,18,.22),inset 0 1px 0 rgba(255,255,255,.35)!important}
+#tabbar.hide{transform:translateY(calc(100% + 80px))!important}
+#tabbar .tab{flex:1 1 0;height:56px!important;min-height:0!important;justify-content:center;gap:3px!important;border-radius:28px;font-size:13px!important;transition:background-color .3s,transform .35s var(--spring)}
+#tabbar .tab{position:relative;flex:1 1 0!important;max-width:none!important;width:auto!important;margin:0 2px!important}
+#app .home-top .lock-chip svg.home-lk{color:#4E8F86!important}
+#tabbar .tab::before{content:"";position:absolute!important;inset:0!important;width:auto!important;height:auto!important;margin:0!important;border-radius:28px!important;z-index:-1;max-width:none!important;min-width:0!important;translate:none!important;transform:none!important;opacity:0;-webkit-mask:none!important;mask:none!important}
+#tabbar .tab.on::before{opacity:1!important}
+html.light #tabbar .tab::before{background:rgba(255,255,255,.28)!important;box-shadow:none!important}
+#app .home-top>button.lock-chip:not(.on),#app .home-top>button.wheel-chip,#app .home-top>button.home-you{width:58px!important;height:58px!important;border:none!important;background:none!important;box-shadow:none!important}
+#app .home-top .lock-chip:not(.on) svg.home-lk{width:42px!important;height:42px!important}
+#app .home-top .wheel-chip .wm{width:auto!important;height:auto!important;animation:wmSpin 14s linear infinite!important}
+#tabbar .tab[data-tab="you"]{display:none!important}
+#tabbar .tab .tab-ic.solid,#tabbar .tabface{width:32px!important;height:32px!important}
+#tabbar .tabface{border-radius:16px}
+#tabbar .tab-sos{position:absolute!important;right:-86px;top:-3px;width:72px!important;height:72px!important;margin:0!important;border-radius:36px!important;border:3px solid #fff!important;background:radial-gradient(circle at 35% 30%,#E9A066,#D9813F 70%)!important;color:#fff!important;font:900 19px 'Nunito',sans-serif!important;letter-spacing:.5px;box-shadow:0 8px 20px rgba(160,80,20,.35)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+#tabbar .tab-sos .sos-paw{height:18px;margin-bottom:2px}
+#tabbar .tab-sos .sos-paw svg *{fill:#fff!important}
+html.light #app[data-tab="today"] #tabbar{background:linear-gradient(180deg,rgba(236,194,124,.96),rgba(226,164,84,.96))!important}
+/* settings gear */
+#gear-fab{position:absolute;left:14px;bottom:calc(max(env(safe-area-inset-bottom),var(--sab,0px)) + 90px);z-index:21;width:52px;height:52px;border-radius:26px;border:none;padding:0;display:flex;align-items:center;justify-content:center;color:#fff;background:radial-gradient(circle at 35% 30%,#5B95F5,#2F6BDB 72%);box-shadow:0 0 0 6px rgba(80,140,240,.22),0 8px 18px rgba(30,70,160,.35);transition:transform .42s var(--spring),opacity .3s}
+#gear-fab svg{width:28px;height:28px}
+#gear-fab:active{transform:scale(.9) rotate(30deg)}
+#gear-fab.hide{opacity:0;transform:scale(.6);pointer-events:none}
 </style>
 </head>
 <body>
@@ -3192,6 +3253,7 @@ html.arcade #tk-ov .tk-bd,html.arcade .tk-bd{background:rgba(19,17,28,.72)!impor
       <button class="tab" data-tab="milo"><span class="tabface"><img src="assets/m/face-happy.png" alt=""></span>Milo</button>
       <button class="tab" data-tab="you"><svg class="tab-ic solid" width="27" height="27" viewBox="0 0 24 24" aria-hidden="true"><defs><mask id="tagHole"><rect width="24" height="24" fill="#fff"/><circle cx="12" cy="9.4" r="1.6" fill="#000"/></mask></defs><path d="M12 1.6v5.2" stroke="#D9D3F7" stroke-width="2" stroke-linecap="round"/><g mask="url(#tagHole)"><rect x="5" y="4.6" width="14" height="17.6" rx="7" fill="#C8BFF3"/><path d="M5 15.2h14v.4a7 7 0 0 1-14 0z" fill="#A99DE6" opacity=".85"/><path d="M7.6 8.6a5 5 0 0 1 2.2-2.5" stroke="#fff" stroke-opacity=".6" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><path d="M9.2 14.2h5.6M10.2 17.3h3.6" stroke="#7D70CF" stroke-width="1.9" stroke-linecap="round"/></svg>You</button>
     </nav>
+    <button id="gear-fab" data-go="settings" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
     <div id="toast" class="toast" role="status"></div>
   </div></div>
 </div>
@@ -3373,7 +3435,8 @@ function makeEntry(name,params,mode){
  entry.cleanup=def.mount?def.mount(el,params||{},entry):null;
  return entry;
 }
-function updateTabbar(){try{document.getElementById('app').dataset.tab=curTab}catch(_){}try{$$('#tabbar .tab').forEach(function(t){if(t.dataset.tab===curTab)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')})}catch(_){}tabbar.classList.toggle('hide',stack.length>1);$$('.tab',tabbar).forEach(function(t){t.classList.toggle('on',t.dataset.tab===curTab)})}
+function postBg(){var RN=window.ReactNativeWebView;if(!RN)return;clearTimeout(postBg.t);postBg.t=setTimeout(function(){try{var e=stack[stack.length-1];if(!e)return;var c=getComputedStyle(e.el).backgroundColor,m=c.match(/[\d.]+/g)||[0,0,0],l=(+m[0]*299+ +m[1]*587+ +m[2]*114)/255000;if(c!==postBg.c){postBg.c=c;RN.postMessage(JSON.stringify({t:'bg',c:c,dark:l<.55}))}}catch(_){}},460)}
+function updateTabbar(){try{document.getElementById('app').dataset.tab=curTab}catch(_){}try{$$('#tabbar .tab').forEach(function(t){if(t.dataset.tab===curTab)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')})}catch(_){}tabbar.classList.toggle('hide',stack.length>1);try{var gf=document.getElementById('gear-fab');gf&&gf.classList.toggle('hide',stack.length>1||curTab==='you')}catch(_){}postBg();$$('.tab',tabbar).forEach(function(t){t.classList.toggle('on',t.dataset.tab===curTab)})}
 function push(name,params,mode){
  mode=mode||'push';haptic(6);
  var prev=stack[stack.length-1];var e=makeEntry(name,params,mode);
@@ -3566,8 +3629,8 @@ var LINES=function(){var l=['It\'s raining and a little gloomy today. Days like 
 SCREENS.today={render:function(){
  var d=new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
  function tool(i,bg,c,t,sub,attrs){return '<button class="srow" '+attrs+'><span class="si" style="background:'+bg+';color:'+c+'">'+ic(i,{s:18})+'</span><span class="grow">'+t+'<small>'+sub+'</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}
- return '<div class="scroll"><div class="stagger col" style="gap:16px">'+
- '<div class="home-top">'+lockChip()+'<button class="wheel-chip" data-ref="wheelc" aria-label="Spin for a task">'+wheelMini()+'</button></div>'+
+ return '<div class="scroll home-scroll"><div class="stagger col" style="gap:16px">'+
+ '<div class="home-top"><button class="home-you" data-tab="you" aria-label="You"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><mask id="tagHoleH"><rect width="24" height="24" fill="#fff"/><circle cx="12" cy="9.4" r="1.6" fill="#000"/></mask></defs><path d="M12 1.6v5.2" stroke="#B9AEF0" stroke-width="2" stroke-linecap="round"/><g mask="url(#tagHoleH)"><rect x="5" y="4.6" width="14" height="17.6" rx="7" fill="#C8BFF3"/><path d="M5 15.2h14v.4a7 7 0 0 1-14 0z" fill="#A99DE6" opacity=".85"/><path d="M7.6 8.6a5 5 0 0 1 2.2-2.5" stroke="#fff" stroke-opacity=".6" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><path d="M9.2 14.2h5.6M10.2 17.3h3.6" stroke="#7D70CF" stroke-width="1.9" stroke-linecap="round"/></svg></button>'+lockChip(true)+'<button class="wheel-chip" data-ref="wheelc" aria-label="Spin for a task">'+wheelBig()+'</button></div>'+
  '<button class="since" data-tab="insights"><span class="since-ic">'+ic('clock',{s:15,w:2.4})+'</span><span>'+sinceLine()+'</span></button>'+'<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark"><span class="rub-hand">'+ic('hand',{s:14})+'</span>Rub Milo, or shake your phone, for a smile</span></div>'+
  '<div data-ref="vnh">'+homeVN()+'</div>'+bagCardHTML()+
  '<div data-ref="lkc">'+lockCardHTML()+'</div>'+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
@@ -4784,7 +4847,9 @@ function awardHas(a){var best=Math.max(S.best||0,S.streak||0),tot=S.urgesTotal||
 /* ===== Nov 18 (c): lock chip, task wheel, varied insights charts ===== */
 
 function wheelMini(){var c=['#F7D774','#9FD0BD','#F59E9A','#BDB4E6','#8DBCE0','#F6B98F'],o='';for(var i=0;i<6;i++){var a0=(i*60-90)*Math.PI/180,a1=((i+1)*60-90)*Math.PI/180;o+='<path d="M12 12L'+(12+9*Math.cos(a0)).toFixed(2)+' '+(12+9*Math.sin(a0)).toFixed(2)+'A9 9 0 0 1 '+(12+9*Math.cos(a1)).toFixed(2)+' '+(12+9*Math.sin(a1)).toFixed(2)+'z" fill="'+c[i]+'"/>'}return '<svg viewBox="0 0 24 24" width="22" height="22" class="wm">'+o+'<circle cx="12" cy="12" r="2.6" fill="#fff"/></svg>'}
-function lockChip(){var on=lockActive();return '<button class="lock-chip'+(on?' on':'')+'" data-go="lockin" data-mode="modal" aria-label="'+(on?'Locked In, time left':'Locked In is off')+'">'+lockIco(16,!on)+(on?'<span data-ref="lkt">'+lockLeft().txt+'</span>':'')+'</button>'}
+function lockBig(){return '<svg class="lkico home-lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10.6V7.4a4 4 0 0 1 7.6-1.7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><rect x="5" y="10.2" width="14" height="11.4" rx="4.2" fill="currentColor"/><circle cx="12" cy="15.2" r="1.7" fill="#fff"/><path d="M12 16.4v2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>'}
+function wheelBig(){var c=['#F7C948','#7FCB9B','#F2777A','#8B7BE0','#5FA8E8','#F59B54','#E879B0','#5CC8C0'],o='';for(var i=0;i<8;i++){var a0=(i*45-90)*Math.PI/180,a1=((i+1)*45-90)*Math.PI/180;o+='<path d="M12 12L'+(12+11*Math.cos(a0)).toFixed(2)+' '+(12+11*Math.sin(a0)).toFixed(2)+'A11 11 0 0 1 '+(12+11*Math.cos(a1)).toFixed(2)+' '+(12+11*Math.sin(a1)).toFixed(2)+'z" fill="'+c[i]+'" stroke="#fff" stroke-width=".7"/>'}return '<svg viewBox="0 0 24 24" aria-hidden="true"><g class="wm" style="transform-origin:12px 12px">'+o+'</g><circle cx="12" cy="12" r="3.4" fill="#fff"/></svg>'}
+function lockChip(big){var on=lockActive();return '<button class="lock-chip'+(on?' on':'')+'" data-go="lockin" data-mode="modal" aria-label="'+(on?'Locked In, time left':'Locked In is off')+'">'+(big&&!on?lockBig():lockIco(big?20:16,!on))+(on?'<span data-ref="lkt">'+lockLeft().txt+'</span>':'')+'</button>'}
 /* task wheel */
 var WHEEL_BASE=[['💧','Drink a glass of water'],['🧘','Stretch for 2 minutes'],['🌳','Step outside for 5 minutes'],['🧹','Tidy one small surface'],['💬','Text someone you like'],['🎵','Dance to one song'],['📖','Read 2 pages'],['🌬️','60 seconds of slow breaths']];
 var WHEEL_COL=['#FFC93C','#4CC59A','#FF7A6E','#9A86F0','#4FA9EE','#FF9F55','#A8D84A','#F27BB0'];
