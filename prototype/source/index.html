@@ -3233,6 +3233,64 @@ html.light #app[data-tab="today"] #tabbar{background:linear-gradient(180deg,rgba
 #gear-fab svg{width:28px;height:28px}
 #gear-fab:active{transform:scale(.9) rotate(30deg)}
 #gear-fab.hide{opacity:0;transform:scale(.6);pointer-events:none}
+
+/* ===== Nov 24 b: header right, padlock w/ orange ring, smaller moods w/ rings, sections, You sheet, forest green ===== */
+:root{--forest:#11402E;--forestM:#2F6E52;--sosO:#DE8643}
+#app .home-top{display:flex!important;justify-content:flex-end!important;gap:12px!important}
+#app .home-top>button.home-you,#app .home-top>button.wheel-chip,#app .home-top>button.lock-chip:not(.on){width:48px!important;height:48px!important;border-radius:24px!important}
+#app .home-top .home-you svg{width:40px!important;height:40px!important}
+#app .home-top .wheel-chip svg{width:42px!important;height:42px!important}
+html #app .home-top>button.lock-chip:is(.on,:not(.on)){border:2.5px solid var(--sosO)!important;background:#fff!important;color:var(--forest)!important;box-shadow:0 2px 8px rgba(222,134,67,.22)!important}
+html #app .home-top>button.lock-chip:is(.on,:not(.on)) svg.padlk.home-lk{width:26px!important;height:26px!important;color:var(--forest)!important}
+#app .home-top>button.lock-chip.on{height:48px!important;padding:0 14px 0 10px!important;border-radius:24px!important;gap:6px;color:var(--forest)!important;font-weight:800}
+.padlk{display:block}
+.lk-card .lk-ic{background:#fff!important;box-shadow:0 0 0 2.5px var(--sosO);color:var(--forest)!important;width:40px!important;height:40px!important;border-radius:20px!important}
+.lk-card .lk-ic .padlk{width:22px;height:22px}
+html.light .lk-card:not(.active){background:linear-gradient(135deg,#17533C,var(--forest))!important;border-color:rgba(222,134,67,.45)!important}
+/* titles take their tab colour */
+html.light .screen[data-s="insights"] h1.large{color:#D93A44}
+html.light .screen[data-s="milo"] h1.large{color:var(--forest)}
+html.light .screen[data-s="you"] h1.large{color:#5E4FD0}
+html:not(.light) .screen[data-s="insights"] h1.large{color:#FF8A8E}
+html:not(.light) .screen[data-s="milo"] h1.large{color:#7FB59A}
+html:not(.light) .screen[data-s="you"] h1.large{color:#B7ACF5}
+/* Milo tab: forest instead of bright green */
+html.light #app[data-tab="milo"]{--bg:#E1ECE5;--bg3:#C9DCD0;--tabc:#11402E}
+/* feelings: smaller, ringed in their label colour */
+.home-scroll .hero-q{font-size:22px!important;line-height:28px!important;margin:8px 0 4px!important}
+.home-scroll .faces{display:flex!important;gap:6px!important;justify-content:space-between!important;overflow:visible!important;padding:0!important}
+.home-scroll .faces .face{flex:1 1 0!important;min-width:0!important;gap:6px!important;font-size:13px!important}
+.home-scroll .faces .fc{width:60px!important;height:60px!important;border-radius:30px!important;border:3px solid currentColor!important;box-sizing:border-box}
+.home-scroll .faces .fc .mface{width:52px!important;height:52px!important;transform:translateY(5px)!important}
+.home-scroll .rub-hand .shake-ic{animation:shakeIc 2.4s ease-in-out infinite;display:block}
+@keyframes shakeIc{0%,70%,100%{transform:rotate(0)}74%{transform:rotate(-14deg)}80%{transform:rotate(12deg)}86%{transform:rotate(-8deg)}92%{transform:rotate(5deg)}}
+html.light .home-scroll .since svg{color:var(--forestM)!important}
+/* collapsible sections */
+.hsec{display:flex;flex-direction:column}
+.hsec-h{display:flex;align-items:center;justify-content:space-between;margin:2px 0 6px}
+.hsec-h h3{margin:0;font:900 13px/1 'Nunito',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2,#5E6E6A)}
+html.light .home-scroll .hsec-h h3{color:#5E6E6A}
+.hsec-grip{width:44px;height:32px;border:none;border-radius:16px;background:rgba(17,64,46,.08);color:#5E6E6A;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:grab;transition:background-color .2s,transform .3s var(--spring)}
+.hsec-grip:active{cursor:grabbing;background:rgba(17,64,46,.16);transform:scale(.94)}
+.hsec-b{overflow:hidden;transition:max-height .36s cubic-bezier(.3,.8,.3,1),opacity .28s}
+.hsec-in{display:flex;flex-direction:column;gap:16px;padding:2px 0 4px}
+.hsec.closed .hsec-b{max-height:0!important;opacity:0}
+.hsec.closed .hsec-grip{background:rgba(222,134,67,.16);color:#B9652F}
+html:not(.light) .hsec-grip{background:rgba(255,255,255,.08);color:#C9D2CF}
+/* You as a pull-up sheet */
+.sheet-scrim{position:absolute;inset:0;background:rgba(10,20,17,.42);z-index:30;animation:scrimIn .3s ease both}
+.sheet-scrim.out{animation:scrimOut .35s ease both}
+@keyframes scrimIn{from{opacity:0}}@keyframes scrimOut{to{opacity:0}}
+#app .screen.sheet-scr{top:calc(env(safe-area-inset-top) + 56px)!important;bottom:0!important;height:auto!important;border-radius:30px 30px 0 0!important;overflow:hidden;z-index:31;box-shadow:0 -12px 40px rgba(0,0,0,.18);transition:transform .32s cubic-bezier(.2,.9,.3,1)}
+html.native #app .screen.sheet-scr{top:56px!important}
+#app .screen.sheet-scr.sheet-drag{transition:none}
+#app .screen.sheet-enter{animation:sheetUp .44s cubic-bezier(.2,.9,.25,1.05) both}
+#app .screen.sheet-exit{animation:sheetDown .36s cubic-bezier(.4,0,.7,.2) both}
+@keyframes sheetUp{from{transform:translateY(100%)}}@keyframes sheetDown{to{transform:translateY(100%)}}
+.sheet-grabber{position:absolute;top:8px;left:50%;width:44px;height:5px;margin-left:-22px;border-radius:3px;background:rgba(22,48,43,.25);z-index:5;pointer-events:none}
+.sheet-close-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);border:0;padding:0}
+.sheet-close-sr:focus{width:auto;height:auto;clip:auto;top:14px;right:16px;padding:6px 12px;border-radius:14px;background:#fff;color:#16302B;z-index:6}
+.screen.sheet-scr .scroll{padding-top:12px}
 </style>
 </head>
 <body>
@@ -3443,15 +3501,28 @@ function push(name,params,mode){
  if(mode==='push'){e.el.classList.add('push-enter');if(prev){prev.el.classList.remove('pop-reveal');prev.el.classList.add('push-under');setTimeout(function(){if(prev.el.classList.contains('push-under'))prev.el.style.visibility='hidden'},460)}}
  else if(mode==='zoom')e.el.classList.add('zoom-enter');
  else if(mode==='instant'){}
+ else if(mode==='sheet')openSheetScreen(e);
  else e.el.classList.add('modal-enter');
  stack.push(e);updateTabbar();return e;
+}
+/* You as a pull-up sheet: swipe down (or tap the dimmed area) to close */
+function openSheetScreen(e){var el=e.el;el.classList.add('sheet-scr','sheet-enter');setTimeout(function(){el.classList.remove('sheet-enter')},460);
+ var bd=document.createElement('div');bd.className='sheet-scrim';nav.insertBefore(bd,el);e.bd=bd;bd.addEventListener('click',function(){if(stack[stack.length-1]===e)pop()});
+ var gr=document.createElement('div');gr.className='sheet-grabber';gr.setAttribute('aria-hidden','true');el.appendChild(gr);
+ var cl=document.createElement('button');cl.className='sheet-close-sr';cl.setAttribute('data-back','');cl.textContent='Close';el.appendChild(cl);
+ var y0=null,x0=0,dy=0,drag=false,t0=0,sc=null;
+ el.addEventListener('pointerdown',function(ev){if(stack[stack.length-1]!==e)return;sc=el.querySelector('.scroll');var top=el.getBoundingClientRect().top;if((sc&&sc.scrollTop>2)&&ev.clientY-top>70)return;y0=ev.clientY;x0=ev.clientX;dy=0;drag=false;t0=Date.now()});
+ el.addEventListener('pointermove',function(ev){if(y0==null)return;dy=ev.clientY-y0;if(!drag){if(dy>8&&Math.abs(dy)>Math.abs(ev.clientX-x0)*1.3){drag=true;el.classList.add('sheet-drag');try{el.setPointerCapture(ev.pointerId)}catch(_){}}else if(dy<-6||Math.abs(ev.clientX-x0)>12){y0=null;return}}if(drag){ev.preventDefault();el.style.transform='translateY('+Math.max(0,dy)+'px)';bd.style.opacity=String(Math.max(0,1-dy/500))}});
+ function up(){if(y0==null)return;y0=null;if(!drag)return;drag=false;el.classList.remove('sheet-drag');var v=dy/Math.max(1,Date.now()-t0);if(dy>120||v>.6){el.style.transform='';bd.style.opacity='';pop()}else{el.style.transform='';bd.style.opacity=''}}
+ el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
+ el.addEventListener('click',function(ev){if(dy>8){ev.stopPropagation();ev.preventDefault();dy=0}},true);
 }
 function pop(){
  if(stack.length<=1)return;var top=stack.pop(),prev=stack[stack.length-1];
  prev.el.style.visibility='';
  if(prev.el.classList.contains('push-under')){prev.el.classList.remove('push-under');prev.el.classList.add('pop-reveal');setTimeout(function(){prev.el.classList.remove('pop-reveal')},380)}
  top.el.classList.remove('push-enter','modal-enter','zoom-enter');
- top.el.classList.add(top.mode==='push'?'pop-exit':'modal-exit');
+ top.el.classList.add(top.mode==='push'?'pop-exit':top.mode==='sheet'?'sheet-exit':'modal-exit');if(top.bd){var bd=top.bd;bd.classList.add('out');setTimeout(function(){bd.remove()},380)}
  top.cleanup&&top.cleanup();
  setTimeout(function(){top.el.remove()},390);
  updateTabbar();var d=SCREENS[prev.name];d.onShow&&d.onShow(prev.el,prev);
@@ -3515,7 +3586,7 @@ function artSVG(k){var o='<svg viewBox="0 0 390 520" preserveAspectRatio="xMidYM
   '<rect class="a1" x="320" y="230" width="22" height="22" rx="6" transform="rotate(20 331 241)"/><rect class="a2" x="30" y="300" width="16" height="16" rx="4" transform="rotate(-15 38 308)"/>'+
   '<path class="a4 o7" d="M40 420q20-20 40 0t40 0 40 0" fill="none" stroke-width="7" stroke-linecap="round" style="fill:none"/>'+artSpark(250,40,9,'a1')+artSpark(360,380,7,'a3')+artPaw(340,470,1.2,18,'a2 o6')+c;
  return o+'<path class="a2" d="M260-30c90-10 150 50 140 120s-80 90-130 60-70-70-60-120 20-55 50-60z"/><circle class="a1 o7" cx="30" cy="380" r="60"/>'+artSpark(60,120,8,'a4')+artSpark(330,300,7,'a3')+artPaw(70,250,1.1,-16,'a1 o6')+c}
-var SH_PAL=[['#FFD2B3','#FF9F55','#FFEDE0'],['#BFEBD6','#4CC59A','#E6F7EF'],['#D9D0FA','#9A86F0','#F1EDFE'],['#FFE594','#FFC93C','#FFF6D9'],['#FFC9D2','#F27BB0','#FFEDF1']];
+var SH_PAL=[['#FFD2B3','#FF9F55','#FFEDE0'],['#C9DFD3','#2F6E52','#E6F0EA'],['#D9D0FA','#9A86F0','#F1EDFE'],['#FFE594','#FFC93C','#FFF6D9'],['#FFC9D2','#F27BB0','#FFEDF1']];
 var shN=0;
 function sheetArt(){var p=SH_PAL[(shN++)%SH_PAL.length];
  return {pal:p,svg:'<div class="sh-art" aria-hidden="true"><svg viewBox="0 0 390 170" preserveAspectRatio="xMidYMin slice" width="100%" height="100%">'+
@@ -3630,12 +3701,13 @@ SCREENS.today={render:function(){
  var d=new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
  function tool(i,bg,c,t,sub,attrs){return '<button class="srow" '+attrs+'><span class="si" style="background:'+bg+';color:'+c+'">'+ic(i,{s:18})+'</span><span class="grow">'+t+'<small>'+sub+'</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>'}
  return '<div class="scroll home-scroll"><div class="stagger col" style="gap:16px">'+
- '<div class="home-top"><button class="home-you" data-tab="you" aria-label="You"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><mask id="tagHoleH"><rect width="24" height="24" fill="#fff"/><circle cx="12" cy="9.4" r="1.6" fill="#000"/></mask></defs><path d="M12 1.6v5.2" stroke="#B9AEF0" stroke-width="2" stroke-linecap="round"/><g mask="url(#tagHoleH)"><rect x="5" y="4.6" width="14" height="17.6" rx="7" fill="#C8BFF3"/><path d="M5 15.2h14v.4a7 7 0 0 1-14 0z" fill="#A99DE6" opacity=".85"/><path d="M7.6 8.6a5 5 0 0 1 2.2-2.5" stroke="#fff" stroke-opacity=".6" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><path d="M9.2 14.2h5.6M10.2 17.3h3.6" stroke="#7D70CF" stroke-width="1.9" stroke-linecap="round"/></svg></button>'+lockChip(true)+'<button class="wheel-chip" data-ref="wheelc" aria-label="Spin for a task">'+wheelBig()+'</button></div>'+
- '<button class="since" data-tab="insights"><span class="since-ic">'+ic('clock',{s:15,w:2.4})+'</span><span>'+sinceLine()+'</span></button>'+'<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark"><span class="rub-hand">'+ic('hand',{s:14})+'</span>Rub Milo, or shake your phone, for a smile</span></div>'+
- '<div data-ref="vnh">'+homeVN()+'</div>'+bagCardHTML()+
- '<div data-ref="lkc">'+lockCardHTML()+'</div>'+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
+ '<div class="home-top"><button class="home-you" data-go="you" data-mode="sheet" aria-label="You"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><mask id="tagHoleH"><rect width="24" height="24" fill="#fff"/><circle cx="12" cy="9.4" r="1.6" fill="#000"/></mask></defs><path d="M12 1.6v5.2" stroke="#B9AEF0" stroke-width="2" stroke-linecap="round"/><g mask="url(#tagHoleH)"><rect x="5" y="4.6" width="14" height="17.6" rx="7" fill="#C8BFF3"/><path d="M5 15.2h14v.4a7 7 0 0 1-14 0z" fill="#A99DE6" opacity=".85"/><path d="M7.6 8.6a5 5 0 0 1 2.2-2.5" stroke="#fff" stroke-opacity=".6" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><path d="M9.2 14.2h5.6M10.2 17.3h3.6" stroke="#7D70CF" stroke-width="1.9" stroke-linecap="round"/></svg></button>'+lockChip(true)+'<button class="wheel-chip" data-ref="wheelc" aria-label="Spin for a task">'+wheelBig()+'</button></div>'+
+ '<button class="since" data-tab="insights"><span class="since-ic">'+ic('clock',{s:15,w:2.4})+'</span><span>'+sinceLine()+'</span></button>'+'<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><h2 class="hero-q">How are you feeling?</h2><div class="faces" data-ref="moods">'+faceButtons(true)+'</div><span class="hint-dark"><span class="rub-hand">'+shakeIco()+'</span>Rub Milo or shake your phone for a smile</span></div>'+
+ hsec('activity','Activity','<div data-ref="vnh">'+homeVN()+'</div>'+bagCardHTML()+'<div data-ref="idn">'+idNudgeHTML()+'</div>')+
+ hsec('lockin','Locked In','<div data-ref="lkc">'+lockCardHTML()+'</div>')+
  '</div></div></div>';
 },mount:function(el){
+ bindSections(el);
  var say=ref(el,'say'),i=0,lines=LINES();var wc=ref(el,'wheelc');wc&&wc.addEventListener('click',function(ev){ev.stopPropagation();setTimeout(function(){openWheel(wc)},0)});var lkt=ref(el,'lkt');if(lkt&&lockActive()){var lkI=setInterval(function(){if(!lkt.isConnected||!lockActive()){clearInterval(lkI);return}lkt.textContent=lockLeft().txt},1000)}el.addEventListener('click',function(e){if(e.target.closest('[data-ref="vnx"]')){S.vnHome='home'+S.streak;save();var c=ref(el,'vnc');if(c){c.style.transition='opacity .25s,transform .25s';c.style.opacity='0';c.style.transform='scale(.96)';setTimeout(function(){ref(el,'vnh').innerHTML=''},260)}haptic(6)}});var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);bg&&bagHold(bg);
  var iv=setInterval(function(){i=(i+1)%lines.length;swapText(say,lines[i])},6500);
  var pets=0;
@@ -3648,7 +3720,7 @@ SCREENS.picks={render:function(p){
  var m=p.arg||'bored',mm=MOODS.filter(function(x){return x.id===m})[0];
  return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="pill" style="font-size:14px;color:var(--cream)"><span style="color:'+mm.bg+'">'+ic(mm.i,{s:16,w:2.3})+'</span>Feeling '+mm.l.toLowerCase()+'</span><div style="width:44px"></div></div>'+
  '<div class="row" style="align-items:flex-end;gap:6px"><div style="flex-shrink:0;width:120px" class="rub" data-ref="milo">'+mimg(PICKIMG[m],132,'','Milo','happy')+'</div><div class="speech" style="margin-bottom:36px">'+SAY[m]+'</div></div>'+
- '<div class="encourage">'+ic('thumb',{c:'#7BC47F'})+'<span>You\'ve beaten <b style="color:#7BC47F">'+S.beaten+' urges</b> today. That counts.</span></div>'+
+ '<div class="encourage">'+ic('thumb',{c:'#2F6E52'})+'<span>You\'ve beaten <b style="color:#2F6E52">'+S.beaten+' urges</b> today. That counts.</span></div>'+
  (S.swaps.length?'<div class="over" style="margin-top:4px">YOUR GO-TO SWAPS</div><div class="pk-own" data-ref="own">'+S.swaps.map(function(s,i){return '<button class="chip" data-own="'+i+'">'+emo(swapEmo(s.t))+esc(s.t)+'</button>'}).join('')+'<button class="chip add" data-go="swaps">'+ic('plus',{s:14,w:3})+'Add</button></div>':'')+'<div class="over" style="margin-top:4px">MILO\'S PICKS FOR '+mm.l.toUpperCase()+'</div><div class="picks stagger" data-ref="list"></div>'+fbHTML('picks-'+m,'Were these picks helpful?')+
  '<div class="spacer"></div><button class="link" data-ref="shuffle" style="display:flex;align-items:center;gap:8px">'+ic('refresh',{s:18})+'Show me different picks</button></div>';
 },mount:function(el,p){
@@ -3840,7 +3912,7 @@ SCREENS.insights={render:function(){
  '<div class="card cream row"><img src="assets/garden.png" alt="Milo watering sprouts" class="illo" style="width:96px;height:96px;border-radius:18px;flex-shrink:0"><div class="col" style="gap:4px"><span class="over" style="color:var(--ink2)">MILO NOTICED</span><b style="font-size:17px;line-height:22px">Most urges hit when you\'re <span style="color:#A8541E">Bored after 8 PM</span>.</b><button class="chip" data-ref="boost" style="align-self:flex-start;border-color:#E4DDCF;color:var(--ink);padding:6px 12px;font-size:13px">Add a 7:45 PM booster</button></div>'+fbHTML('insight-bored-8pm','Is this insight useful?')+'</div>'+
  urgeCard()+wordsCard()+moodDonut()+
  dayTimeline()+
- '<div class="card col"><div style="display:flex;justify-content:space-between;align-items:center"><div class="over">SCROLL TIME TODAY</div><span style="font-size:12px;font-weight:800;color:var(--ink);background:var(--sun);padding:3px 8px;border-radius:999px">SCREEN TIME</span></div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:800">1h 12m</span><span style="color:#7BC47F;font-weight:800">↓ 34 min vs last week</span></div><div class="hbars" style="grid-template-columns:60px minmax(0,1fr) 40px">'+[['Clips',38],['Chirp',21],['Scroll',13]].map(function(a){return '<span>'+a[0]+'</span><div class="hb"><i data-w="'+Math.round(a[1]/38*100)+'" style="background:#E88D4F"></i></div><span style="text-align:right">'+a[1]+'m</span>'}).join('')+'</div><div class="note">Sample data. The real version reads Apple Screen Time (needs a dev build)</div></div>'+
+ '<div class="card col"><div style="display:flex;justify-content:space-between;align-items:center"><div class="over">SCROLL TIME TODAY</div><span style="font-size:12px;font-weight:800;color:var(--ink);background:var(--sun);padding:3px 8px;border-radius:999px">SCREEN TIME</span></div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:800">1h 12m</span><span style="color:#2F6E52;font-weight:800">↓ 34 min vs last week</span></div><div class="hbars" style="grid-template-columns:60px minmax(0,1fr) 40px">'+[['Clips',38],['Chirp',21],['Scroll',13]].map(function(a){return '<span>'+a[0]+'</span><div class="hb"><i data-w="'+Math.round(a[1]/38*100)+'" style="background:#E88D4F"></i></div><span style="text-align:right">'+a[1]+'m</span>'}).join('')+'</div><div class="note">Sample data. The real version reads Apple Screen Time (needs a dev build)</div></div>'+
  '<div class="card col"><div class="over">WHAT YOU GAINED THIS MONTH</div><div class="stats3"><div class="stat" style="background:var(--bg)"><b>6h 10m</b><small>time reclaimed</small></div><div class="stat" style="background:var(--bg)"><b>41</b><small>swaps made</small></div><div class="stat" style="background:var(--bg)"><b>128</b><small>Milo pets</small></div></div><div class="muted" style="font-size:13px">That\'s a movie marathon, or three long walks.</div></div>'+
  '</div>';
 },mount:function(el){
@@ -4847,19 +4919,31 @@ function awardHas(a){var best=Math.max(S.best||0,S.streak||0),tot=S.urgesTotal||
 /* ===== Nov 18 (c): lock chip, task wheel, varied insights charts ===== */
 
 function wheelMini(){var c=['#F7D774','#9FD0BD','#F59E9A','#BDB4E6','#8DBCE0','#F6B98F'],o='';for(var i=0;i<6;i++){var a0=(i*60-90)*Math.PI/180,a1=((i+1)*60-90)*Math.PI/180;o+='<path d="M12 12L'+(12+9*Math.cos(a0)).toFixed(2)+' '+(12+9*Math.sin(a0)).toFixed(2)+'A9 9 0 0 1 '+(12+9*Math.cos(a1)).toFixed(2)+' '+(12+9*Math.sin(a1)).toFixed(2)+'z" fill="'+c[i]+'"/>'}return '<svg viewBox="0 0 24 24" width="22" height="22" class="wm">'+o+'<circle cx="12" cy="12" r="2.6" fill="#fff"/></svg>'}
+function padLock(cls){return '<svg class="padlk'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.3 11V8.3a4.7 4.7 0 0 1 9.4 0V11" fill="none" stroke="currentColor" stroke-width="2.9"/><path d="M6.4 10h11.2a1.9 1.9 0 0 1 1.9 1.9v3.3a7.5 6.9 0 0 1-15 0v-3.3A1.9 1.9 0 0 1 6.4 10z" fill="currentColor"/><circle cx="12" cy="14.3" r="1.75" fill="#fff"/><path d="M11.15 15.1h1.7l.55 3.4h-2.8z" fill="#fff"/></svg>'}
+function shakeIco(){return '<svg class="shake-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3.5" width="8" height="17" rx="2.2" transform="rotate(-12 12 12)"/><path d="M11.2 17.2h1.6" transform="rotate(-12 12 12)"/><path d="M4.2 8.5c-.9 1.4-.9 3.6 0 5"/><path d="M19.8 10.5c.9 1.4.9 3.6 0 5"/><path d="M2 7c-1.4 2.4-1.4 5.6 0 8" opacity=".55"/><path d="M22 9c1.4 2.4 1.4 5.6 0 8" opacity=".55"/></svg>'}
+function gripIco(){return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="18" r="1.7"/><circle cx="15" cy="18" r="1.7"/></svg>'}
+function hsec(id,title,body){var c=(S.secClosed||{})[id];return '<section class="hsec'+(c?' closed':'')+'" data-sec="'+id+'"><div class="hsec-h"><h3>'+title+'</h3><button class="hsec-grip" aria-expanded="'+(c?'false':'true')+'" aria-label="'+(c?'Show ':'Hide ')+title+'. Drag up to collapse, down to open.">'+gripIco()+'</button></div><div class="hsec-b"><div class="hsec-in">'+body+'</div></div></section>'}
+function bindSections(el){$$('.hsec',el).forEach(function(sec){var g=$('.hsec-grip',sec),b=$('.hsec-b',sec),id=sec.dataset.sec,y0=null,moved=false;
+ function set(open,anim){var h=b.scrollHeight;if(anim&&!S.rm){b.style.maxHeight=(open?0:h)+'px';b.offsetHeight;b.style.maxHeight=(open?h:0)+'px';setTimeout(function(){if(!sec.classList.contains('closed'))b.style.maxHeight=''},380)}sec.classList.toggle('closed',!open);S.secClosed=S.secClosed||{};S.secClosed[id]=!open;save();g.setAttribute('aria-expanded',open?'true':'false');g.setAttribute('aria-label',(open?'Hide ':'Show ')+$('h3',sec).textContent+'. Drag up to collapse, down to open.');haptic(8)}
+ g.addEventListener('pointerdown',function(e){e.stopPropagation();y0=e.clientY;moved=false;try{g.setPointerCapture(e.pointerId)}catch(_){}});
+ g.addEventListener('pointermove',function(e){if(y0==null)return;var dy=e.clientY-y0;if(Math.abs(dy)>6)moved=true;var open=!sec.classList.contains('closed');if(open&&dy<-28){y0=null;set(false,true)}else if(!open&&dy>28){y0=null;set(true,true)}});
+ g.addEventListener('pointerup',function(){if(y0!=null&&!moved)set(sec.classList.contains('closed'),true);y0=null});
+ g.addEventListener('pointercancel',function(){y0=null});
+ g.addEventListener('click',function(e){e.stopPropagation()});
+})}
 function lockBig(){return '<svg class="lkico home-lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10.6V7.4a4 4 0 0 1 7.6-1.7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><rect x="5" y="10.2" width="14" height="11.4" rx="4.2" fill="currentColor"/><circle cx="12" cy="15.2" r="1.7" fill="#fff"/><path d="M12 16.4v2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>'}
-function wheelBig(){var c=['#F7C948','#7FCB9B','#F2777A','#8B7BE0','#5FA8E8','#F59B54','#E879B0','#5CC8C0'],o='';for(var i=0;i<8;i++){var a0=(i*45-90)*Math.PI/180,a1=((i+1)*45-90)*Math.PI/180;o+='<path d="M12 12L'+(12+11*Math.cos(a0)).toFixed(2)+' '+(12+11*Math.sin(a0)).toFixed(2)+'A11 11 0 0 1 '+(12+11*Math.cos(a1)).toFixed(2)+' '+(12+11*Math.sin(a1)).toFixed(2)+'z" fill="'+c[i]+'" stroke="#fff" stroke-width=".7"/>'}return '<svg viewBox="0 0 24 24" aria-hidden="true"><g class="wm" style="transform-origin:12px 12px">'+o+'</g><circle cx="12" cy="12" r="3.4" fill="#fff"/></svg>'}
-function lockChip(big){var on=lockActive();return '<button class="lock-chip'+(on?' on':'')+'" data-go="lockin" data-mode="modal" aria-label="'+(on?'Locked In, time left':'Locked In is off')+'">'+(big&&!on?lockBig():lockIco(big?20:16,!on))+(on?'<span data-ref="lkt">'+lockLeft().txt+'</span>':'')+'</button>'}
+function wheelBig(){var c=['#F7C948','#2F6E52','#F2777A','#8B7BE0','#5FA8E8','#F59B54','#E879B0','#5CC8C0'],o='';for(var i=0;i<8;i++){var a0=(i*45-90)*Math.PI/180,a1=((i+1)*45-90)*Math.PI/180;o+='<path d="M12 12L'+(12+11*Math.cos(a0)).toFixed(2)+' '+(12+11*Math.sin(a0)).toFixed(2)+'A11 11 0 0 1 '+(12+11*Math.cos(a1)).toFixed(2)+' '+(12+11*Math.sin(a1)).toFixed(2)+'z" fill="'+c[i]+'" stroke="#fff" stroke-width=".7"/>'}return '<svg viewBox="0 0 24 24" aria-hidden="true"><g class="wm" style="transform-origin:12px 12px">'+o+'</g><circle cx="12" cy="12" r="3.4" fill="#fff"/></svg>'}
+function lockChip(big){var on=lockActive();return '<button class="lock-chip'+(on?' on':'')+'" data-go="lockin" data-mode="modal" aria-label="'+(on?'Locked In, time left':'Locked In mode')+'">'+(big?padLock('home-lk'):lockIco(16,!on))+(on?'<span data-ref="lkt">'+lockLeft().txt+'</span>':'')+'</button>'}
 /* task wheel */
 var WHEEL_BASE=[['💧','Drink a glass of water'],['🧘','Stretch for 2 minutes'],['🌳','Step outside for 5 minutes'],['🧹','Tidy one small surface'],['💬','Text someone you like'],['🎵','Dance to one song'],['📖','Read 2 pages'],['🌬️','60 seconds of slow breaths']];
-var WHEEL_COL=['#FFC93C','#4CC59A','#FF7A6E','#9A86F0','#4FA9EE','#FF9F55','#A8D84A','#F27BB0'];
+var WHEEL_COL=['#FFC93C','#2F6E52','#FF7A6E','#9A86F0','#4FA9EE','#FF9F55','#557F45','#F27BB0'];
 function wheelItems(){var own=S.swaps.slice(0,3).map(function(s){return [swapEmo(s.t),s.t]});var base=WHEEL_BASE.filter(function(b){return !own.some(function(o){return o[1].toLowerCase()===b[1].toLowerCase()})});return own.concat(base).slice(0,8)}
 /* ===== task wheel as a blurred overlay (like the toolkit) ===== */
-function wheelSVG(it){var n=it.length,seg=360/n,R=142,r0=36,gap=2.2,o='';
+function wheelSVG(it){var n=it.length,seg=360/n,R=142,r0=36,gap=3.4,o='';
  function P(r,a){a=a*Math.PI/180;return (150+r*Math.cos(a)).toFixed(2)+' '+(150+r*Math.sin(a)).toFixed(2)}
- it.forEach(function(x,i){var a0=i*seg-90-seg/2+gap,a1=(i+1)*seg-90-seg/2-gap,ro=R-7,ri=r0+5,mid=i*seg-90,c=WHEEL_COL[i%8];
+ it.forEach(function(x,i){var a0=i*seg-90-seg/2+gap,a1=(i+1)*seg-90-seg/2-gap,ro=R-11,ri=r0+9,mid=i*seg-90,c=WHEEL_COL[i%8];
   var d='M'+P(ri,a0+3)+' L'+P(ro,a0)+' A'+ro+' '+ro+' 0 0 1 '+P(ro,a1)+' L'+P(ri,a1-3)+' A'+ri+' '+ri+' 0 0 0 '+P(ri,a0+3)+'z';
-  o+='<path d="'+d+'" fill="'+c+'" stroke="'+c+'" stroke-width="12" stroke-linejoin="round"/>'+
+  o+='<path d="'+d+'" fill="'+c+'" stroke="'+c+'" stroke-width="20" stroke-linejoin="round"/>'+
    '<text x="'+(150+R*.66*Math.cos(mid*Math.PI/180)).toFixed(1)+'" y="'+(150+R*.66*Math.sin(mid*Math.PI/180)+9).toFixed(1)+'" text-anchor="middle" font-size="26" class="emo-t">'+x[0]+'</text>'});
  return '<svg class="wh" viewBox="0 0 300 300" width="300" height="300"><circle cx="150" cy="150" r="148" fill="#FFFDF8"/>'+o+'<circle cx="150" cy="150" r="30" fill="#FFFDF8"/></svg>'}
 function openWheel(chip){var app=document.getElementById('app'),rm=S.rm||app.classList.contains('rm');if(document.getElementById('wh-ov'))return;
@@ -5121,7 +5205,7 @@ mount:function(el,p,e){
    ref(sh,'no').addEventListener('click',close)})});
 }};
 function lockIco(sz,open,cls){return '<svg style="overflow:visible" class="lkico '+(open?'is-open ':'')+(cls||'')+'" width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="shk" d="M7.8 10.4V6.9a4.2 4.2 0 0 1 8.4 0v3.5"/><path d="M7.4 10.4h9.2a3.2 3.2 0 0 1 3.2 3.2a7.8 7.8 0 0 1-15.6 0a3.2 3.2 0 0 1 3.2-3.2z" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="14.6" r="1.25" fill="currentColor" stroke="none"/><path d="M12 15.3v1.7" stroke-width="1.8"/></svg>'}
-function lockCardHTML(){var snap=window.__lockAnim;window.__lockAnim=false;return (lockActive()?'<button class="lk-card active" data-go="lockin" data-mode="modal"><span class="lk-ic">'+lockIco(24,false,snap?'snap':'')+'</span><span class="grow"><b>Locked In</b><small>'+lockLeft().txt+' left \u00b7 until '+lockEnd()+'</small></span>'+ic('chevR',{s:18,c:'#F2CC6B'})+'</button>':'<button class="lk-card" data-go="lockin" data-mode="modal"><span class="lk-ic">'+lockIco(24,true)+'</span><span class="grow"><b>Locked In mode</b><small>Go strict. No off switch until time\'s up.</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>')}
+function lockCardHTML(){var snap=window.__lockAnim;window.__lockAnim=false;return (lockActive()?'<button class="lk-card active" data-go="lockin" data-mode="modal"><span class="lk-ic">'+lockIco(24,false,snap?'snap':'')+'</span><span class="grow"><b>Locked In</b><small>'+lockLeft().txt+' left \u00b7 until '+lockEnd()+'</small></span>'+ic('chevR',{s:18,c:'#F2CC6B'})+'</button>':'<button class="lk-card" data-go="lockin" data-mode="modal"><span class="lk-ic">'+padLock()+'</span><span class="grow"><b>Locked In mode</b><small>Go strict. No off switch until time\'s up.</small></span>'+ic('chevR',{s:18,c:'#A9BDB7'})+'</button>')}
 function pad2(n){return (n<10?'0':'')+n}
 
 /* ---------- creative toolkit icons (Milo world) ---------- */
