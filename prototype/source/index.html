@@ -4712,6 +4712,57 @@ html.duo #app .screen[data-s="milo"] .seg i,html.duo #app .screen[data-s="milo"]
 html.duo #app .screen[data-s="milo"] .hl-in{background:#2D6A4F!important}
 html.duo #app .screen[data-s="milo"] .hl-kh{fill:#2D6A4F!important}
 html.duo #app .screen[data-s="milo"] .hl-kh2{stroke:#2D6A4F!important}
+
+/* ===== Polish pass: one colour system, readable immersive screens, motion ===== */
+:root{--brand:#2D6A4F;--brand-d:#1B4332;--brand-m:#40916C;--brand-l:#D8F3DC;--brand-b:#95D5B2;--sos:#FF9600}
+/* one interaction colour: forest green (links, ghost buttons, picked chips & segments) */
+html.duo a,html.duo .link{color:var(--brand)!important}
+html.duo .btn.ghost{color:var(--brand)!important}
+html.duo .chip.on,html.duo .chip[aria-pressed="true"],html.duo .pick.on{background:var(--brand-l)!important;border-color:var(--brand-b)!important;color:var(--brand-d)!important}
+html.duo .seg i,html.duo .wseg button.on{background:var(--brand-l)!important;box-shadow:inset 0 0 0 2px var(--brand-b)!important;color:var(--brand-d)!important}
+/* immersive screens (SOS, breathe, Locked In, slip, bedtime, find Milo...): deep forest, light type, orange accent */
+html.duo .screen.dark,html.duo .screen.night{background:#0F241B!important;--bg:#0F241B;--bg2:#183A2C;--bg3:#0A1A13;--line:#2A4D3F;--cream:#F4F1EA;--muted:#A3BDB1;--ink2:#A3BDB1;--amber:#FFB04A;--fg:244,241,234;color:#F4F1EA}
+html.duo .screen.night{background:#0A1A13!important;--bg:#0A1A13}
+html.duo .screen:is(.dark,.night) :is(h1,h2,h3,.title,.large,.hero-q,.big-time){color:#FFFFFF!important}
+html.duo .screen:is(.dark,.night) :is(p,.muted,.sub){color:#C6D6CE}
+html.duo .screen:is(.dark,.night) .over{color:#A3BDB1}
+html.duo .screen:is(.dark,.night) .btn.primary{background:var(--brand-m)!important}
+html.duo .screen:is(.dark,.night) .btn.ghost{background:transparent!important;color:#F4F1EA!important;border:2px solid rgba(244,241,234,.28)!important}
+html.duo .screen:is(.dark,.night) a,html.duo .screen:is(.dark,.night) .link{color:#FFB04A!important}
+/* Locked In: orange (the lock ring colour) instead of yellow */
+html.duo .screen[data-s="lockin"] .lk-g.on{border-color:#FF9600!important;background:rgba(255,150,0,.10)!important}
+html.duo .screen[data-s="lockin"] .lk-g.on .onb-ck{background:#FF9600!important;border-color:#FF9600!important;color:#fff!important}
+html.duo .screen[data-s="lockin"] .lk-dur button.on{background:#FF9600!important;color:#fff!important;border-color:#FF9600!important}
+html.duo .screen[data-s="lockin"] [stroke="#F2CC6B" i]{stroke:#FF9600!important}
+/* Locked In quick start on Home */
+.lk-quick{display:flex;align-items:center;gap:8px;margin-top:10px}
+.lk-quick>span{font:800 13px 'Nunito',sans-serif;color:#777777;margin-right:2px}
+html.duo #app .lk-quick .lkq-b.chip:not(.z1):not(.z2){min-width:52px;height:36px;padding:0 14px;border-radius:18px;background:#FFF4E5!important;border:2px solid #FFD8A8!important;color:#C26A00!important;font:900 14px 'Nunito',sans-serif;box-shadow:0 2px 0 #FFD8A8!important}
+/* motion: numbers count up and land with a pop */
+.cu-pop{display:inline-block;animation:cuPop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes cuPop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+/* motion: streak flame flickers like a candle */
+.home-streak svg{transform-origin:50% 90%;animation:flameFlick 2.6s ease-in-out infinite}
+@keyframes flameFlick{0%,100%{transform:scale(1) rotate(0)}20%{transform:scale(1.08,.95) rotate(-4deg)}40%{transform:scale(.96,1.06) rotate(3deg)}60%{transform:scale(1.04,.97) rotate(-2deg)}80%{transform:scale(.98,1.03) rotate(1deg)}}
+/* motion: active lock ring breathes softly */
+.home-lock.on{animation:lockGlow 2.8s ease-in-out infinite}
+@keyframes lockGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,150,0,0)}50%{box-shadow:0 0 0 6px rgba(255,150,0,.16)}}
+/* motion: SOS gets a calm halo every few seconds so help is always findable */
+html.duo #app[data-tab] #tabbar .tab-sos{position:relative}
+html.duo #app[data-tab] #tabbar .tab-sos::after{content:'';position:absolute;inset:-3px;border-radius:inherit;border:3px solid #FF9600;opacity:0;animation:sosHalo 4.5s ease-out infinite;pointer-events:none}
+@keyframes sosHalo{0%,70%{opacity:0;transform:scale(1)}74%{opacity:.55}100%{opacity:0;transform:scale(1.28)}}
+/* motion: activity tiles say hello once when Home appears */
+.shortcuts .sq .sq-f{animation:sqIn .6s cubic-bezier(.3,1.5,.5,1) both}
+.shortcuts .sq:nth-child(2) .sq-f{animation-delay:.07s}.shortcuts .sq:nth-child(3) .sq-f{animation-delay:.14s}.shortcuts .sq:nth-child(4) .sq-f{animation-delay:.21s}.shortcuts .sq:nth-child(n+5) .sq-f{animation-delay:.28s}
+@keyframes sqIn{0%{transform:rotate(0) scale(.6);opacity:0}100%{transform:rotate(var(--tilt,0deg)) scale(1);opacity:1}}
+
+html.duo #app .chip.on:not(.z1):not(.z2):not(.z3),html.duo #app .chip[aria-pressed="true"]:not(.z1):not(.z2):not(.z3){background:var(--brand-l)!important;border-color:var(--brand-b)!important;color:var(--brand-d)!important}
+html.duo .screen:is(.dark,.night) .card.cream{--ink2:#777777;--muted:#777777;color:#4B4B4B}
+html.duo .screen:is(.dark,.night) .card.cream :is(p,.muted){color:#777777!important}
+html.duo .screen:is(.dark,.night) .swap{background:#183A2C!important}
+/* everything respects Reduce motion */
+#app.rm :is(.home-streak svg,.home-lock.on,.shortcuts .sq .sq-f,.cu-pop),#app.rm #tabbar .tab-sos::after{animation:none!important}
+@media (prefers-reduced-motion:reduce){:is(.home-streak svg,.home-lock.on,.shortcuts .sq .sq-f,.cu-pop),#tabbar .tab-sos::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -4911,9 +4962,12 @@ function makeEntry(name,params,mode){
  el.innerHTML=def.render(params||{});if(!/\b(dark|night|warm)\b/.test(def.cls||'')&&def.art!==false){var ba=document.createElement('div');ba.className='bg-art';ba.setAttribute('aria-hidden','true');ba.innerHTML=artSVG(def.art||name);el.insertBefore(ba,el.firstChild)}stagger(el);
  var entry={name:name,el:el,params:params||{},mode:mode};
  nav.appendChild(el);
- entry.cleanup=def.mount?def.mount(el,params||{},entry):null;
+ entry.cleanup=def.mount?def.mount(el,params||{},entry):null;countUp(el);
  return entry;
 }
+function countUp(root){var rm=S.rm||document.getElementById('app').classList.contains('rm');
+ $$('[data-count]',root).forEach(function(n,k){var to=+n.dataset.count;if(!(to>0)||rm)return;var t0=null,d=Math.min(1400,500+to*45);n.textContent='0';
+  setTimeout(function(){requestAnimationFrame(function f(t){if(!t0)t0=t;var q=Math.min(1,(t-t0)/d),e=1-Math.pow(1-q,3);n.textContent=Math.round(to*e);if(q<1)requestAnimationFrame(f);else{n.textContent=to;n.classList.add('cu-pop');haptic(4)}})},220+k*90)})}
 function postBg(){var RN=window.ReactNativeWebView;if(!RN)return;clearTimeout(postBg.t);postBg.t=setTimeout(function(){try{var e=stack[stack.length-1];if(!e)return;var c=getComputedStyle(e.el).backgroundColor,m=c.match(/[\d.]+/g)||[0,0,0],l=(+m[0]*299+ +m[1]*587+ +m[2]*114)/255000;if(c!==postBg.c){postBg.c=c;RN.postMessage(JSON.stringify({t:'bg',c:c,dark:l<.55}))}}catch(_){}},460)}
 function updateTabbar(){try{document.getElementById('app').dataset.tab=curTab}catch(_){}try{$$('#tabbar .tab').forEach(function(t){if(t.dataset.tab===curTab)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')})}catch(_){}tabbar.classList.toggle('hide',stack.length>1);try{var gf=document.getElementById('gear-fab');gf&&gf.classList.toggle('hide',stack.length>1||curTab==='you')}catch(_){}postBg();$$('.tab',tabbar).forEach(function(t){t.classList.toggle('on',t.dataset.tab===curTab)})}
 function push(name,params,mode){
@@ -5124,7 +5178,7 @@ SCREENS.today={render:function(){
  '<div class="home-top"><button class="home-you" data-go="you" data-mode="sheet" aria-label="You"><span class="hy-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><mask id="tagHoleH"><rect width="24" height="24" fill="#fff"/><circle cx="12" cy="9.4" r="1.6" fill="#000"/></mask></defs><path d="M12 1.6v5.2" stroke="#52B788" stroke-width="2" stroke-linecap="round"/><g mask="url(#tagHoleH)"><rect x="5" y="4.6" width="14" height="17.6" rx="7" fill="#95D5B2"/><path d="M5 15.2h14v.4a7 7 0 0 1-14 0z" fill="#52B788" opacity=".85"/><path d="M7.6 8.6a5 5 0 0 1 2.2-2.5" stroke="#fff" stroke-opacity=".6" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><path d="M9.2 14.2h5.6M10.2 17.3h3.6" stroke="#1B4332" stroke-width="1.9" stroke-linecap="round"/></svg></span></button>'+lockRing()+'<button class="home-streak" data-tab="insights" aria-label="'+S.streak+' day streak">'+ic('flame',{s:28,c:'#FF9600',fill:'#FF9600'})+'<b data-ref="streak">'+S.streak+'</b></button></div>'+
  '<div class="hero"><div class="say" data-ref="say">'+LINES()[0]+'</div><div class="hero-stage"><div class="rainfx">'+[0,1,2,3,4,5,6,7,8,9].map(function(i){return '<i style="left:'+(4+i*10)+'%;animation-delay:'+(i*0.23).toFixed(2)+'s;animation-duration:'+(1.1+(i%3)*0.25)+'s"></i>'}).join('')+'</div><div class="rub hero-milo" data-ref="milo">'+mimg('rainy',220,'','Milo under an umbrella in the rain','happy')+'</div></div><span class="hint-dark hero-hint"><span class="rub-hand">'+ic('hand',{s:14})+'</span>Rub Milo or <span class="shake-ic" role="img" aria-label="shake your phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3.5" width="8" height="17" rx="2.2"/><path d="M11 17.2h2"/><path d="M4.6 8.5c-1.1 2.2-1.1 4.8 0 7"/><path d="M19.4 8.5c1.1 2.2 1.1 4.8 0 7"/><path d="M2 6.5c-1.7 3.4-1.7 7.6 0 11" opacity=".55"/><path d="M22 6.5c1.7 3.4 1.7 7.6 0 11" opacity=".55"/></svg></span> for a smile</span></div>'+homeSec('feel','How are you feeling?','<div class="faces" data-ref="moods">'+faceButtons(true)+'</div>')+
  '<div data-ref="vnh">'+homeVN()+'</div>'+homeSec('act','Activity',shortcutsHTML())+
- homeSec('lock','Locked In','<div data-ref="lkc">'+lockCardHTML()+'</div>')+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
+ homeSec('lock','Locked In','<div data-ref="lkc">'+lockCardHTML()+'</div><div data-ref="lkq">'+lockQuickHTML()+'</div>')+'<div data-ref="idn">'+idNudgeHTML()+'</div>'+
  '</div></div></div>';
 },mount:function(el){
  var say=ref(el,'say'),i=0,lines=LINES();var wc=ref(el,'wheelc');wc&&wc.addEventListener('click',function(ev){ev.stopPropagation();setTimeout(function(){openWheel(wc)},0)});var lkt=ref(el,'lkt');if(lkt&&lockActive()){var lkI=setInterval(function(){if(!lkt.isConnected||!lockActive()){clearInterval(lkI);return}lkt.textContent=lockLeft().txt},1000)}el.addEventListener('click',function(e){if(e.target.closest('[data-ref="vnx"]')){S.vnHome='home'+S.streak;save();var c=ref(el,'vnc');if(c){c.style.transition='opacity .25s,transform .25s';c.style.opacity='0';c.style.transform='scale(.96)';setTimeout(function(){ref(el,'vnh').innerHTML=''},260)}haptic(6)}});bindHomeSecs(el);var bg=ref(el,'bag');bg&&bg.addEventListener('click',openToolkit);bg&&bagHold(bg);var sca=ref(el,'scadd');sca&&sca.addEventListener('click',function(){addShortcut(function(){refreshRoot()})});var lr=setInterval(function(){var b=$('.home-lock',el);b&&syncLock(b)},1000);
@@ -5133,7 +5187,7 @@ SCREENS.today={render:function(){
  rubbable(ref(el,'milo'),{pet:function(){pets++;if(pets===1||pets%6===0)swapText(say,['Hehe, right there!','Best human ever.','More, more!','You\'re good at this.'][Math.floor(Math.random()*4)])},end:function(){if(pets>3){S.treats+=1;save()}}});
  var nt=null;if(!window.__notified){nt=setTimeout(function(){if(stack.length===1&&curTab==='today'&&!$('#onb')&&!window.__notified){window.__notified=true;notify()}},7000)}
  return function(){clearInterval(iv);clearTimeout(nt);clearInterval(lr)};
-},onShow:function(el){var hl=$('.home-lock',el);hl&&syncLock(hl);var s=ref(el,'streak');s&&(s.textContent=S.streak);var lc=ref(el,'lkc');lc&&(lc.innerHTML=lockCardHTML());var dn=ref(el,'idn');dn&&(dn.innerHTML=idNudgeHTML())}};
+},onShow:function(el){var hl=$('.home-lock',el);hl&&syncLock(hl);var s=ref(el,'streak');s&&(s.textContent=S.streak);var lc=ref(el,'lkc');lc&&(lc.innerHTML=lockCardHTML());var lq=ref(el,'lkq');lq&&(lq.innerHTML=lockQuickHTML());var dn=ref(el,'idn');dn&&(dn.innerHTML=idNudgeHTML())}};
 
 SCREENS.picks={render:function(p){
  var m=p.arg||'bored',mm=MOODS.filter(function(x){return x.id===m})[0];
@@ -5322,10 +5376,10 @@ SCREENS.milo={render:function(){
 SCREENS.insights={render:function(){
  var cal='';for(var i=0;i<28;i++){var c=i===27?'today':(i===6||i===13)?'slip':'';cal+='<i class="'+c+'" style="--i:'+i+'"></i>'}
  var mx=0,mk=['bored','stressed','tired','anxious','great'];mk.forEach(function(k){mx=Math.max(mx,S.moods[k]||0)});
- var hb=mk.map(function(k){var v=S.moods[k]||0;return '<span>'+k[0].toUpperCase()+k.slice(1)+'</span><div class="hb"><i data-w="'+Math.round(v/mx*100)+'" style="background:'+({bored:'#F2CC6B',stressed:'#E9958A',tired:'#BDB8DD',anxious:'#8DBCE0',great:'#9FD0BD'})[k]+'"></i></div><span style="text-align:right">'+v+'</span>'}).join('');
+ var hb=mk.map(function(k){var v=S.moods[k]||0;return '<span>'+k[0].toUpperCase()+k.slice(1)+'</span><div class="hb"><i data-w="'+Math.round(v/mx*100)+'" style="background:'+({bored:'#FF9600',stressed:'#FF4B4B',tired:'#A560E8',anxious:'#1899D6',great:'#2D6A4F'})[k]+'"></i></div><span style="text-align:right">'+v+'</span>'}).join('');
  var tod=[['Morning',2],['Afternoon',6],['Evening',9],['Late night',12]];
  return '<div class="scroll stagger"><h1 class="large" style="margin:0">Insights</h1>'+
- '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('frisbee',{s:14,w:1.4})+'Freebie: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+trophyRow(true)+
+ '<div class="card col ins-hero"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="over">HABIT-FREE STREAK</div><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:76px;line-height:78px;font-weight:900;letter-spacing:-.03em;color:var(--cream)" data-count="'+S.streak+'">'+S.streak+'</span><span style="font-size:18px;font-weight:800">days</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px"><span class="muted" style="font-size:13px">Best: '+S.best+' days</span><span class="mercy">'+ic('frisbee',{s:14,w:1.4})+'Freebie: '+S.mercy+' left this week</span></div></div><div class="week">'+['M','T','W','T','F','S','S'].map(function(d,i){return '<div class="wd"><i class="'+(i===6?'today':'')+'" style="--i:'+i+'">'+(i<6?ic('check',{s:16,c:'#16302B',w:3.4}):'')+'</i>'+d+'</div>'}).join('')+'</div><button class="slip-link" data-go="slip" data-mode="modal">'+ic('sprout',{s:15,w:2.2})+'I slipped. Help me reset</button></div>'+trophyRow(true)+
  '<button class="rowcard cream" data-go="wrapped" data-mode="modal"><img src="assets/gift.png" alt="" class="illo" style="width:56px;height:56px;border-radius:14px"><span class="grow"><b>Your Milo Wrapped is ready</b><small style="color:var(--ink2)">Your week in 6 tiny stories</small></span><span class="playc">'+ic('play',{s:16,fill:'#F9F6F0',c:'#F9F6F0'})+'</span></button>'+
  '<div class="card col"><div class="over">LAST 4 WEEKS</div><div class="cal">'+cal+'</div><div style="display:flex;gap:14px;font-size:12px;font-weight:800;color:var(--muted)"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#7FA89C;margin-right:5px"></i>Habit-free</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--line);margin-right:5px"></i>Slip</span></div></div>'+
  '<div class="card cream row"><img src="assets/garden.png" alt="Milo watering sprouts" class="illo" style="width:96px;height:96px;border-radius:18px;flex-shrink:0"><div class="col" style="gap:4px"><span class="over" style="color:var(--ink2)">MILO NOTICED</span><b style="font-size:17px;line-height:22px">Most urges hit when you\'re <span style="color:#A8541E">Bored after 8 PM</span>.</b><button class="chip" data-ref="boost" style="align-self:flex-start;border-color:#E4DDCF;color:var(--ink);padding:6px 12px;font-size:13px">Add a 7:45 PM booster</button></div>'+fbHTML('insight-bored-8pm','Is this insight useful?')+'</div>'+
@@ -5387,7 +5441,7 @@ SCREENS.widget={render:function(){
 }};
 
 SCREENS.phonedown={cls:'',render:function(){
- return '<div class="scroll nosb" data-state="setup" data-ref="root" style="align-items:center"><div class="topbar" style="align-self:stretch"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">PHONE-DOWN</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll nosb" data-state="setup" data-ref="root" style="align-items:center"><div class="topbar" style="align-self:stretch"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Phone-down</span><div style="width:44px"></div></div>'+
  '<div data-show="setup" class="col" style="align-items:center;gap:16px;align-self:stretch;flex:1"><div style="perspective:600px;margin-top:10px"><div class="flip" style="width:110px;height:180px;border-radius:24px;background:var(--bg2);border:4px solid var(--line);display:flex;align-items:center;justify-content:center">'+face('neutral',84)+'</div></div><h1 class="title center">Put the phone down, earn treats</h1><p class="muted center">Pick a time. Place your phone face-down. If you pick it up early, Milo notices.</p><div class="row" style="gap:8px" data-ref="durs"><button class="chip" data-d="5">5 min</button><button class="chip on" data-d="15">15 min</button><button class="chip" data-d="30">30 min</button></div><div class="note"><span class="proto-only">Prototype runs for 15 seconds whatever you pick</span></div><div class="spacer"></div><button class="btn primary" data-ref="start">Start challenge</button></div>'+
  '<div data-show="wait" class="col" style="align-items:center;gap:16px;align-self:stretch;flex:1"><div style="perspective:600px;margin-top:30px"><div class="flip" style="width:110px;height:180px;border-radius:24px;background:var(--bg2);border:4px solid var(--amber)"></div></div><h1 class="title center">Flip your phone face-down</h1><p class="muted center">The motion sensor starts the timer automatically. In the prototype, tap below.</p><div class="spacer"></div><button class="btn primary" data-ref="down">I put it face-down</button></div>'+
  '<div data-show="run paused" class="col" style="align-items:center;gap:16px;align-self:stretch;flex:1"><div class="ring-wrap" style="margin-top:20px"><svg class="ring" viewBox="0 0 270 270"><circle class="bg" cx="135" cy="135" r="118"/><circle class="fg" data-ref="ring" cx="135" cy="135" r="118" stroke-dasharray="741.4" stroke-dashoffset="0"/></svg><div class="ring-inner">'+mimg('calm',124,'','Milo meditating')+'<div class="big-time" data-ref="time">0:15</div></div></div>'+
@@ -5425,7 +5479,7 @@ SCREENS.bedtime={cls:'night',render:function(){
 
 /* ---------- v3 screens ---------- */
 SCREENS.forecast={render:function(){
- return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">URGE FORECAST</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Urge forecast</span><div style="width:44px"></div></div>'+
  '<div class="fc-hero"><div class="storm"><span style="color:#E9958A">'+ic('storm',{s:96,w:1.6})+'</span><div class="drops">'+[0,1,2,3,4].map(function(i){return '<i style="left:'+(22+i*13)+'%;animation-delay:'+(i*0.19)+'s"></i>'}).join('')+'</div></div><h1 class="title center">Stormy around 9 PM</h1><p class="muted center">Bored and tired is your toughest mix. I\'ve already got a plan.</p></div>'+
  '<div class="col stagger" style="gap:10px">'+FORECAST.map(function(f){return '<div class="fc-row"><span class="fc-ic" style="color:'+f.c+'">'+ic(f.i,{s:26})+'</span><div class="grow"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><b>'+f.t+'</b><small>'+f.time+'</small></div><div class="muted" style="font-size:13px">'+f.w+'</div><div class="risk"><i data-w="'+f.risk+'" style="background:'+f.c+'"></i></div><div class="fc-plan">'+ic('paw',{s:14})+'<span>'+f.plan+'</span></div></div></div>'}).join('')+'</div>'+
  '<div class="card cream row" style="gap:12px"><img src="assets/calendar.png" alt="" class="illo" style="width:64px;height:64px;border-radius:14px;flex-shrink:0"><div style="font-size:14px;font-weight:600;line-height:1.45">Based on your last 30 days: most urges hit when you\'re <b>bored after 8 PM</b>, and they double when you\'re tired too.</div></div>'+
@@ -5469,7 +5523,7 @@ SCREENS.wrapped={cls:'dark',render:function(){
 }};
 
 SCREENS.pack={render:function(){
- return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">YOUR PACK</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your pack</span><div style="width:44px"></div></div>'+
  '<div class="park"><div class="p-grass"></div><div class="p-m1">'+mimg('dance',124,'','Your Milo dancing')+'</div><div class="p-heart">'+ic('heart',{s:28,fill:'#E9958A',c:'none'})+'</div><div class="p-m2">'+mimg('skate',124,'',"Jade's Milo skating")+'</div><div class="p-ball"></div></div>'+
  '<div style="display:flex;justify-content:space-around;margin-top:-6px"><span class="muted" style="font-size:13px">Your Milo</span><span class="muted" style="font-size:13px">Jade\'s Milo</span></div>'+
  '<div class="card alert" data-ref="alert"><div class="row" style="gap:12px"><span class="ava">J</span><div class="grow"><b style="font-size:16px">Jade hit SOS 2 minutes ago</b><div style="font-size:13px;color:#F3D3CC;font-weight:600">A paw buzzes their phone. No words needed.</div></div></div><button class="btn primary" data-ref="paw" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+ic('paw',{s:20})+'Send a paw</button></div>'+
@@ -5485,7 +5539,7 @@ SCREENS.pack={render:function(){
 }};
 
 SCREENS.why={render:function(){
- return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">YOUR WHY</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Your why</span><div style="width:44px"></div></div>'+
  '<h1 class="title">What are you doing this for?</h1><p class="muted">At the peak of a craving, Milo shows you this. A photo or a few words, whatever pulls you back.</p>'+
  '<div class="why-prev" data-ref="prev">'+whyInner()+'</div>'+
  '<label class="btn ghost" style="display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer">'+ic('image',{s:20})+'<span>Choose a photo</span><input type="file" accept="image/*" data-ref="file" style="display:none"></label>'+
@@ -5500,7 +5554,7 @@ SCREENS.why={render:function(){
 }};
 
 SCREENS.native={cls:'dark',render:function(){
- return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over">NEEDS A DEV BUILD</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll nosb"><div class="topbar"><button class="icon-btn" data-back aria-label="Back">'+ic('chevL',{w:2.6})+'</button><span class="over keep">Needs a dev build</span><div style="width:44px"></div></div>'+
  '<h1 class="title">Milo outside the app</h1><p class="muted">Previews of features that need native iOS code. The build spec covers how.</p>'+
  '<div class="over">LOCK SCREEN · LIVE ACTIVITY</div><div class="lock"><div class="island"><span>'+face('happy',24)+'</span><b data-ref="di">0:42</b></div><div class="l-time">'+nowStr().replace(/ (AM|PM)/,'')+'</div><div class="l-date">'+new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+'</div><div class="la"><div class="row" style="gap:10px">'+face('calm',40)+'<div class="grow"><b>Urge SOS</b><div style="font-size:12px;color:#B8C4D0;font-weight:700">Ride the wave. You\'re doing it.</div></div><b style="font-size:24px;font-variant-numeric:tabular-nums" data-ref="la">0:42</b></div><div class="bar" style="height:6px;margin-top:10px;background:#2A3A4A"><i data-ref="lab" style="width:30%;background:#E88D4F;transition:width 1s linear"></i></div></div></div>'+
  '<div class="over">ACTION BUTTON &amp; BACK TAP</div><div class="card row" style="background:#16222E"><div class="phside"><i></i></div><div class="grow"><b style="font-size:16px">Press and hold → SOS</b><div class="muted" style="font-size:13px">Starts the 60-second SOS straight from the side button. Back Tap does the same on older iPhones.</div></div></div><button class="btn primary" data-ref="try">Try the shortcut</button>'+
@@ -6598,6 +6652,7 @@ function fic(n,o){o=o||{};var d=FICON[n],sz=o.s||20;if(!d)return ic(n,{s:sz,w:2.
  return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" aria-hidden="true">'+(cut?'<defs><mask id="'+id+'" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><g fill="none" stroke="#000" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+cut+'</g></mask></defs>':'')+'<g fill="currentColor"'+(cut?' mask="url(#'+id+')"':'')+'>'+d.s+'</g>'+(d.t?'<g fill="currentColor">'+d.t+'</g>':'')+'</svg>'}
 
 /* ---------- Locked In mode ---------- */
+function lockQuickHTML(){if(lockActive())return '';return '<div class="lk-quick" role="group" aria-label="Quick start Locked In"><span>Quick start</span>'+[[1,'1h'],[4,'4h'],[8,'8h']].map(function(d){return '<button class="chip lkq-b" data-go="lockin" data-mode="modal" data-arg="'+d[0]+'">'+d[1]+'</button>'}).join('')+'</div>'}
 function lockActive(){return S.lock&&S.lock.until>Date.now()}
 function lockLeft(){var ms=Math.max(0,(S.lock?S.lock.until:0)-Date.now()),h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000),sec=Math.floor(ms%60000/1000);return {h:h,m:m,s:sec,ms:ms,txt:(h?h+'h ':'')+m+'m'}}
 function lockEnd(){var d=new Date(S.lock.until),t=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}),tom=d.getDate()!==new Date().getDate();return t+(tom?' tomorrow':'')}
@@ -6609,12 +6664,12 @@ function lockedOverlay(appName){var w=document.createElement('div');w.className=
  $$('[data-a]',w).forEach(function(b){b.addEventListener('click',function(){w.classList.remove('on');setTimeout(function(){w.remove()},300);if(b.dataset.a==='b')setTimeout(function(){push('breathe',{},'modal')},200)})})}
 SCREENS.lockin={cls:'dark',render:function(){
  if(lockActive()){var L=lockLeft(),tot=S.lock.dur*3600000,p=1-L.ms/tot;
-  return '<div class="scroll nosb lk"><div class="topbar"><button class="icon-btn" data-back aria-label="Close">'+ic('x',{w:2.6})+'</button><span class="over keep" style="color:#F2CC6B">Locked In</span><div style="width:44px"></div></div>'+
+  return '<div class="scroll nosb lk"><div class="topbar"><button class="icon-btn" data-back aria-label="Close">'+ic('x',{w:2.6})+'</button><span class="over keep" style="color:#FFB04A">Locked In</span><div style="width:44px"></div></div>'+
   '<div class="lk-ring"><svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="96" fill="none" stroke="rgba(249,246,240,.1)" stroke-width="14"/><circle cx="110" cy="110" r="96" fill="none" stroke="#F2CC6B" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="'+(p*100).toFixed(2)+' 100" transform="rotate(-90 110 110)"/></svg><div class="lk-mid">'+mimg('calm',120,'','Milo on guard')+'<b data-ref="t">'+pad2(L.h)+':'+pad2(L.m)+':'+pad2(L.s)+'</b><small>until '+lockEnd()+'</small></div></div>'+
   '<div class="lk-apps">'+S.lock.groups.map(function(g){var G=LOCK_GROUPS.filter(function(x){return x.id===g})[0];return '<span>'+ic('lock',{s:13,w:2.6})+G.t+'</span>'}).join('')+'</div>'+
   '<div class="lk-note">'+ic('lock',{s:15,w:2.4})+'<span>There’s no off switch. Not even for Milo. Phone, Messages, Maps and Bored Doom always work.</span></div>'+
   '<div class="spacer"></div><button class="btn primary" data-ref="sos">I’m struggling</button><button class="btn ghost" data-ref="try" style="margin-top:2px">Try opening a locked app</button></div>'}
- return '<div class="scroll lk"><div class="topbar"><button class="icon-btn" data-back aria-label="Close">'+ic('x',{w:2.6})+'</button><span class="over keep" style="color:#F2CC6B">Locked In</span><div style="width:44px"></div></div>'+
+ return '<div class="scroll lk"><div class="topbar"><button class="icon-btn" data-back aria-label="Close">'+ic('x',{w:2.6})+'</button><span class="over keep" style="color:#FFB04A">Locked In</span><div style="width:44px"></div></div>'+
  '<div class="lk-hero">'+mimg('calm',130,'','Milo, serious')+'<div><h1 class="title" style="margin:0">Go strict.</h1><p class="muted" style="margin:4px 0 0;font-size:15px;line-height:21px">Pick what to lock and for how long. Once it starts, <b style="color:var(--cream)">you can’t turn it off</b> until the timer ends.</p></div></div>'+
  '<div class="gl keep">Lock these</div><div class="col" style="gap:8px">'+LOCK_GROUPS.map(function(g,i){return '<button class="onb-opt lk-g'+(i===0?' on':'')+'" data-g="'+g.id+'"><span class="onb-oi">'+ic(g.i,{s:20,w:2.2})+'</span><span class="grow"><b>'+g.t+'</b><small>'+g.s+'</small></span><span class="onb-ck sq">'+ic('check',{s:14,w:3.4})+'</span></button>'}).join('')+'</div>'+
  '<div class="gl keep">For how long</div><div class="lk-dur">'+LOCK_DUR.map(function(d){return '<button data-d="'+d[0]+'" class="'+(d[0]===24?'on':'')+'">'+d[1]+'</button>'}).join('')+'</div>'+
@@ -6628,7 +6683,7 @@ mount:function(el,p,e){
   return function(){clearInterval(iv)}}
  var groups=['social'],dur=24;
  $$('.lk-g',el).forEach(function(b){b.addEventListener('click',function(){var g=b.dataset.g,k=groups.indexOf(g);if(k>=0)groups.splice(k,1);else groups.push(g);b.classList.toggle('on',k<0);ref(el,'go').disabled=!groups.length;haptic(6)})});
- $$('.lk-dur button',el).forEach(function(b){b.addEventListener('click',function(){$$('.lk-dur button',el).forEach(function(x){x.classList.toggle('on',x===b)});dur=+b.dataset.d;haptic(6)})});
+ $$('.lk-dur button',el).forEach(function(b){b.addEventListener('click',function(){$$('.lk-dur button',el).forEach(function(x){x.classList.toggle('on',x===b)});dur=+b.dataset.d;haptic(6)})});if(p&&p.arg){var qb=el.querySelector('.lk-dur button[data-d="'+p.arg+'"]');qb&&qb.click()}
  ref(el,'go').addEventListener('click',function(){
   openSheet('<div class="col" style="align-items:center;text-align:center;gap:10px">'+mimg('thinking',120,'','Milo')+'<span class="seal-lock" data-ref="sl">'+lockIco(40,true)+'</span><div style="font-size:23px;font-weight:900;line-height:28px">No take-backs?</div><p class="muted" style="margin:0">'+groups.length+' group'+(groups.length>1?'s':'')+' locked for <b>'+dur+' hour'+(dur>1?'s':'')+'</b>. There’s no off switch until it ends. Hold Milo’s paw to seal it.</p><button class="paw-hold lk-hold" data-ref="hold" aria-label="Hold for 3 seconds to start Locked In"><svg class="ph-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="#E4DDCF" stroke-width="7"/><circle class="ph-arc" cx="60" cy="60" r="54" fill="none" stroke="#E88D4F" stroke-width="7" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3" transform="rotate(-90 60 60)"/></svg><span class="ph-paw"><svg viewBox="0 0 24 24"><g fill="currentColor">'+pawP(12,11.6,2.15,true).replace(/^<g[^>]*>|<\/g>$/g,'')+'</g></svg></span></button><span class="ph-hint" data-ref="hint" style="color:#A8541E">Hold to lock in</span></div><button class="link" data-ref="no" style="color:var(--ink2)">Not yet</button>',function(sh,close){
    var h=ref(sh,'hold'),arc=$('.ph-arc',h),hint=ref(sh,'hint'),t0=0,raf=null,done=false,lb=0;
